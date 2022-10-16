@@ -9,34 +9,24 @@ class User {
   }
 
   asingacionPorcentajesLenguajes(user) {
-    let languageScores = [];
-
-    loveLanguages.forEach(function (language) {
-      let porcentaje = parseFloat(
-        prompt(`Ingresa el porcentaje de amor para ${language}:`)
-      );
-      let obj = { [language]: porcentaje };
-      let str = JSON.stringify(obj);
-      languageScores.push(str);
+    Object.entries(this.languages).forEach(([key, value]) => {
+      let result = parseFloat(prompt(`Ingresa el porcentaje de amor para ${key}:`));
+      this.languages[key] = result;
     });
 
-    return this.loveLanguageProfile(user, languageScores);
+    let profile = this.loveLanguageProfile(user, this.languages);
+    return  profile;
   }
 
-  loveLanguageProfile(user, languageScores) {
+  loveLanguageProfile(user, languages) {
+
     let profile = {
       id: user.id,
       imagen: user.image,
       nombre: user.nombre,
       description: user.description,
       genero: user.genero,
-      languages: {
-        physicalTouch: languageScores[0],
-        actosOfService: languageScores[1],
-        qualityTime: languageScores[2],
-        wordsOfAffirmation: languageScores[3],
-        receivingGifts: languageScores[4],
-      },
+      languages,
     };
     return profile;
   }

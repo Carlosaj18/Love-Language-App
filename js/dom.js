@@ -110,14 +110,14 @@ function createUser() {
   let description =
     "Cuando una acción no es algo natural para ti, eso es una expresión de amor";
   let genero = prompt("Ingresa tu genero");
-  let languages = [];
+  let languages = loveLanguages;
 
+  /** Instanciar Objeto */
   const NewUser = new User(id, imagen, nombre, description, genero, languages);
-
   let profileUser = NewUser.asingacionPorcentajesLenguajes(NewUser);
-  console.log("En el DOM este es el user ", profileUser);
-  let userFound = users.find((userArray) => userArray.id === parseInt(profileUser.id));
-  // console.log("User found", userFound);
+  let userFound = users.find(
+    (userArray) => userArray.id === parseInt(profileUser.id)
+  );
   if (userFound == undefined) {
     users.push(profileUser);
     console.table(users);

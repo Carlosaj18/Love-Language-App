@@ -1,12 +1,9 @@
-const usersFavorite = [];
-const carrito = [];
+let usersFavorite = [];
 
-const loveLanguages = [
-  "physicalTouch",
-  "actosOfService",
-  "qualityTime",
-  "wordsOfAffirmation",
-  "receivingGifts",
-];
-
-
+let loveLanguages = {
+  physicalTouch: 0,
+  actosOfService: 0,
+  qualityTime: 0,
+  wordsOfAffirmation: 0,
+  receivingGifts: 0,
+};
