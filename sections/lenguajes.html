@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lenguages del Amor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/variables.js"></script>
+    <script defer src="js/arrays.js"></script>
+  </head>
+  <body>
+    <h1>Lenguajes del Amor</h1>
+    <p>Busqueda de los lenguajes del amor</p>
+    <article class="container">
+      <div class="parent">
+        <div>
+          <label for="selectPais">País</label>
+          <select id="selectPais" name="selectPais">
+            <option value="" selected disabled>...</option>
+            -->
+            <option value="">Uruguay</option>
+            <option value="">Chile</option>
+            <option value="">Argentina</option>
+            <option value="">Perú</option>
+          </select>
+        </div>
+        <footer>
+          <button class="button" onclick="listarPaises()">LISTAR PAISES</button>
+          <button class="button button-grey" onclick="agregarPais()">
+            AGREGAR PAIS
+          </button>
+          <button class="button button-outline" onclick="buscarPais()">
+            BUSCAR PAIS
+          </button>
+          <button class="button button-delete" onclick="quitarPais()">
+            QUITAR UN PAIS
+          </button>
+        </footer>
+      </div>
+    </article>
+  </body>
+</html>
