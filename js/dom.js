@@ -21,6 +21,9 @@ const retornoCardUser = (user) => {
           </div>`;
 };
 
+// Id User
+const idUser = () => parseInt(Math.random() * 10000);
+
 // Id card
 const activarBotonesDelete = () => {
   const botonesDelete = document.querySelectorAll(
@@ -102,9 +105,8 @@ const buttonShowFavoritos = (userId) => {
 };
 
 // Crear User
-
 function createUser() {
-  let id = 10;
+  let id = idUser();
   let imagen = "😄";
   let nombre = prompt("Ingresa tu nombre");
   let description =
@@ -121,6 +123,7 @@ function createUser() {
   if (userFound == undefined) {
     users.push(profileUser);
     console.table(users);
+    cargarUsers(users);
   } else {
     respuesta = confirm(
       "El usuario " +
@@ -136,6 +139,14 @@ function createUser() {
 addUser.addEventListener("click", () => {
   createUser();
 });
+
+// Editar user
+
+// Find User
+
+function findUser() {
+  let nombre = prompt("Ingresa el usuario a buscar:");
+}
 
 // Eliminar usuario
 function eliminarUser(userId) {
