@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const allUsers = document.querySelector(".button.allUsers");
 const favoritosUsers = document.querySelector(".button.button-favoritos");
 const addUser = document.querySelector(".button.button-grey.createUser");
+const findUser = document.querySelector(".button.button-outline.findUser");
 
 const retornoCardUser = (user) => {
   return `<div class="card" id="${user.id}">
@@ -34,6 +35,12 @@ const activarBotonesDelete = () => {
       eliminarFavoritoUser(btn.id);
     });
   });
+
+  botonesDelete.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      eliminarUser(btn.id);
+    });
+  });
 };
 
 // Activar Bottones de favoritos
@@ -57,6 +64,13 @@ const cargarUsers = (array) => {
   array.forEach((user) => {
     container.innerHTML += retornoCardUser(user);
   });
+  activarBotonesAdd();
+  activarBotonesDelete();
+};
+
+const cargarOneUser = (user) => {
+  container.innerHTML = "";
+  container.innerHTML += retornoCardUser(user);
   activarBotonesAdd();
   activarBotonesDelete();
 };
@@ -143,16 +157,29 @@ addUser.addEventListener("click", () => {
 // Editar user
 
 // Find User
+const findUserArray = () => {
+  let userName = prompt("Ingresa el usuario a buscar:");
+  let userFound = users.find((userArray) => userArray.nombre === userName);
+  if (userFound === undefined) {
+    alert(`No se encontró el usuario ${userName} en tus contactos`);
+  } else {
+    cargarOneUser(userFound);
+  }
+};
 
-function findUser() {
-  let nombre = prompt("Ingresa el usuario a buscar:");
-}
+findUser.addEventListener("click", () => {
+  findUserArray();
+});
 
 // Eliminar usuario
 function eliminarUser(userId) {
-  let userArrayRemaining = users.filter(function (user) {
-    return user.id !== parseInt(userId);
+  const index = users.findIndex((user) => {
+    return user.id === parseInt(userId);
   });
+  if (index > -1) {
+    users.splice(index, 1); //quita un elemento desde un índice específico
+    cargarUsers(users);
+  }
 }
 
 // Eliminar usuario de favoritos
