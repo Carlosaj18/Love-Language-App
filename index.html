@@ -39,54 +39,73 @@
   </head>
   <body class="color-change-5x">
     <main>
-      <div class="containerNavBar">
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-      </div>
-      <article class="containerSerach">
-        <div class="parent">
-          <nav class="navbar bg-light">
-            <form class="container-fluid">
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Username"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-            </form>
-          </nav>
-          <footer class="container-fluid justify-content-center">
-            <button class="button allUsers">All Users</button>
-            <button class="button button-grey createUser">
-              Add User
-            </button>
-            <button class="button button-outline findUser">
-              Find User
-            </button>
-            <button class="button button-favoritos">Favorites</button>
-          </footer>
+      <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <div class="search-container">
+          <form action="/action_page.php">
+            <input
+              class="input"
+              type="text"
+              placeholder="Search.."
+              name="name"
+            />
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>
         </div>
-      </article>
-      <div class="container mt-5">
       </div>
-      <div class="buttons mt-5">
-        <button onclick="verLenguages()">Ver lenguajes del amor</button>
+      <div style="padding-left: 16px">
+        <h2>Lenguajes del Amor</h2>
+        <p>¿Cuáles son los 5 lenguajes del amor?</p>
+        <p>
+          ¿Cómo mantener vivo el amor por tanto tiempo?, ¿Por qué tan pocas
+          parejas parecen haber encontrado el secreto para mantener vivo el amor
+          después de tanto tiempo?
+        </p>
+      </div>
+      <footer class="container-fluid justify-content-center">
+        <button class="button allUsers">All Users</button>
+        <button class="button button-grey createUser">Add User</button>
+        <button class="button button-outline findUser">Find User</button>
+        <button class="button button-favoritos">Favorites</button>
+        <button class="button button-dashboard">Dashboard</button>
+      </footer>
+      <p id="values"></p>
+      <div class="containerCards mt-5"></div>
+      <article class="container">
+        <div class="containerTitle">
+          <h1>User Dashboard</h1>
+        </div>
+        <div class="containerTable">
+          <table class="table" class="border border-success">
+            <thead>
+              <tr class="header">
+                <th scope="col" class="border-left">Id</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>PhysicalTouch</th>
+                <th>ActosOfService</th>
+                <th>QualityTime</th>
+                <th>WordsOfAffirmation</th>
+                <th>ReceivingGifts</th>
+                <th class="border-right">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody class="tbody"></tbody>
+          </table>
+        </div>
+        <footer>
+          <button class="btn verCurso">
+            <a class="reservar">Listar</a>
+          </button>
+          <button class="btn verCurso">
+            <a class="reservar">Editar</a>
+          </button>
+        </footer>
+      </article>
+      <div>
+        <button class="button button-ordenar">Ordenar</button>
       </div>
     </main>
   </body>

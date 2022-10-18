@@ -108,7 +108,6 @@ let users = [
     id: 8,
     imagen: "😄",
     nombre: "Angel",
-    nombre: "Carlos",
     description:
       "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
     genero: "M",
