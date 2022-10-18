@@ -1,9 +1,22 @@
-const container = document.querySelector(".container");
+const container = document.querySelector(".containerCards");
+const tableContainer = document.querySelector(".container");
+const tbody = document.querySelector(".tbody");
 const allUsers = document.querySelector(".button.allUsers");
 const favoritosUsers = document.querySelector(".button.button-favoritos");
 const addUser = document.querySelector(".button.button-grey.createUser");
 const findUser = document.querySelector(".button.button-outline.findUser");
-
+const searchContainer = document.querySelector(".search-container");
+const input = document.querySelector("input.input");
+const log = document.getElementById("values");
+const buttonOrdenar = document.querySelector("button.button-ordenar");
+const buttonDashboard = document.querySelector("button.button-dashboard");
+const botonesDelete = document.querySelectorAll(
+  ".button.button-outline.button-delete"
+);
+const botonesAdd = document.querySelectorAll(
+  ".button.button-outline.button-add"
+);
+// Template HTML
 const retornoCardUser = (user) => {
   return `<div class="card" id="${user.id}">
             <!--<img class="card-image"  src="https://media.giphy.com/media/64hEwo9SHwBjIX1J5g/giphy.gif"
@@ -22,10 +35,29 @@ const retornoCardUser = (user) => {
           </div>`;
 };
 
+const retornoTableUser = (user) => {
+  return `<tr>
+            <td class="border-botton">${user.ID}</td>
+            <td class="border-botton">${user.imagen}</td>
+            <td class="border-botton">${user.nombre}</td>
+            <td class="border-botton">${user.physicalTouch}</td>
+            <td class="border-botton">${user.actosOfService}</td>
+            <td class="border-botton">${user.qualityTime}</td>
+            <td class="border-botton">${user.wordsOfAffirmation}</td>
+            <td class="border-botton">${user.receivingGifts}</td>
+            <td class="border-botton right">${user.totalLanguage}</td>
+          </tr>`;
+};
+
+window.addEventListener("load", (event) => {
+  console.log("page is fully loaded");
+  tableContainer.style.display = "none";
+});
+
 // Id User
 const idUser = () => parseInt(Math.random() * 10000);
 
-// Id card
+// Activar Bottones de delete
 const activarBotonesDelete = () => {
   const botonesDelete = document.querySelectorAll(
     ".button.button-outline.button-delete"
@@ -50,6 +82,7 @@ const activarBotonesAdd = () => {
   );
   botonesAdd.forEach((btn) => {
     btn.addEventListener("click", () => {
+      // botonesDelete.style.display = "none";
       agregarAFavoritos(btn.id);
       console.log("diste click en el usuario", btn.id);
       // Se debe eliminar el buton de favoritos si lo seleccionada
@@ -58,38 +91,92 @@ const activarBotonesAdd = () => {
   });
 };
 
-// Read Users
-const cargarUsers = (array) => {
+// Function
+const topLenaguajes = (topLenguajeDelAmor) => {
+  console.table(topLenguajeDelAmor);
   container.innerHTML = "";
-  array.forEach((user) => {
-    container.innerHTML += retornoCardUser(user);
+  tbody.innerHTML = "";
+  topLenguajeDelAmor.forEach((user) => {
+    tbody.innerHTML += retornoTableUser(user);
+    //activarBotonesAdd();
+    //activarBotonesDelete();
   });
-  activarBotonesAdd();
-  activarBotonesDelete();
 };
 
+const displayLenguajesDelAmor = () => {
+  let topLenguajeDelAmor = users.map((user) => {
+    return {
+      ID: user.id,
+      imagen: user.imagen,
+      nombre: user.nombre,
+      physicalTouch: user.languages.physicalTouch / 100 > 0.2,
+      actosOfService: user.languages.actosOfService / 100,
+      qualityTime: user.languages.qualityTime / 100,
+      wordsOfAffirmation: user.languages.wordsOfAffirmation / 100,
+      receivingGifts: user.languages.receivingGifts / 100,
+      totalLanguage:
+        user.languages.physicalTouch +
+        user.languages.actosOfService +
+        user.languages.qualityTime +
+        user.languages.wordsOfAffirmation +
+        user.languages.receivingGifts,
+    };
+  });
+  topLenaguajes(topLenguajeDelAmor);
+};
+
+// Evento click Dashboard
+buttonDashboard.addEventListener("click", () => {
+  tableContainer.style.display = "block";
+  displayLenguajesDelAmor();
+});
+
+// Function ordenar Users
+const ordenar = (array) => {
+  let userOrdenados = array.sort((a, b) => {
+    if (a.nombre > b.nombre) {
+      return 1;
+    }
+    if (a.nombre < b.nombre) {
+      return -1;
+    }
+    return 0;
+  });
+  console.table(userOrdenados);
+  cargarUsers(userOrdenados);
+};
+
+// Evento click boton Ordenar
+buttonOrdenar.addEventListener("click", () => {
+  ordenar(users);
+});
+
+// Read Users
+const cargarUsers = (array) => {
+  tableContainer.style.display = "none";
+  tbody.innerHTML = "";
+  container.innerHTML = "";
+  array.forEach((user) => {
+    if (user != undefined) {
+      container.innerHTML += retornoCardUser(user);
+    }
+    activarBotonesAdd();
+    activarBotonesDelete();
+  });
+};
+
+// Read One User
 const cargarOneUser = (user) => {
+  tbody.innerHTML = "";
   container.innerHTML = "";
   container.innerHTML += retornoCardUser(user);
   activarBotonesAdd();
   activarBotonesDelete();
 };
 
+// Evento click boton All Users
 allUsers.addEventListener("click", () => {
   cargarUsers(users);
-});
-
-const cargarUsersFavoritos = (array) => {
-  container.innerHTML = "";
-  array.forEach((user) => {
-    container.innerHTML += retornoCardUser(user);
-  });
-  activarBotonesAdd();
-  activarBotonesDelete();
-};
-
-favoritosUsers.addEventListener("click", () => {
-  cargarUsers(usersFavorite);
 });
 
 // Agregar a favoritos
@@ -108,6 +195,9 @@ const agregarAFavoritos = (userId) => {
   }
 };
 
+// PREGUNTA
+/** ¿Como hacer para cuando este seleccionado el corazon que aparezca el boton de eliminar,
+ * y que cuando este seleccionado el de eliminar apareza el del corazon? */
 const buttonShowFavoritos = (userId) => {
   const botonesAdd = document.querySelectorAll(
     ".button.button-outline.button-add"
@@ -117,6 +207,26 @@ const buttonShowFavoritos = (userId) => {
     botonesAdd.classList.toggle("button-add-hide");
   }
 };
+
+// Read favoritos
+const cargarUsersFavoritos = (array) => {
+  tbody.innerHTML = "";
+  container.innerHTML = "";
+  array.forEach((user) => {
+    container.innerHTML += retornoCardUser(user);
+  });
+  activarBotonesAdd();
+  activarBotonesDelete();
+};
+
+// Evento click boton Favoritos
+favoritosUsers.addEventListener("click", () => {
+  if (usersFavorite.length >= 1) {
+    cargarUsers(usersFavorite);
+  } else {
+    alert("No tienes ningun usuario dentro de favoritos.");
+  }
+});
 
 // Crear User
 function createUser() {
@@ -150,13 +260,16 @@ function createUser() {
   }
 }
 
+// Evento click boton Crear User
 addUser.addEventListener("click", () => {
   createUser();
 });
 
 // Editar user
+// PREGUNTA
+/** ¿Como editar el usuario? */
 
-// Find User
+// Find User con prompt
 const findUserArray = () => {
   let userName = prompt("Ingresa el usuario a buscar:");
   let userFound = users.find((userArray) => userArray.nombre === userName);
@@ -167,8 +280,63 @@ const findUserArray = () => {
   }
 };
 
+// Evento click boton Find User prompt
 findUser.addEventListener("click", () => {
   findUserArray();
+});
+
+// Function capitalizeFirstLetter
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
+// Function userFilterMap
+const userFilterMap = (key) => {
+  var userFound = users.map((user, index) => {
+    if (user.nombre.includes(key)) {
+      return user;
+    }
+  });
+  cargarUsers([]);
+  cargarUsers(userFound);
+};
+
+// Filter user by inputs in search bar
+/**  PREGUNTA: 1) COMO TOMAR LOS VALORES DEL INPUT para hacer la busqueda filtrada
+     PREGUNTA: 2) Como reseteo el input del search bar  */
+const findUserSearchBar = () => {
+  searchContainer.addEventListener("keydown", (e) => {
+    let targetValue = e.target.value; // arranca un valor atras
+    //console.log("TARGET VALUE", targetValue);
+    let key = e.key.toUpperCase();
+    //console.log("KEY VALUE", key);
+    if (
+      (e.key != "Backspace" && e.keyCode >= 65 && e.keyCode <= 90) ||
+      (e.keyCode >= 97 && e.keyCode <= 122)
+    ) {
+      if (targetValue != "") {
+        targetValue = capitalizeFirstLetter(targetValue);
+        userFilterMap(targetValue);
+      } else {
+        userFilterMap(key);
+      }
+    }
+    inputListener();
+  });
+};
+
+// Evento para print user input in the container
+const inputListener = () => {
+  input.addEventListener("input", updateValue);
+  function updateValue(e) {
+    capitalizeFirstLetter((log.textContent = e.target.value));
+  }
+};
+
+// Evento click search bar & keydown
+searchContainer.addEventListener("click", () => {
+  cargarUsers(users);
+  findUserSearchBar();
 });
 
 // Eliminar usuario

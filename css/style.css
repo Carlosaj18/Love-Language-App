@@ -13,7 +13,7 @@
     font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
-.container {
+.containerCards {
     gap: 30px;
     display: flex;
     flex-direction:row;
@@ -98,8 +98,6 @@
     color: white !important;
 }
 
-
-
 h1, h2, h3, h4 {
     font-weight: 500;
 }
@@ -118,4 +116,250 @@ p, span, strong, em, code {
     border-radius: 6px;
     padding: 40px;
     color: red;
+}
+
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav a, .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;  
+  }
+}
+
+#values {
+  font-size: 5em;
+  text-align: center;
+}
+
+.button-ordenar {
+  float: right;
+  padding: 6px 10px;
+  margin-right: 16px;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+
+}
+
+.container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas: "title" "BiilingTable";
+  justify-items: center;
+  align-items: center;
+  height: fit-content;
+}
+.container .containerTitle {
+  grid-area: title;
+}
+.container .containerTitle h1 {
+  font-size: 3rem;
+  color: #6243F7;
+}
+.container .containerTable {
+  grid-area: BiilingTable;
+  border: 2px solid #6243F7;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: auto;
+  border-radius: 15px;
+}
+.container .containerTable .table thead {
+  margin-left: auto;
+  margin-right: auto;
+}
+.container .containerTable .table thead .header th {
+  text-align: center;
+  padding: 8px;
+  border: 2px solid #6243F7;
+  color: black;
+  background-color: #6243F7;
+  width: 300px;
+}
+.container .containerTable .table thead .header .border-left {
+  width: 10%;
+  border-top-left-radius: 15px;
+}
+.container .containerTable .table thead .header .border-right {
+  width: 30%;
+  border-top-right-radius: 15px;
+}
+.container .containerTable .table tbody tr {
+  border-bottom: 1px solid #6243F7;
+  border-left: 1px solid #6243F7;
+}
+.container .containerTable .table tbody tr th {
+  text-align: center;
+  color: #ffffff;
+}
+.container .containerTable .table tbody tr td {
+  text-align: center;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.8rem;
+}
+.container .containerTable .table tbody tr .border-botton {
+  border-bottom: 1px solid #6243F7;
+  border-right: 1px solid #6243F7;
+}
+.container .containerTable .table tbody tr .right {
+  border-right: none !important;
+}
+.container .containerTable .table tbody tr .border-right {
+  border-right: 1px solid #6243F7;
+}
+.container .containerTable .table tbody tr:nth-child(even) {
+  background-color: #212121;
+}
+.container .containerTable .table:hover .header th {
+  background-color: #00FFCB;
+  border: 2px solid #00FFCB;
+}
+.container .containerTable .table:hover tbody .border-botton {
+  border-bottom: 1px solid #00FFCB;
+  border-right: 1px solid #00FFCB;
+}
+.container .containerTable .table:hover tbody .border-right {
+  border-right: 1px solid #00FFCB;
+}
+.container .containerTable:hover {
+  border: 2px solid #00FFCB;
+}
+@media screen and (min-width: 600px) {
+  .container {
+    height: fit-content;
+  }
+  .container .containerTitle h1 {
+    font-size: 3.7rem;
+  }
+  .container .containerTable .table thead .header th {
+    text-align: center;
+    padding: 8px;
+    border: 2px solid #6243F7;
+    color: black;
+    background-color: #6243F7;
+    width: 300px;
+    font-size: 1.2rem;
+  }
+  .container .containerTable .table thead .header .width-description {
+    width: 400px !important;
+  }
+  .container .containerTable .table thead .header .border-left {
+    width: 10%;
+    border-top-left-radius: 15px;
+  }
+  .container .containerTable .table thead .header .border-right {
+    width: 30%;
+    border-top-right-radius: 15px;
+  }
+  .container .containerTable .table tbody tr {
+    border-bottom: 1px solid #6243F7;
+    border-left: 1px solid #6243F7;
+  }
+  .container .containerTable .table tbody tr th {
+    font-size: 1rem;
+  }
+  .container .containerTable .table tbody tr td {
+    font-size: 1rem;
+  }
+  .container .containerTable .table tbody tr .border-botton {
+    border-bottom: 1px solid #6243F7;
+    border-right: 1px solid #6243F7;
+  }
+  .container .containerTable .table tbody tr .right {
+    border-right: none !important;
+  }
+  .container .containerTable .table tbody tr .border-right {
+    border-right: 1px solid #6243F7;
+  }
+  .container .containerTable .table tbody tr:nth-child(even) {
+    background-color: #212121;
+  }
+}
+
+
+.btn.verCurso {
+  background-color: #6243F7;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #212121;
+  padding: 0.5em 1em;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 1em;
+}
+
+.reservar {
+  text-decoration: none;
+  color: black;
 }
