@@ -35,6 +35,7 @@
     <script defer src="js/variables.js"></script>
     <script defer src="js/users.js"></script>
     <script defer src="js/user.class.js"></script>
+    <script defer src="js/scriptPopUp.js"></script>
     <script defer src="js/dom.js"></script>
   </head>
   <body class="color-change-5x">
@@ -97,13 +98,50 @@
         </div>
         <footer>
           <button class="btn verCurso">
-            <a class="reservar">Listar</a>
+            <a href="#" class="reservar">Listar</a>
           </button>
           <button class="btn verCurso">
             <a class="reservar">Editar</a>
           </button>
         </footer>
       </article>
+      <!--<button data-modal-target="#modal">Open Modal</button>-->
+      <div class="modal active" id="modal" style="display: block">
+        <div class="modal-header">
+          <div class="title">Love Language</div>
+          <button data-close-button="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <article class="container popUp">
+            <div class="container titleUser">   
+            </div>
+            <div class="containerTable">
+              <table class="table" class="border border-success">
+                <thead>
+                  <tr class="header">
+                    <th>PhysicalTouch</th>
+                    <th>ActosOfService</th>
+                    <th>QualityTime</th>
+                    <th>WordsOfAffirmation</th>
+                    <th>ReceivingGifts</th>
+                    <th class="border-right">TOTAL</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody-User"></tbody>
+              </table>
+            </div>
+            <footer>
+              <button class="btn verCurso">
+                <a href="#" class="reservar">Listar</a>
+              </button>
+              <button class="btn verCurso">
+                <a class="reservar">Editar</a>
+              </button>
+            </footer>
+          </article>
+        </div>
+      </div>
+      <div id="overlay"></div>
       <div>
         <button class="button button-ordenar">Ordenar</button>
       </div>

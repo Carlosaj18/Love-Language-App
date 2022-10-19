@@ -1,6 +1,7 @@
 const container = document.querySelector(".containerCards");
 const tableContainer = document.querySelector(".container");
 const tbody = document.querySelector(".tbody");
+
 const allUsers = document.querySelector(".button.allUsers");
 const favoritosUsers = document.querySelector(".button.button-favoritos");
 const addUser = document.querySelector(".button.button-grey.createUser");
@@ -10,12 +11,9 @@ const input = document.querySelector("input.input");
 const log = document.getElementById("values");
 const buttonOrdenar = document.querySelector("button.button-ordenar");
 const buttonDashboard = document.querySelector("button.button-dashboard");
-const botonesDelete = document.querySelectorAll(
-  ".button.button-outline.button-delete"
-);
-const botonesAdd = document.querySelectorAll(
-  ".button.button-outline.button-add"
-);
+const modal = document.querySelector(".modal");
+
+
 // Template HTML
 const retornoCardUser = (user) => {
   return `<div class="card" id="${user.id}">
@@ -25,12 +23,12 @@ const retornoCardUser = (user) => {
             <div class="card-name">${user.nombre}</div>
             <div class="card-description">${user.description}</div>
             <div class="card-button-top">
-                <button class="button button-outline button-seeUser" id="${user.id}" title="Clic para ver los lengajes del amor de '${user.nombre}'">Lenguajes</button>
+            <button data-modal-target="#modal" class="button button-outline" id="${user.id}" title="Clic para ver los lengajes del amor de '${user.nombre}'">Lenguajes</button>
             </div>
             <div class="card-button-icons">
-                <button class="button button-outline button-add" id="${user.id}" title="Clic para agregar a tus favoritos '${user.nombre}'">💗</button>
-                <button class="button button-outline button-delete" id="${user.id}" title="Clic para eliminar de tus favoritos '${user.nombre}'">⛔</button>
-                <!-- Condicionalmente mostrar el button -->
+                <button class="button button-outline button-add active deactive" id="${user.id}" title="Clic para agregar a tus favoritos '${user.nombre}'">💗</button>
+                <button class="button button-outline button-delete active deactive" id="${user.id}" title="Clic para eliminar de tus favoritos '${user.nombre}'">⛔</button>
+                
             </div>
           </div>`;
 };
@@ -49,9 +47,12 @@ const retornoTableUser = (user) => {
           </tr>`;
 };
 
+
 window.addEventListener("load", (event) => {
   console.log("page is fully loaded");
   tableContainer.style.display = "none";
+  // closeModal(modal);
+  modal.style.display = "none";
 });
 
 // Id User
@@ -75,6 +76,13 @@ const activarBotonesDelete = () => {
   });
 };
 
+function iconDelete(userId) {
+  const botonesDeleteId = document.getElementById(`${userId}`);
+  // modal.style.display = "block";
+  botonesDeleteId.classList.remove(".button-add.active");
+  botonesDeleteId.classList.add(".button-add.deactive");
+}
+
 // Activar Bottones de favoritos
 const activarBotonesAdd = () => {
   const botonesAdd = document.querySelectorAll(
@@ -82,11 +90,10 @@ const activarBotonesAdd = () => {
   );
   botonesAdd.forEach((btn) => {
     btn.addEventListener("click", () => {
-      // botonesDelete.style.display = "none";
       agregarAFavoritos(btn.id);
       console.log("diste click en el usuario", btn.id);
-      // Se debe eliminar el buton de favoritos si lo seleccionada
-      // botonesAdd.classList.toggle("active");
+      iconDelete(btn.id);
+
     });
   });
 };
@@ -101,6 +108,24 @@ const topLenaguajes = (topLenguajeDelAmor) => {
     //activarBotonesAdd();
     //activarBotonesDelete();
   });
+};
+
+const displayLenguajesDelAmorUser = (userId) => {
+  let user = users.find((userArray) => userArray.id === parseInt(userId));
+  return {
+    nombre: user.nombre,
+    physicalTouch: user.languages.physicalTouch,
+    actosOfService: user.languages.actosOfService,
+    qualityTime: user.languages.qualityTime,
+    wordsOfAffirmation: user.languages.wordsOfAffirmation,
+    receivingGifts: user.languages.receivingGifts,
+    totalLanguage:
+      user.languages.physicalTouch +
+      user.languages.actosOfService +
+      user.languages.qualityTime +
+      user.languages.wordsOfAffirmation +
+      user.languages.receivingGifts,
+  };
 };
 
 const displayLenguajesDelAmor = () => {
@@ -162,6 +187,8 @@ const cargarUsers = (array) => {
     }
     activarBotonesAdd();
     activarBotonesDelete();
+    // Activar Bottones de popUp
+    activarBotonesPopUp();
   });
 };
 
