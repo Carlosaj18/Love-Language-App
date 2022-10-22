@@ -4,39 +4,18 @@
     <meta charset="UTF-8" />
     <title>App lenguages del Amor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css"
-    />
-    <!-- CSS only -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css" />
-    <!-- JavaScript Bundle with Popper -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="js/user.class.js"></script>
     <script defer src="js/variables.js"></script>
     <script defer src="js/users.js"></script>
-    <script defer src="js/user.class.js"></script>
     <script defer src="js/scriptPopUp.js"></script>
-    <script defer src="js/dom.js"></script>
+    <script defer src="js/scriptPupUpForm.js"></script>
+    <script defer src="js/app.js"></script>
   </head>
   <body class="color-change-5x">
     <main>
@@ -56,95 +35,76 @@
           </form>
         </div>
       </div>
-      <div style="padding-left: 16px">
-        <h2>Lenguajes del Amor</h2>
-        <p>¿Cuáles son los 5 lenguajes del amor?</p>
-        <p>
-          ¿Cómo mantener vivo el amor por tanto tiempo?, ¿Por qué tan pocas
-          parejas parecen haber encontrado el secreto para mantener vivo el amor
-          después de tanto tiempo?
-        </p>
+      <div class="main-title" style="padding-left: 16px">
+        <h1>Lenguajes del Amor</h1>
+        <blockquote>
+          <p><em>¿Cuáles son los 5 lenguajes del amor?</em></p>
+          <p><em>¿Cómo mantener vivo el amor por tanto tiempo?
+          </em></p>
+          <p><em>¿Por qué tan pocas
+            parejas parecen haber encontrado el secreto para mantener vivo el
+            amor después de tanto tiempo?</em></p>
+        </blockquote>
       </div>
-      <footer class="container-fluid justify-content-center">
+      <section class="container-button">
         <button class="button allUsers">All Users</button>
-        <button class="button button-grey createUser">Add User</button>
-        <button class="button button-outline findUser">Find User</button>
+        <button data-modal-target="#modal" id="createUser" class="button button-grey"> Add User </button>
+        <button class="button findUser">Find User</button>
         <button class="button button-favoritos">Favorites</button>
         <button class="button button-dashboard">Dashboard</button>
-      </footer>
-      <p id="values"></p>
-      <div class="containerCards mt-5"></div>
-      <article class="container">
-        <div class="containerTitle">
-          <h1>User Dashboard</h1>
-        </div>
-        <div class="containerTable">
-          <table class="table" class="border border-success">
-            <thead>
-              <tr class="header">
-                <th scope="col" class="border-left">Id</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>PhysicalTouch</th>
-                <th>ActosOfService</th>
-                <th>QualityTime</th>
-                <th>WordsOfAffirmation</th>
-                <th>ReceivingGifts</th>
-                <th class="border-right">TOTAL</th>
-              </tr>
-            </thead>
-            <tbody class="tbody"></tbody>
-          </table>
-        </div>
-        <footer>
-          <button class="btn verCurso">
-            <a href="#" class="reservar">Listar</a>
+      </section>
+      <div class="search-name-display"><p id="values"></p></div>
+      <!-- Main Container Cards-->
+      <div class="containerCards mt-5">
+        <button class="button ordenar">
+          <a href="#" class="button-outline">Ordenar</a>
+        </button>
+      </div>
+      <!-- Dashboard -->
+      <div class="container-dashboard">
+        <table>
+          <span class="pln"> </span>
+          <div class="containerTitle">
+            <h1>User Dashboard</h1>
+          </div>
+          <thead>
+            <span class="pln"> </span>
+            <tr>           
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Nombre</th>            
+              <th>PhysicalTouch</th>             
+              <th>ActosOfService</th>             
+              <th>QualityTime</th>             
+              <th>WordsOfAffirmation</th>             
+              <th>ReceivingGifts</th>             
+              <th>TOTAL SCORE</th>   
+            </tr>
+            <span class="pln"> </span>
+          </thead>
+          <span class="pln"> </span>
+          <tbody class="tbody"></tbody>
+          <span class="pln"> </span>
+        </table>
+        <span class="pln"> </span>
+        <div>
+          <button class="button">
+            <a href="#" class="button-outline">Ordenar</a>
           </button>
-          <button class="btn verCurso">
-            <a class="reservar">Editar</a>
+          <button class="button">
+            <a class="button-outline">Editar</a>
           </button>
-        </footer>
-      </article>
-      <!--<button data-modal-target="#modal">Open Modal</button>-->
+        </div>
+      </div>
+      <!-- Modal PopUp Language & Form -->
       <div class="modal active" id="modal" style="display: block">
         <div class="modal-header">
-          <div class="title">Love Language</div>
+          <div class="title">5 Love of Language</div>
           <button data-close-button="close-button">&times;</button>
         </div>
-        <div class="modal-body">
-          <article class="container popUp">
-            <div class="container titleUser">   
-            </div>
-            <div class="containerTable">
-              <table class="table" class="border border-success">
-                <thead>
-                  <tr class="header">
-                    <th>PhysicalTouch</th>
-                    <th>ActosOfService</th>
-                    <th>QualityTime</th>
-                    <th>WordsOfAffirmation</th>
-                    <th>ReceivingGifts</th>
-                    <th class="border-right">TOTAL</th>
-                  </tr>
-                </thead>
-                <tbody class="tbody-User"></tbody>
-              </table>
-            </div>
-            <footer>
-              <button class="btn verCurso">
-                <a href="#" class="reservar">Listar</a>
-              </button>
-              <button class="btn verCurso">
-                <a class="reservar">Editar</a>
-              </button>
-            </footer>
-          </article>
-        </div>
+        <div class="modal-body form" id="modal-porcentaje"></div>
       </div>
       <div id="overlay"></div>
-      <div>
-        <button class="button button-ordenar">Ordenar</button>
-      </div>
     </main>
   </body>
 </html>

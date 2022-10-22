@@ -1,20 +1,21 @@
-const container = document.querySelector(".containerCards");
-const tableContainer = document.querySelector(".container");
-const tbody = document.querySelector(".tbody");
-
-const allUsers = document.querySelector(".button.allUsers");
+/** Container Button */
+const allUsers = document.querySelector("button.allUsers");
 const favoritosUsers = document.querySelector(".button.button-favoritos");
-const addUser = document.querySelector(".button.button-grey.createUser");
-const findUser = document.querySelector(".button.button-outline.findUser");
+const findUser = document.querySelector(".button.findUser");
 const searchContainer = document.querySelector(".search-container");
 const input = document.querySelector("input.input");
 const log = document.getElementById("values");
-const buttonOrdenar = document.querySelector("button.button-ordenar");
+const buttonOrdenar = document.querySelector("button.ordenar");
 const buttonDashboard = document.querySelector("button.button-dashboard");
+
+const container = document.querySelector(".containerCards");
+const containerDashboard = document.querySelector(".container-dashboard");
+const tbody = document.querySelector(".tbody");
 const modal = document.querySelector(".modal");
 
+const selectGenero = document.querySelector("#genero");
 
-// Template HTML
+// Template HTML Users
 const retornoCardUser = (user) => {
   return `<div class="card" id="${user.id}">
             <!--<img class="card-image"  src="https://media.giphy.com/media/64hEwo9SHwBjIX1J5g/giphy.gif"
@@ -23,18 +24,21 @@ const retornoCardUser = (user) => {
             <div class="card-name">${user.nombre}</div>
             <div class="card-description">${user.description}</div>
             <div class="card-button-top">
-            <button data-modal-target="#modal" class="button button-outline" id="${user.id}" title="Clic para ver los lengajes del amor de '${user.nombre}'">Lenguajes</button>
+              <button data-modal-target="#modal" class="button button-outline" id="${user.id}" title="Clic para ver los lengajes del amor de '${user.nombre}'">Lenguajes</button>
             </div>
             <div class="card-button-icons">
-                <button class="button button-outline button-add active deactive" id="${user.id}" title="Clic para agregar a tus favoritos '${user.nombre}'">💗</button>
-                <button class="button button-outline button-delete active deactive" id="${user.id}" title="Clic para eliminar de tus favoritos '${user.nombre}'">⛔</button>
+                <button class="button button-clear button-add" id="${user.id}-add" title="Clic para agregar a tus favoritos '${user.nombre}'">💗</button>
+                <button class="button button-clear button-delete" id="${user.id}-delete" title="Clic para eliminar de tus favoritos '${user.nombre}'">⛔</button>
                 
             </div>
           </div>`;
 };
 
-const retornoTableUser = (user) => {
-  return `<tr>
+// Template Dashboard HTML Users
+const retornoTableDashboard = (user) => {
+  return `
+        <span class="pln"> </span>
+          <tr>
             <td class="border-botton">${user.ID}</td>
             <td class="border-botton">${user.imagen}</td>
             <td class="border-botton">${user.nombre}</td>
@@ -43,29 +47,45 @@ const retornoTableUser = (user) => {
             <td class="border-botton">${user.qualityTime}</td>
             <td class="border-botton">${user.wordsOfAffirmation}</td>
             <td class="border-botton">${user.receivingGifts}</td>
-            <td class="border-botton right">${user.totalLanguage}</td>
-          </tr>`;
+            <td class="border-botton">${user.totalLanguage}</td>
+          </tr>
+        <span class="pln"> </span>`;
 };
 
-
+// Load Window 
 window.addEventListener("load", (event) => {
-  console.log("page is fully loaded");
-  tableContainer.style.display = "none";
-  // closeModal(modal);
+  containerDashboard.style.display = "none";
   modal.style.display = "none";
+  activarBotonesPopUpForm();
 });
 
 // Id User
 const idUser = () => parseInt(Math.random() * 10000);
 
+// Activar Botton de delete favoritos
+/** REVIEW */
+
+function iconCardAdd(userId) {
+  const botonCardAdd = document.getElementById(userId);
+  ///botonDeleteCard.classList.add("deactive-delete");
+  botonCardAdd.style.display = "none";
+}
+
+function iconCardDelete(userId) {
+  const botonCardDelete = document.getElementById(userId);
+  ///botonDeleteCard.classList.add("deactive-delete");
+  botonCardDelete.style.display = "none";
+}
+
 // Activar Bottones de delete
 const activarBotonesDelete = () => {
   const botonesDelete = document.querySelectorAll(
-    ".button.button-outline.button-delete"
+    ".button.button-clear.button-delete"
   );
   botonesDelete.forEach((btn) => {
     btn.addEventListener("click", () => {
       eliminarFavoritoUser(btn.id);
+      iconCardDelete(`${btn.id}`);
     });
   });
 
@@ -76,24 +96,14 @@ const activarBotonesDelete = () => {
   });
 };
 
-function iconDelete(userId) {
-  const botonesDeleteId = document.getElementById(`${userId}`);
-  // modal.style.display = "block";
-  botonesDeleteId.classList.remove(".button-add.active");
-  botonesDeleteId.classList.add(".button-add.deactive");
-}
-
 // Activar Bottones de favoritos
 const activarBotonesAdd = () => {
   const botonesAdd = document.querySelectorAll(
-    ".button.button-outline.button-add"
-  );
+    ".button.button-clear.button-add");
   botonesAdd.forEach((btn) => {
     btn.addEventListener("click", () => {
       agregarAFavoritos(btn.id);
-      console.log("diste click en el usuario", btn.id);
-      iconDelete(btn.id);
-
+      iconCardAdd(`${btn.id}`);
     });
   });
 };
@@ -104,7 +114,7 @@ const topLenaguajes = (topLenguajeDelAmor) => {
   container.innerHTML = "";
   tbody.innerHTML = "";
   topLenguajeDelAmor.forEach((user) => {
-    tbody.innerHTML += retornoTableUser(user);
+    tbody.innerHTML += retornoTableDashboard(user);
     //activarBotonesAdd();
     //activarBotonesDelete();
   });
@@ -134,7 +144,7 @@ const displayLenguajesDelAmor = () => {
       ID: user.id,
       imagen: user.imagen,
       nombre: user.nombre,
-      physicalTouch: user.languages.physicalTouch / 100 > 0.2,
+      physicalTouch: user.languages.physicalTouch / 100,
       actosOfService: user.languages.actosOfService / 100,
       qualityTime: user.languages.qualityTime / 100,
       wordsOfAffirmation: user.languages.wordsOfAffirmation / 100,
@@ -152,7 +162,7 @@ const displayLenguajesDelAmor = () => {
 
 // Evento click Dashboard
 buttonDashboard.addEventListener("click", () => {
-  tableContainer.style.display = "block";
+  containerDashboard.style.display = "block";
   displayLenguajesDelAmor();
 });
 
@@ -178,18 +188,18 @@ buttonOrdenar.addEventListener("click", () => {
 
 // Read Users
 const cargarUsers = (array) => {
-  tableContainer.style.display = "none";
+  containerDashboard.style.display = "none";
   tbody.innerHTML = "";
   container.innerHTML = "";
-  array.forEach((user) => {
-    if (user != undefined) {
-      container.innerHTML += retornoCardUser(user);
-    }
-    activarBotonesAdd();
-    activarBotonesDelete();
-    // Activar Bottones de popUp
-    activarBotonesPopUp();
-  });
+  array.forEach((user) =>
+    user != undefined
+      ? (container.innerHTML += retornoCardUser(user))
+      : console.log("Usuario Indefinido")
+  );
+  activarBotonesAdd();
+  activarBotonesDelete();
+  activarBotonesPopUp();
+
 };
 
 // Read One User
@@ -202,9 +212,7 @@ const cargarOneUser = (user) => {
 };
 
 // Evento click boton All Users
-allUsers.addEventListener("click", () => {
-  cargarUsers(users);
-});
+allUsers.addEventListener("click", () => cargarUsers(users));
 
 // Agregar a favoritos
 const agregarAFavoritos = (userId) => {
@@ -258,7 +266,7 @@ favoritosUsers.addEventListener("click", () => {
 // Crear User
 function createUser() {
   let id = idUser();
-  let imagen = "😄";
+  let imagen = "";
   let nombre = prompt("Ingresa tu nombre");
   let description =
     "Cuando una acción no es algo natural para ti, eso es una expresión de amor";
@@ -289,8 +297,11 @@ function createUser() {
 
 // Evento click boton Crear User
 addUser.addEventListener("click", () => {
-  createUser();
+  console.log("Click add user")
+  activarBotonesPopUpForm();
+  // createUser();
 });
+
 
 // Editar user
 // PREGUNTA
@@ -383,7 +394,7 @@ function eliminarFavoritoUser(userId) {
     return userFavorite.id === parseInt(userId);
   });
   if (index > -1) {
-    usersFavorite.splice(index, 1); //quita un elemento desde un índice específico
+    usersFavorite.splice(index, 1); // quita un elemento desde un índice específico
     cargarUsersFavoritos(usersFavorite);
   }
 }

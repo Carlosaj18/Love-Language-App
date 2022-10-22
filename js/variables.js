@@ -7,3 +7,9 @@ let loveLanguages = {
   wordsOfAffirmation: 0,
   receivingGifts: 0,
 };
+
+//BASE DE DATOS FICTICIA
+const datosGenero = [
+  { genero: "Femenino", valor: "F" },
+  { genero: "Masculino", valor: "M" },
+];
