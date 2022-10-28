@@ -9,6 +9,7 @@ class User {
   }
 
   asingacionPorcentajesLenguajes(user) {
+    // Hacerlo dinamico en HTML
     Object.entries(this.languages).forEach(([key]) => {
       let result = parseFloat(
         prompt(`Ingresa el porcentaje de amor para ${key}:`)

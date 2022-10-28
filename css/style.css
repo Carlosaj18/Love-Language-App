@@ -223,8 +223,14 @@ p, span, strong, em, code {
   transition: 200ms ease-in-out;
 }
 
-.deactive-delete {
+.deactive {
   transform: scale(0);
+}
+
+.translate {
+  transform: translate(42px, 18px);
+  transition: 200ms ease-in-out;
+  position: absolute;
 }
 
 /** error */
@@ -368,6 +374,14 @@ button .button-outline {
 }
 
 /** Button Ordenar*/
+
+.ordenar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  position: static;
+}
 
 /** OTHER */
 

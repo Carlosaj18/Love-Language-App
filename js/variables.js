@@ -1,6 +1,6 @@
-let usersFavorite = [];
+const usersFavorite = [];
 
-let loveLanguages = {
+const loveLanguages = {
   physicalTouch: 0,
   actosOfService: 0,
   qualityTime: 0,
@@ -8,8 +8,9 @@ let loveLanguages = {
   receivingGifts: 0,
 };
 
-//BASE DE DATOS FICTICIA
+//BASE DE DATOS GENEROS
 const datosGenero = [
   { genero: "Femenino", valor: "F" },
   { genero: "Masculino", valor: "M" },
+  { genero: "Indefinido", valor: "I" },
 ];
