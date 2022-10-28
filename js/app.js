@@ -1,69 +1,89 @@
-/** Container Button */
-const allUsers = document.querySelector("button.allUsers");
-const favoritosUsers = document.querySelector(".button.button-favoritos");
-const findUser = document.querySelector(".button.findUser");
-const searchContainer = document.querySelector(".search-container");
-const input = document.querySelector("input.input");
-const log = document.getElementById("values");
-const buttonOrdenar = document.querySelector("button.ordenar");
-const buttonDashboard = document.querySelector("button.button-dashboard");
-const container = document.querySelector(".containerCards");
+const allUsers           = document.querySelector("button.allUsers");
+const addUser            = document.getElementById("createUser");
+const findUser           = document.querySelector(".button.findUser");
+const favoritosUsers     = document.querySelector(".button.button-favoritos");
+const searchContainer    = document.querySelector(".search-container");
+const input              = document.querySelector("input.input");
+const log                = document.getElementById("values");
+const buttonOrdenar      = document.querySelector("button.ordenar");
+const buttonDashboard    = document.querySelector("button.button-dashboard");
+const container          = document.querySelector(".containerCards");
 const containerDashboard = document.querySelector(".container-dashboard");
-const tbody = document.querySelector(".tbody");
-const modal = document.querySelector(".modal");
+const tbody              = document.querySelector(".tbody");
+const modal              = document.querySelector(".modal");
 
 
-// Load Window 
-window.addEventListener("load", (event) => {
-  containerDashboard.style.display = "none";
-  modal.style.display = "none";
-  activarBotonesPopUpForm();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                          /*** SEARCH BAR SECTION */
+
+// Function capitalizeFirstLetter
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+};
+
+// Function userFilterMap
+const userFilterMap = (key) => {
+  let userLocals = recuperarUsers();
+    var userFound = userLocals.map((user, index) => {
+      if (user.nombre.includes(key)) {
+        return user;
+      }
+    });
+    cargarUsers(userFound);
+};
+
+const updateValue = (e) => {
+  capitalizeFirstLetter((log.textContent = e.target.value));
+}
+
+// Evento para print user input in the container
+const inputListener = (e) => {
+  input.addEventListener("input", updateValue(e));
+};
+
+const findUserSearchBar = () => {
+  searchContainer.addEventListener("keydown", (e) => {
+    let targetValue = e.target.value; // Toma un valor atras
+    let key = e.key.toUpperCase();
+    if ((e.key != "Backspace" && e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)
+    ) {
+      if (targetValue != "") {
+        targetValue = capitalizeFirstLetter(targetValue);
+        userFilterMap(targetValue);
+      } else {
+        userFilterMap(key);
+      }
+    }
+    inputListener(e);
+  });
+};
+
+// Evento click search bar & keydown
+searchContainer.addEventListener("click", () => {
+  usersLoad();
+  findUserSearchBar();
 });
 
-// Id User
-const idUser = () => parseInt(Math.random() * 10000);
+                                          /*** DASHBOARD SECTION **/
 
-// Activar Botton de delete favoritos
-const iconCardAdd = (userId) => {
-  let btnFavorites = document.getElementById(userId);
-  btnFavorites.style.display = "none"; // btnFavorites.classList.add("deactive");
-}
-
-const iconCardDelete = (userId) => {
-  const botonCardDelete = document.getElementById(userId);
-  botonCardDelete.style.display = "none"; ///botonDeleteCard.classList.add("deactive-delete");
-}
-
-// Activar Bottones de delete
-const activarBotonesDelete = () => {
-  const botonesDelete = document.querySelectorAll(".button.button-clear.button-delete");
-  botonesDelete.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      eliminarUser(btn.id);
-    });
-  });
-};
-
-const activarBotonesDeleteFavoritos = () => {const botonesDelete = document.querySelectorAll(".button.button-clear.button-delete");
-  botonesDelete.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      eliminarFavoritoUser(btn.id);
-    });
-  });
-};
-
-// Activar Bottones de favoritos
-const activarBotonesAdd = () => {
-  const botonesAdd = document.querySelectorAll(".button.button-clear.button-add");
-  botonesAdd.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      agregarAFavoritos(btn.id);
-      iconCardAdd(btn.id);
-    });
-  });
-};
-
-// Function
+// HTML para cargar el dashboard
 const topLenaguajes = (topLenguajeDelAmor) => {
   container.innerHTML = "";
   tbody.innerHTML = "";
@@ -71,6 +91,63 @@ const topLenaguajes = (topLenguajeDelAmor) => {
     tbody.innerHTML += retornoTableDashboard(user);
   });
 };
+
+// Function para cargar info Dashboard
+const displayLenguajesDelAmor = (userLocals) => {
+  let topLenguajeDelAmor = userLocals.map((user) => {
+    return {
+      id: user.id,
+      imagen: user.imagen,
+      nombre: user.nombre,
+      physicalTouch: user.languages.physicalTouch,
+      actosOfService: user.languages.actosOfService,
+      qualityTime: user.languages.qualityTime,
+      wordsOfAffirmation: user.languages.wordsOfAffirmation,
+      receivingGifts: user.languages.receivingGifts,
+      totalLanguage:
+        user.languages.physicalTouch +
+        user.languages.actosOfService +
+        user.languages.qualityTime +
+        user.languages.wordsOfAffirmation +
+        user.languages.receivingGifts,
+    };
+  });
+  topLenaguajes(topLenguajeDelAmor);
+};
+
+// Ordenar Boton Dashboard
+const ordenarDashboardButton = (array) => {
+  let userOrdenados = array.sort((a, b) => {
+    if (a.nombre > b.nombre) {
+      return 1;
+    }
+    if (a.nombre < b.nombre) {
+      return -1;
+    }
+    return 0;
+  });
+  displayLenguajesDelAmor(userOrdenados);
+};
+
+// Boton ordenar Dashboard
+const ordenarDashboard = () => {
+  const ordenarButtonDashboard = document.querySelector(".button-outline.ordenar-dashboard");
+  ordenarButtonDashboard.addEventListener("click", () => {
+    let localUsers = recuperarUsers();
+    ordenarDashboardButton(localUsers);
+  });
+}
+
+// Evento click Dashboard
+buttonDashboard.addEventListener("click", () => {
+  containerDashboard.style.display = "block";
+  let userLocals = recuperarUsers();
+  displayLenguajesDelAmor(userLocals);
+  ordenarDashboard();
+});
+
+                                      /*** USER FAVORITES SECTION **/ 
+
 
 const displayLenguajesDelAmorUser = (userId) => {
   let user = users.find((userArray) => userArray.id === parseInt(userId));
@@ -90,52 +167,200 @@ const displayLenguajesDelAmorUser = (userId) => {
   };
 };
 
-const displayLenguajesDelAmorUserFavoritos = (userId) => {
-  let user = usersFavorite.find((userArray) => userArray.id === parseInt(userId));
-  return {
-    nombre: user.nombre,
-    physicalTouch: user.languages.physicalTouch,
-    actosOfService: user.languages.actosOfService,
-    qualityTime: user.languages.qualityTime,
-    wordsOfAffirmation: user.languages.wordsOfAffirmation,
-    receivingGifts: user.languages.receivingGifts,
-    totalLanguage:
-      user.languages.physicalTouch +
-      user.languages.actosOfService +
-      user.languages.qualityTime +
-      user.languages.wordsOfAffirmation +
-      user.languages.receivingGifts,
-  };
-};
+const eliminarCacheFavoritos = () => {
+  if(!localStorage.getItem("usersFavorite")){
+      localStorage.removeItem("usersFavorite");
+  } else {
+    usersFavorite = [];
+  }
+} 
 
-const displayLenguajesDelAmor = () => {
-  let userLocals = recuperarUsers();
-  let topLenguajeDelAmor = userLocals.map((user) => {
-    return {
-      ID: user.id,
-      imagen: user.imagen,
-      nombre: user.nombre,
-      physicalTouch: user.languages.physicalTouch / 100,
-      actosOfService: user.languages.actosOfService / 100,
-      qualityTime: user.languages.qualityTime / 100,
-      wordsOfAffirmation: user.languages.wordsOfAffirmation / 100,
-      receivingGifts: user.languages.receivingGifts / 100,
-      totalLanguage:
-        user.languages.physicalTouch +
-        user.languages.actosOfService +
-        user.languages.qualityTime +
-        user.languages.wordsOfAffirmation +
-        user.languages.receivingGifts,
-    };
+const eliminarLocalStorageFavoritos = (userId) => {
+  if(localStorage.getItem("usersFavorite") || usersFavorite.length > 0) {
+    let localList = localStorage.getItem("usersFavorite"); // json object
+    let list = JSON.parse(localList);
+    let indexLocals = list.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
+    list.splice(indexLocals, 1); // Elimina el elemento del array ​list
+    localStorage.setItem("usersFavorite", JSON.stringify(list));  // Sobrescribe el array de favoritos en el localStorage
+    
+    let index = usersFavorite.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
+    usersFavorite.splice(index, 1);
+    return list || usersFavorite;
+  }
+}
+
+// Eliminar usuario de favoritos
+const eliminarFavoritoUser = (userId) => cargarUsersFavoritos(eliminarLocalStorageFavoritos(userId));
+
+// Activar Bottones de delete Favoritos
+const activarBotonesDeleteFavoritos = () => {
+  const botonesDelete = document.querySelectorAll(".button.button-clear.button-delete");
+  botonesDelete.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      eliminarFavoritoUser(btn.id);
+    });
   });
-  topLenaguajes(topLenguajeDelAmor);
 };
 
-// Evento click Dashboard
-buttonDashboard.addEventListener("click", () => {
-  containerDashboard.style.display = "block";
-  displayLenguajesDelAmor();
+// Read favoritos
+const cargarUsersFavoritos = (array) => {
+  tbody.innerHTML = "";
+  container.innerHTML = "";
+  array.forEach((user) => container.innerHTML += retornoCardUserFavoritos(user));
+  activarBotonesDeleteFavoritos();
+  activarBotonesPopUp();
+};
+
+// Recuperar Favoritos LocalStorage
+const recuperarUserFavoritos = () => {
+  if (localStorage.getItem("usersFavorite")) {
+      let usersFavoriteRecuperados = JSON.parse(localStorage.getItem("usersFavorite"));
+          usersFavoriteRecuperados.forEach(user => usersFavorite.push(user));
+          console.log('User recuperados', usersFavoriteRecuperados);
+          return usersFavoriteRecuperados; 
+  } 
+}
+
+// Evento click boton Favoritos
+favoritosUsers.addEventListener("click", () => {
+  if(recuperarUserFavoritos){
+    let usersLocals = recuperarUserFavoritos();
+    cargarUsersFavoritos(usersLocals);
+  } else {
+    cargarUsersFavoritos(usersFavorite);
+  }
+  // recuperarUserFavoritos() ? cargarUsersFavoritos(recuperarUserFavoritos()) : eliminarCacheFavoritos());
 });
+
+
+                                        /*** FIND USER PROMT SECTION **/
+
+// Read One User
+const cargarOneUser = (user) => {
+  tbody.innerHTML = "";
+  container.innerHTML = "";
+  container.innerHTML += retornoCardUser(user);
+  activarBotonesAdd();
+  activarBotonesDelete();
+};
+
+const userSearchContainer = (userLocals, userName) => {
+  let userFound = userLocals.find((userArray) => userArray.nombre === userName);
+  userFound === undefined ? alert(`No se encontró el usuario ${userName} en tus contactos`) : cargarOneUser(userFound);
+}
+
+const findUserArray = () => {
+  let userName = prompt("Ingresa el usuario a buscar:");
+  localStorage.getItem("users") ? userSearchContainer(recuperarUsers(), userName) : userSearchContainer(users);
+};
+
+// Evento click boton Find User prompt
+findUser.addEventListener("click", () => {
+  findUserArray();
+});
+
+                                        /*** ADD USER SECTION **/
+
+const activarBotonesPopUpForm = () => {
+  const openModalButtonsForm = document.querySelectorAll("[data-modal-target-form]");
+  openModalButtonsForm.forEach((button) => {
+    button.addEventListener("click", () => {
+      const modal = document.querySelector(".modal"); // select our modal
+      openModalForm(modal);
+      popUpForm();
+    });
+  });
+};
+// Evento click boton Crear User
+addUser.addEventListener("click", activarBotonesPopUpForm());
+
+                                        /*** ALL USERS SECTION **/
+
+// Eliminar usuario
+const eliminarLocalStorageUsers = (userId) => {
+  if(localStorage.getItem("users"))
+  { 
+    let localList = localStorage.getItem("users");
+    let list = JSON.parse(localList);
+    let index = list.findIndex(object => {return object.id === parseInt(userId)});
+    list.splice(index, 1);
+    localStorage.setItem("users", JSON.stringify(list));
+  }
+  else {
+    let index = users.findIndex((user) => user.id === parseInt(userId));
+    users.splice(index, 1);
+  }
+}
+
+// Eliminar usuarios
+const eliminarUser = (userId) => {
+  eliminarLocalStorageUsers(userId);
+  usersLoad();
+}
+
+// Activar Bottones de delete
+const activarBotonesDelete = () => {
+  const botonesDelete = document.querySelectorAll(".button.button-clear.button-delete");
+  botonesDelete.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      eliminarUser(btn.id);
+    });
+  });
+};
+
+// Setear usersFavorite en localStorage
+const almacenarDatosLocalStorageFavoritos = () => usersFavorite.length > 0 ? localStorage.setItem("usersFavorite", JSON.stringify(usersFavorite)) : alert("No tienes ningun usuario dentro de favoritos.");
+
+// Agregar a favoritos
+const agregarAFavoritos = (userId) => { 
+  // let usersLocal = recuperarUsers();
+  let userFound = users.find((userArray) => userArray.id === parseInt(userId)) || localStorage.getItem("users").find((userArray) => userArray.id === parseInt(userId));
+  console.log("Usuario encontrado en local", userFound);
+  if (userFound) {
+    let userInFavoritos = usersFavorite.find((userArray) => userArray.id === parseInt(userId));
+    if (userInFavoritos == undefined) {
+      // TRAER DATOS DEL LOCAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      usersFavorite.push(userFound);
+      almacenarDatosLocalStorageFavoritos();
+    }
+  }
+};
+
+// Ocular el Botton de Favoritos  
+const iconCardAdd = (userId) => {
+  let btnFavorites = document.getElementById(userId);
+  btnFavorites.style.display = "none"; // btnFavorites.classList.add("deactive");
+}
+
+// Activar Bottones de favoritos
+const activarBotonesAdd = () => {
+  const botonesAdd = document.querySelectorAll(".button.button-clear.button-add");
+  botonesAdd.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      agregarAFavoritos(btn.id);
+      iconCardAdd(btn.id);
+    });
+  });
+};
+
+// Read Users
+const cargarUsers = (array) => {
+  containerDashboard.style.display = "none";
+  tbody.innerHTML = "";
+  container.innerHTML = "";
+  array.forEach(user => user != undefined ? container.innerHTML += retornoCardUser(user) : console.log("Usuario Indefinido"));
+  activarBotonesAdd();
+  activarBotonesDelete();
+  activarBotonesPopUp(); 
+};
+
+// Revisar si hay users en localStorage || users para cargar 
+const usersLoad = () => localStorage.getItem("users") ? cargarUsers(recuperarUsers()) : cargarUsers(users);
+
+// Evento click boton All Users
+allUsers.addEventListener("click", () => { 
+  usersLoad(); 
+}); 
 
 // Function ordenar Users
 const ordenar = (array) => {
@@ -148,7 +373,6 @@ const ordenar = (array) => {
     }
     return 0;
   });
-  console.table(userOrdenados);
   cargarUsers(userOrdenados);
 };
 
@@ -158,235 +382,19 @@ buttonOrdenar.addEventListener("click", () => {
   ordenar(localUsers);
 });
 
-// Read Users
-const cargarUsers = (array) => {
+                                        /*** LOAD WINDOW **/
+window.addEventListener("load", (event) => {
   containerDashboard.style.display = "none";
-  tbody.innerHTML = "";
-  container.innerHTML = "";
-  array.forEach((user) => {
-    if(user != undefined)
-    {
-      container.innerHTML += retornoCardUser(user)
-    }
-    else {
-      console.log("Usuario Indefinido")
-    } 
-  })
-  activarBotonesAdd();
-  activarBotonesDelete();
-  activarBotonesPopUp();
-};
-
-// Read One User
-const cargarOneUser = (user) => {
-  tbody.innerHTML = "";
-  container.innerHTML = "";
-  container.innerHTML += retornoCardUser(user);
-  activarBotonesAdd();
-  activarBotonesDelete();
-};
-
-const usersLoad = () => {
-  if(localStorage.getItem("users")) { 
-    let usersLocals = recuperarUsers();
-    cargarUsers(usersLocals);
-  }
-  else {
-    cargarUsers(users);
-  }
-}
-
-// Evento click boton All Users
-allUsers.addEventListener("click", () => { 
-  usersLoad();
+  modal.style.display = "none";
+  activarBotonesPopUpForm();
+  // localStorage.setItem("users", JSON.stringify(users));
 });
 
-const almacenarDatosLocalStorageUsers = (usersLocals) => {
-  if(localStorage.getItem("users")) { 
-    localStorage.setItem("users", JSON.stringify(usersLocals));
-  }
-  else {
-    localStorage.setItem("users", JSON.stringify(users));
-  }
-}
-
-const almacenarDatosLocalStorageFavoritos = () => {
-  if(usersFavorite.length > 0) { 
-    localStorage.setItem("usersFavorite", JSON.stringify(usersFavorite));
+// See localStorage Keys
+const localStorageKeys = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    let clave = localStorage.key(i);
+    console.log("Clave ", clave);
+    console.log("Valor " + localStorage.getItem(clave));
   }
 }
-
-const recuperarUserFavoritos = () => {
-  if (localStorage.getItem("usersFavorite")) {
-      let usersFavoriteRecuperados = JSON.parse(localStorage.getItem("usersFavorite"));
-          usersFavoriteRecuperados.forEach(userFavorite => usersFavorite.push(userFavorite));
-      return usersFavoriteRecuperados;
-  }
-}
-
-// Agregar a favoritos
-const agregarAFavoritos = (userId) => {
-  userId = parseInt(userId);
-  let userFound = users.find((userArray) => userArray.id === userId);
-  if (userFound !== undefined) {
-    let userInFavoritos = usersFavorite.find(
-      (userArray) => userArray.id === userId
-    );
-    if (userInFavoritos === undefined) {
-      usersFavorite.push(userFound);
-      almacenarDatosLocalStorageFavoritos()
-    }
-  }
-};
-
-// PREGUNTA
-/** ¿Como hacer para cuando este seleccionado el corazon que aparezca el boton de eliminar,
- * y que cuando este seleccionado el de eliminar apareza el del corazon? */
-const buttonShowFavoritos = (userId) => {const botonesAdd = document.querySelectorAll(".button.button-outline.button-add");
-  if (userId) {
-    botonesAdd.classList.toggle("button-add-hide");
-  }
-};
-
-// Read favoritos
-const cargarUsersFavoritos = (array) => {
-  tbody.innerHTML = "";
-  container.innerHTML = "";
-  array.forEach((user) => {
-    container.innerHTML += retornoCardUserFavoritos(user);
-  });
-  activarBotonesDeleteFavoritos()
-  activarBotonesPopUp();
-};
-
-// Evento click boton Favoritos
-favoritosUsers.addEventListener("click", () => {
-  let userRecuperados = recuperarUserFavoritos();
-  if (userRecuperados) {
-    cargarUsersFavoritos(userRecuperados);
-  } else {
-    alert("No tienes ningun usuario dentro de favoritos.");
-  }
-});
-
-// Editar user
-// PREGUNTA
-/** ¿Como editar el usuario? */
-
-const userSearchContainer = (userLocals, userName) => {
-  let userFound = userLocals.find((userArray) => userArray.nombre === userName);
-    if (userFound === undefined) {
-      alert(`No se encontró el usuario ${userName} en tus contactos`);
-    } else {
-      cargarOneUser(userFound);
-    }
-}
-
-// Find User con prompt
-const findUserArray = () => {
-  let userName = prompt("Ingresa el usuario a buscar:");
-  if(localStorage.getItem("users")){
-    let userLocals = recuperarUsers();
-    userSearchContainer(userLocals, userName);
-  } else {
-    userSearchContainer(users);
-  }
-};
-
-// Evento click boton Find User prompt
-findUser.addEventListener("click", () => {
-  findUserArray();
-});
-
-// Function capitalizeFirstLetter
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-};
-
-// Function userFilterMap
-const userFilterMap = (key) => {
-  let userLocals = recuperarUsers();
-    var userFound = userLocals.map((user, index) => {
-      if (user.nombre.includes(key)) {
-        return user;
-      }
-    });
-    cargarUsers(userFound);
-};
-
-// Filter user by inputs in search bar
-/**  PREGUNTA: 1) COMO TOMAR LOS VALORES DEL INPUT para hacer la busqueda filtrada
-     PREGUNTA: 2) Como reseteo el input del search bar  */
-const findUserSearchBar = () => {
-  searchContainer.addEventListener("keydown", (e) => {
-    let targetValue = e.target.value; // arranca un valor atras
-    let key = e.key.toUpperCase();
-    if (
-      (e.key != "Backspace" && e.keyCode >= 65 && e.keyCode <= 90) ||
-      (e.keyCode >= 97 && e.keyCode <= 122)
-    ) {
-      if (targetValue != "") {
-        targetValue = capitalizeFirstLetter(targetValue);
-        userFilterMap(targetValue);
-      } else {
-        userFilterMap(key);
-      }
-    }
-    inputListener();
-  });
-};
-
-// Evento para print user input in the container
-const inputListener = () => {
-  input.addEventListener("input", updateValue);
-  function updateValue(e) {
-    capitalizeFirstLetter((log.textContent = e.target.value));
-  }
-};
-
-// Evento click search bar & keydown
-searchContainer.addEventListener("click", () => {
-  usersLoad();
-  findUserSearchBar();
-});
-
-// Eliminar usuario
-const eliminarLocalStorageUsers = (userId) => {
-  if(localStorage.getItem("users"))
-  { 
-    let localList = localStorage.getItem("users"); // json object
-    let list = JSON.parse(localList);
-    let index = list.findIndex(object => {return object.id === parseInt(userId)});
-    list.splice(index, 1); // Elimina el elemento del array ​list
-    localStorage.setItem("users", JSON.stringify(list));  // Sobrescribe el array de favoritos en el localStorage
-  }
-  else {
-    let index = users.findIndex((user) => user.id === parseInt(userId));
-    users.splice(index, 1);
-  }
-  
-}
-
-// Eliminar usuarios
-function eliminarUser(userId) {
-  eliminarLocalStorageUsers(userId);
-  usersLoad();
-}
-
-const eliminarLocalStorageFavoritos = (userId) => {
-  let localList = localStorage.getItem("usersFavorite"); // json object
-  let list = JSON.parse(localList);
-  let index = list.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
-  list.splice(index, 1); // Elimina el elemento del array ​list
-  localStorage.setItem("usersFavorite", JSON.stringify(list));  // Sobrescribe el array de favoritos en el localStorage
-  return list;
-}
-
-// Eliminar usuario de favoritos
-function eliminarFavoritoUser(userId) {
-  let userRecuperados = eliminarLocalStorageFavoritos(userId);
-  cargarUsersFavoritos(userRecuperados);
-}
-// Cargar datos en localStorage
-/*almacenarDatosLocalStorageUsers();*/
-

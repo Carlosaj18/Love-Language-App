@@ -9,16 +9,11 @@ class User {
   }
 
   asingacionPorcentajesLenguajes(user) {
-    // Hacerlo dinamico en HTML
     Object.entries(this.languages).forEach(([key]) => {
-      let result = parseFloat(
-        prompt(`Ingresa el porcentaje de amor para ${key}:`)
-      );
+      let result = parseFloat(prompt(`Ingresa el porcentaje de amor para ${key}:`));
       this.languages[key] = result;
     });
-
-    let profile = this.loveLanguageProfile(user, this.languages);
-    return profile;
+    return this.loveLanguageProfile(user, this.languages);
   }
 
   loveLanguageProfile(user, languages) {

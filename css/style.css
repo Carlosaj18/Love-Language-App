@@ -96,6 +96,7 @@ p, span, strong, em, code {
 
 .main-title h1 {
   font-size: 4em;
+  text-align: center;
 }
 
 /** Container-button */
