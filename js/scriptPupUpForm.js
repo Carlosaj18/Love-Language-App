@@ -87,7 +87,7 @@ const asignacionLenguajesNewUser = (NewUser) => {
     userCreated.innerText = profileUser.imagen + "✅";
   }
   else {  
-    confirm("El usuario " + profileUser.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
+    confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
   }
 }
 

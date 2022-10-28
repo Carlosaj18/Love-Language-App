@@ -217,6 +217,7 @@ const findUserArray = () => {
 // Evento click boton Find User prompt
 findUser.addEventListener("click", () => {
   findUserArray();
+  containerDashboard.style.display = "none";
 });
 
                                         /*** ADD USER SECTION **/
@@ -301,6 +302,8 @@ const agregarAFavoritos = (userId) => {
       if(userFound == undefined){
         usersFavoriteLocals.push(userExist);
         almacenarDatosLocalStorageFavoritos(usersFavoriteLocals);
+      } else {
+        alert(`User ${userExist.nombre} already in Favoritos`);
       }
     } else {
       let userFound = usersFavorite.find((user) => { return user.id == parseInt(userId) });
@@ -310,6 +313,8 @@ const agregarAFavoritos = (userId) => {
         almacenarDatosLocalStorageFavoritos(usersFavorite);
       }
     }
+  } else {
+    alert(`User ${userExist?.nombre} already in Favoritos`);
   }
 };
 

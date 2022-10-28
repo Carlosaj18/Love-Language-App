@@ -1,17 +1,25 @@
 
 // Template HTML Users
-const retornoCardUser = ({id, imagen, nombre, description}) => {
-    return `<div class="card" id="${id}">
+const retornoCardUser = (user) => {
+    /* Alias + Destructuracion*/
+    let {
+        id: ID, 
+        imagen: imagen,
+        nombre: nombre, 
+        description: description
+      } = user;
+
+    return `<div class="card" id="${ID}">
               <!--<div class="card-image"> <img class="card-image"  src='${imagen}' alt=" "> </div>-->
               <div class="card-image">${imagen}</div>
               <div class="card-name">${nombre}</div>
               <div class="card-description">${description}</div>
               <div class="card-button-top">
-                <button data-modal-target="#modal" class="button button-outline" id="${id}" title="Clic para ver los lengajes del amor de '${nombre}'">Lenguajes</button>
+                <button data-modal-target="#modal" class="button button-outline" id="${ID}" title="Clic para ver los lengajes del amor de '${nombre}'">Lenguajes</button>
               </div>
               <div class="card-button-icons">
-                  <button class="button button-clear button-add" id="${id}-add" title="Clic para agregar a tus favoritos '${nombre}'">💗</button>
-                  <button class="button button-clear button-delete" id="${id}-delete" title="Clic para eliminar de tus favoritos '${nombre}'">⛔</button>
+                  <button class="button button-clear button-add" id="${ID}-add" title="Clic para agregar a tus favoritos '${nombre}'">💗</button>
+                  <button class="button button-clear button-delete" id="${ID}-delete" title="Clic para eliminar de tus favoritos '${nombre}'">⛔</button>
                   
               </div>
             </div>`;
