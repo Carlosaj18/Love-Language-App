@@ -91,17 +91,32 @@ const asignacionLenguajesNewUser = (NewUser) => {
   }
 }
 
+const objetoUser = (selectDescription) => {
+  let profileUser = {
+    id          : "",
+    imagen      : "",
+    nombre      : "",
+    description : selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
+    genero      : "",
+    languages   : loveLanguages,
+  };
+  return profileUser;
+}
+
 // Create User
 const createUserForm = (selectNombre, selectGenero, selectDescription, userCreated) => {
   if (datosCompletos(selectNombre, selectGenero)) {
-    let id = idUser();
-    let imagen = "";
-    let nombre = selectNombre.value;
-    let description = selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor";
-    let genero = selectGenero.value;
-    let languages = loveLanguages;
-  
-    const NewUser = new User(id, imagen, nombre, description, genero, languages);
+    
+    userTemplate = objetoUser(selectDescription);
+
+    user = {
+      ...userTemplate, 
+      id          : idUser(),
+      nombre      : selectNombre.value,
+      genero      : selectGenero.value,
+    }
+
+    const NewUser = new User(user);
     asignacionLenguajesNewUser(NewUser);
   } else {
     alert("⛔️ Debes completar todos los datos en pantalla.");

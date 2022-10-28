@@ -1,5 +1,5 @@
 class User {
-  constructor(id, imagen, nombre, description, genero, languages) {
+  constructor({id, imagen, nombre, description, genero, languages}) {
     this.id = id;
     this.imagen = imagen;
     this.nombre = nombre;
