@@ -12,25 +12,6 @@ const containerDashboard = document.querySelector(".container-dashboard");
 const tbody              = document.querySelector(".tbody");
 const modal              = document.querySelector(".modal");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                           /*** SEARCH BAR SECTION */
 
 // Function capitalizeFirstLetter
@@ -148,25 +129,6 @@ buttonDashboard.addEventListener("click", () => {
 
                                       /*** USER FAVORITES SECTION **/ 
 
-
-const displayLenguajesDelAmorUser = (userId) => {
-  let user = users.find((userArray) => userArray.id === parseInt(userId));
-  return {
-    nombre: user.nombre,
-    physicalTouch: user.languages.physicalTouch,
-    actosOfService: user.languages.actosOfService,
-    qualityTime: user.languages.qualityTime,
-    wordsOfAffirmation: user.languages.wordsOfAffirmation,
-    receivingGifts: user.languages.receivingGifts,
-    totalLanguage:
-      user.languages.physicalTouch +
-      user.languages.actosOfService +
-      user.languages.qualityTime +
-      user.languages.wordsOfAffirmation +
-      user.languages.receivingGifts,
-  };
-};
-
 const eliminarCacheFavoritos = () => {
   if(!localStorage.getItem("usersFavorite")){
       localStorage.removeItem("usersFavorite");
@@ -182,15 +144,17 @@ const eliminarLocalStorageFavoritos = (userId) => {
     let indexLocals = list.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
     list.splice(indexLocals, 1); // Elimina el elemento del array ​list
     localStorage.setItem("usersFavorite", JSON.stringify(list));  // Sobrescribe el array de favoritos en el localStorage
-    
+  } else {
     let index = usersFavorite.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
     usersFavorite.splice(index, 1);
-    return list || usersFavorite;
   }
 }
 
 // Eliminar usuario de favoritos
-const eliminarFavoritoUser = (userId) => cargarUsersFavoritos(eliminarLocalStorageFavoritos(userId));
+const eliminarFavoritoUser = (userId) => {
+  eliminarLocalStorageFavoritos(userId);
+  userFavoriteLoad();
+}
 
 // Activar Bottones de delete Favoritos
 const activarBotonesDeleteFavoritos = () => {
@@ -212,26 +176,22 @@ const cargarUsersFavoritos = (array) => {
 };
 
 // Recuperar Favoritos LocalStorage
-const recuperarUserFavoritos = () => {
+const recuperarUsersFavoritos = () => {
   if (localStorage.getItem("usersFavorite")) {
       let usersFavoriteRecuperados = JSON.parse(localStorage.getItem("usersFavorite"));
           usersFavoriteRecuperados.forEach(user => usersFavorite.push(user));
-          console.log('User recuperados', usersFavoriteRecuperados);
           return usersFavoriteRecuperados; 
-  } 
+  } else {
+    return usersFavorite;
+  }
 }
+
+const userFavoriteLoad = () => localStorage.getItem("usersFavorite") ? cargarUsersFavoritos(recuperarUsersFavoritos()) : cargarUsersFavoritos(usersFavorite);
 
 // Evento click boton Favoritos
 favoritosUsers.addEventListener("click", () => {
-  if(recuperarUserFavoritos){
-    let usersLocals = recuperarUserFavoritos();
-    cargarUsersFavoritos(usersLocals);
-  } else {
-    cargarUsersFavoritos(usersFavorite);
-  }
-  // recuperarUserFavoritos() ? cargarUsersFavoritos(recuperarUserFavoritos()) : eliminarCacheFavoritos());
+  userFavoriteLoad();
 });
-
 
                                         /*** FIND USER PROMT SECTION **/
 
@@ -276,7 +236,26 @@ addUser.addEventListener("click", activarBotonesPopUpForm());
 
                                         /*** ALL USERS SECTION **/
 
-// Eliminar usuario
+// Info PopuUp 
+const displayLenguajesDelAmorUser = (userId) => {
+  let user = users.find((userArray) => userArray.id === parseInt(userId));
+  return {
+    nombre: user.nombre,
+    physicalTouch: user.languages.physicalTouch,
+    actosOfService: user.languages.actosOfService,
+    qualityTime: user.languages.qualityTime,
+    wordsOfAffirmation: user.languages.wordsOfAffirmation,
+    receivingGifts: user.languages.receivingGifts,
+    totalLanguage:
+      user.languages.physicalTouch +
+      user.languages.actosOfService +
+      user.languages.qualityTime +
+      user.languages.wordsOfAffirmation +
+      user.languages.receivingGifts,
+  };
+};
+
+                                        // Eliminar usuario
 const eliminarLocalStorageUsers = (userId) => {
   if(localStorage.getItem("users"))
   { 
@@ -309,19 +288,27 @@ const activarBotonesDelete = () => {
 };
 
 // Setear usersFavorite en localStorage
-const almacenarDatosLocalStorageFavoritos = () => usersFavorite.length > 0 ? localStorage.setItem("usersFavorite", JSON.stringify(usersFavorite)) : alert("No tienes ningun usuario dentro de favoritos.");
+const almacenarDatosLocalStorageFavoritos = (usersFavoriteLocals) => localStorage.getItem("usersFavorite") ? localStorage.setItem("usersFavorite", JSON.stringify(usersFavoriteLocals)) : localStorage.setItem("usersFavorite", JSON.stringify(usersFavorite));
 
 // Agregar a favoritos
 const agregarAFavoritos = (userId) => { 
-  // let usersLocal = recuperarUsers();
-  let userFound = users.find((userArray) => userArray.id === parseInt(userId)) || localStorage.getItem("users").find((userArray) => userArray.id === parseInt(userId));
-  console.log("Usuario encontrado en local", userFound);
-  if (userFound) {
-    let userInFavoritos = usersFavorite.find((userArray) => userArray.id === parseInt(userId));
-    if (userInFavoritos == undefined) {
-      // TRAER DATOS DEL LOCAL!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      usersFavorite.push(userFound);
-      almacenarDatosLocalStorageFavoritos();
+  let userExist = recuperarUsers(); // valido que exista el usuario 
+  userExist = userExist.find(user => { return user.id == parseInt(userId) });
+  if(userExist){
+    if(localStorage.getItem("usersFavorite")){
+      let usersFavoriteLocals = recuperarUsersFavoritos();
+      let userFound = usersFavoriteLocals.find((user) => { return user.id == parseInt(userId) });
+      if(userFound == undefined){
+        usersFavoriteLocals.push(userExist);
+        almacenarDatosLocalStorageFavoritos(usersFavoriteLocals);
+      }
+    } else {
+      let userFound = usersFavorite.find((user) => { return user.id == parseInt(userId) });
+      if(userFound == undefined){
+        usersFavorite.push(userExist);
+        console.log("Array Favoritos ", usersFavorite);
+        almacenarDatosLocalStorageFavoritos(usersFavorite);
+      }
     }
   }
 };
