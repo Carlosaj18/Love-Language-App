@@ -395,3 +395,17 @@ button .button-outline {
   transform: scale(0);
   transition: 200ms ease-in-out;
 } 
+
+/** Alert */
+
+#custom-target {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  border-style: solid;
+}
+
+.position-absolute {
+  position: absolute;
+}
+

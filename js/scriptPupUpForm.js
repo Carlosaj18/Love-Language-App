@@ -11,15 +11,18 @@ function closeModal(modal){
   overlay.classList.remove("active");
 }
 
-closeModalButtonsForm.forEach((button) => {
-  button.addEventListener("click", () => {
-    const modal = button.closest(".modal");
-    closeModal(modal);
-  });
-});
-
 // Validar datos en el form
 const datosCompletos = (selectNombreUser, selectGenero) => selectNombreUser.value !== "..." && selectGenero.value !== "..." ? true : false;
+
+closeModalButtonsForm.forEach((button) => {
+  button.addEventListener("click", () => {
+    if(datosCompletos(selectNombreUser(), selectGeneroUser())) {
+      const modal = button.closest(".modal");
+      closeModal(modal); 
+      console.log("Click en enviar"); 
+    }
+  });
+});
 
 // Id User
 const idUser = () => parseInt(Math.random() * 10000);
@@ -45,7 +48,7 @@ const recuperarUserLocalStorage = (id)=> {
 const almacenarOneUserLocalStorage = (profileUser) => profileUser ? localStorage.setItem(`${profileUser.id}`, JSON.stringify(profileUser)) : null;
 
 // Almacenar users en localStorage
-const almacenarDatosLocalStorageUsers = (usersLocals) => localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(users));
+const almacenarDatosLocalStorageUsers = (usersLocals) => localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(usersLocals));
 
 // Recuperar Users localStorags || array 
 
@@ -85,6 +88,7 @@ const asignacionLenguajesNewUser = (NewUser) => {
     almacenarOneUserLocalStorage(profileUser);
     agregarNewUser(profileUser);
     userCreated.innerText = profileUser.imagen + "✅";
+    alerta("", `El User ${NewUser.nombre} se ha creado con exito`, 'success');
   }
   else {  
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
@@ -96,6 +100,7 @@ const objetoUser = (selectDescription) => {
     id          : "",
     imagen      : "",
     nombre      : "",
+    favoritos   : false,
     description : selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
     genero      : "",
     languages   : loveLanguages,
@@ -108,7 +113,6 @@ const createUserForm = (selectNombre, selectGenero, selectDescription, userCreat
   if (datosCompletos(selectNombre, selectGenero)) {
     
     userTemplate = objetoUser(selectDescription);
-
     user = {
       ...userTemplate, 
       id          : idUser(),
@@ -118,15 +122,18 @@ const createUserForm = (selectNombre, selectGenero, selectDescription, userCreat
 
     const NewUser = new User(user);
     asignacionLenguajesNewUser(NewUser);
+
   } else {
-    alert("⛔️ Debes completar todos los datos en pantalla.");
+    alerta("", `⛔️ Debes completar todos los datos en pantalla.`, 'error');
   }
 };
 
 const clickBtnEnviar = (selectNombre, selectGenero, selectDescription, btnEnviar, userCreated) => {
   btnEnviar.addEventListener("click", () => {
     createUserForm(selectNombre, selectGenero, selectDescription, userCreated);
-    closeModal(modal);
+    if(datosCompletos(selectNombreUser(), selectGeneroUser())){
+      closeModal(modal);
+    } 
   });
 }
 

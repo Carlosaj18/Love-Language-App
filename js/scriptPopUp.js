@@ -34,6 +34,7 @@ const activarBotonesPopUp = () => {
   const openModalButtons = document.querySelectorAll("[data-modal-target]");
   openModalButtons.forEach((button) => {
     button.addEventListener("click", () => {
+      console.log("clicked")
       const modal = document.querySelector(button.dataset.modalTarget); 
       openModal(modal);
       popUpTable(button.id);
