@@ -170,8 +170,6 @@ const eliminarLocalStorageFavoritos = (userId) => {
   userExist = userExist.find(user => { return user.id == parseInt(userId) });
   editarUsersIcon(recuperarUsers(), userExist, false);
   
-  // Si lo eliminan de all users tambien tiene que ser elimado de favoritos
-
   if(localStorage.getItem("usersFavorite") || usersFavorite.length > 0) {
     let localList = localStorage.getItem("usersFavorite"); // json object
     let list = JSON.parse(localList);
@@ -179,6 +177,7 @@ const eliminarLocalStorageFavoritos = (userId) => {
     list.splice(indexLocals, 1); // Elimina el elemento del array ​list
     localStorage.setItem("usersFavorite", JSON.stringify(list));  // Sobrescribe el array de favoritos en el localStorage
     alerta("", `⛔️ El usuario se elimino de favoritos`, 'warning');
+    //toast(userExist.nombre);
   } else {
     editarUsersIcon(users, userExist, false);
     let index = usersFavorite.findIndex((userFavorite) => userFavorite.id === parseInt(userId));
@@ -259,8 +258,8 @@ const userSearchContainer = (userLocals, userName) => {
 }
 
 const findUserArray = () => {
-  let userName = prompt("Ingresa el usuario a buscar:");
-  localStorage.getItem("users") ? userSearchContainer(recuperarUsers(), userName) : userSearchContainer(users);
+  let userName = prompt("Ingresa el usuario a buscar: ");
+  localStorage.getItem("users") ? userSearchContainer(recuperarUsers(), capitalizeFirstLetter(userName)) : userSearchContainer(users);
 };
 
 // Evento click boton Find User prompt
@@ -316,6 +315,7 @@ const elimarUserFavoritoLocalStorage = (userId) => {
 const confirmationPromese = (index, list) => {
   list.splice(index, 1);
   localStorage.setItem("users", JSON.stringify(list));
+  toast();
   usersLoad();
 }
 
@@ -373,6 +373,7 @@ const agregarAFavoritos = (userId) => {
       let userFound = usersFavoriteLocals.find((user) => { return user.id == parseInt(userId) });
       if(userFound == undefined){
         alerta("", `El User ${userExist.nombre} se ha agregado a Favoritos`, 'success', `${userExist.id}`);
+        //alertaImageFavoritos(userExist);
         userExist = {
           ...userExist,
           favoritos: true,
@@ -438,7 +439,6 @@ const cargarUsers = (array) => {
     tbody.innerHTML = "";
     container.innerHTML = "";
     array.forEach(user => user != undefined ? container.innerHTML += retornoCardUser(user) : console.log("Usuario Indefinido"));
-    // Mapeo los usuarios y los que tengan favoritos == true oculto el boton button-add
     activarBotonesAdd();
     activarBotonesDelete();
     activarBotonesPopUp(); 
@@ -476,12 +476,13 @@ const ordenar = (array) => {
 buttonOrdenar.addEventListener("click", () => {
   let localUsers = recuperarUsers();
   ordenar(localUsers);
-  alertaOrdenar("success", "Todos los usuarios fueron ordenados");
+  //alertaOrdenar("success", "Todos los usuarios fueron ordenados");
+  alertaOrdenarDashboard();
 });
 
                                         /*** LIBRERIAS WINDOW **/
 
-const alerta = (titulo, mensaje, icono)=> {
+const alerta = (titulo, mensaje, icono) => {
   Swal.fire({
       icon: icono || '', 
       title: titulo || '', 
@@ -498,6 +499,18 @@ const alerta = (titulo, mensaje, icono)=> {
     });
 }
 
+const alertaImageFavoritos = (user) => {
+  Swal.fire({
+    title: 'Agregado a favoritos',
+    text: `El usuario ${user.nombre} fue agregado a favoritos`,
+    imageUrl: "https://unsplash.it/400/200",
+    imageWidth: 400,
+    imageHeight: 200,
+    timer: 4500,
+    imageAlt: 'Custom image',
+  })
+}
+
 const alertaOrdenar = (icono, mensaje) => {
   Swal.fire({
     icon: icono,
@@ -505,6 +518,31 @@ const alertaOrdenar = (icono, mensaje) => {
     text: mensaje, 
     showConfirmButton: false,
   });
+}
+
+const alertaOrdenarDashboard = () => {
+  let timerInterval;
+  Swal.fire({
+    title: 'Ordenando los Usuarios',
+    html: 'Contando total de usuarios <b></b>.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading()
+      const b = Swal.getHtmlContainer().querySelector('b')
+      timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+      }, 100)
+    },
+    willClose: () => {
+      clearInterval(timerInterval)
+    }
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log('I was closed by the timer')
+    }
+  })
 }
 
 const confirmDeleteUser = (index, list) => {
@@ -517,6 +555,18 @@ const confirmDeleteUser = (index, list) => {
   })
 }
 
+const toast = ()=> {
+  Toastify({
+      text: `Usuario eliminado`,
+      duration: 4000,
+      newWindow: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "crimson",
+      }
+    }).showToast();
+}
 
 
                                         /*** LOAD WINDOW **/

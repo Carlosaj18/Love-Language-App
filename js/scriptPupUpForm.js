@@ -71,6 +71,7 @@ const agregarNewUser = (newUser) => {
     if (user == undefined) {
         usersLocals.push(newUser);
         almacenarDatosLocalStorageUsers(usersLocals);
+        
     }
   } else {
     let user = users.find(user => { return user.id == newUser.id });
