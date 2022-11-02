@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -60,11 +61,8 @@
       <!-- Search Buttons -->
       <div class="search-name-display"><p id="values"></p></div>
       <!-- Modal Alert -->
-      
       <!-- Main Container Cards -->
-      <div class="containerCards mt-5">
-      
-      </div>
+      <div class="containerCards mt-5"></div>
       <!-- Dashboard -->
       <div class="container-dashboard">
         <table>
@@ -75,15 +73,18 @@
           <thead>
             <span class="pln"> </span>
             <tr>           
-              <th>ID</th>
-              <th>Imagen</th>
-              <th>Nombre</th>            
-              <th>PhysicalTouch</th>             
-              <th>ActosOfService</th>             
-              <th>QualityTime</th>             
-              <th>WordsOfAffirmation</th>             
-              <th>ReceivingGifts</th>             
-              <th>TOTAL SCORE</th>   
+              <th id="tablehead">ID</th>
+              <th id="tablehead">Imagen</th>
+              <th id="tablehead">Nombre</th>            
+              <th id="tablehead">PhysicalTouch</th>             
+              <th id="tablehead">ActosOfService</th>             
+              <th id="tablehead">QualityTime</th>             
+              <th id="tablehead">WordsOfAffirmation</th>             
+              <th id="tablehead">ReceivingGifts</th>             
+              <th id="tablehead">TOTAL SCORE</th>  
+              <th id="tablehead">Favoritos</th> 
+              <th id="tablehead">Editar User</th> 
+              <th id="tablehead">Eliminar User</th> 
             </tr>
             <span class="pln"> </span>
           </thead>
@@ -96,20 +97,35 @@
           <button class="button">
             <a href="#" class="button-outline ordenar-dashboard">Ordenar</a>
           </button>
-          <button class="button">
-            <a class="button-outline">Editar</a>
-          </button>
         </div>
       </div>
-      <!-- Modal PopUp Language & Form -->
+      <!-- Modal PopUp Form -->
       <div class="modal active" id="modal" style="display: block">
         <div class="modal-header">
-          <div class="title">5 Love of Language</div>
-          <button data-close-button="close-button form" id="close-button">&times;</button>
+          <div class="title">Form 5 Love of Language</div>
+          <button data-close-button-form="close-button form">&times;</button>
+        </div>
+        <div class="modal-body form"></div>
+      </div>
+      <div id="overlay"></div>
+      <!-- Modal PopUp Language -->
+      <div class="modalLanguage active" id="modalLanguage" style="display: block">
+        <div class="modal-header">
+          <div class="title">5 Love of Language ERROR</div>
+          <button data-close-button-language="close-button">&times;</button>
         </div>
         <div class="modal-body form" id="modal-porcentaje"></div>
       </div>
-      <div id="overlay"></div>
+      <div id="overlayLanguage"></div>
+      <!-- Modal PopUp Edit User -->
+      <div class="modalEditUser active" id="modalEditUser" style="display: block">
+        <div class="modal-header">
+          <div class="title">Edit User Form 5 Love of Language</div>
+          <button data-close-button-edit="close-button editUser">&times;</button>
+        </div>
+        <div class="modal-body editUser"></div>
+      </div>
+      <div id="overlayEditUser"></div>
       <!-- Order Button -->
       <button class="button ordenar">
         <a href="#" class="button-outline">Ordenar</a>

@@ -1,3 +1,4 @@
+const users = [];
 const usersFavorite = [];
 
 const loveLanguages = {
@@ -8,7 +9,6 @@ const loveLanguages = {
   receivingGifts: 0,
 };
 
-//BASE DE DATOS GENEROS
 const datosGenero = [
   { genero: "Femenino", valor: "F" },
   { genero: "Masculino", valor: "M" },

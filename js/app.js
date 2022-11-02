@@ -11,6 +11,10 @@ const container          = document.querySelector(".containerCards");
 const containerDashboard = document.querySelector(".container-dashboard");
 const tbody              = document.querySelector(".tbody");
 const modal              = document.querySelector(".modal");
+const PopUpEditUser      = document.querySelector(".modal-body.editUser");
+const closeEditButton    = document.getElementById("close-button-edit");
+const closeModalButtonEditUser = document.querySelectorAll("[data-close-button-edit]");
+const modalEditUser = document.querySelector(".modalEditUser");
 
                                           /*** SEARCH BAR SECTION */
 
@@ -91,6 +95,145 @@ searchContainer.addEventListener("click", () => {
 
                                           /*** DASHBOARD SECTION **/
 
+         
+const activoBotonesDelete = () => {
+  const btnsDelete = document.querySelectorAll(".button-delete.button-small");
+        btnsDelete.forEach(btn => {
+          btn.addEventListener("click", (e)=> { //LES ASIGNO EL EVENTO CLICK
+              eliminarUser(e.target.id); 
+              let userLocals = recuperarUsers();
+              displayLenguajesDelAmor(userLocals);
+          })
+      })
+}
+
+const editButton = () => {
+  closeEditButton.addEventListener("click", () => {
+    if(datosCompletos(selectNombreUser(), selectGeneroUser())) {
+      const modal = button.closest(".modalEditUser");
+      closeModal(modal);  
+    }
+  })
+}
+
+closeModalButtonEditUser.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modalEditUser");
+    closeModal(modal);
+  });
+});
+
+const pushUserEdit = (userExist, nombre, genero, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => {
+
+  const newArr = recuperarUsers().map(obj => {
+    if (obj.id === parseInt(userExist.id)) {
+      return { 
+        id: userExist.id, 
+        imagen: userExist.imagen,
+        nombre      : nombre.value,
+        favoritos: userExist.favoritos,
+        description : description.value,
+        genero      : genero.value,
+        languages   : {
+          physicalTouch : physicalTouch.value,     
+          actosOfService : actosOfService.value,    
+          qualityTime   : qualityTime.value,       
+          wordsOfAffirmation : wordsOfAffirmation.value,
+          receivingGifts : receivingGifts.value,   
+        }
+      };
+    }
+    return obj;
+  });
+  almacenarDatosLocalStorageUsers(newArr);
+  let userLocals = recuperarUsers();
+  displayLenguajesDelAmor(userLocals);
+
+}
+
+const recuperarDatosUser = (userId)=> {
+  const id = document.querySelector("#id");
+  const imagen = document.querySelector("#imagen");
+  const nombre = document.querySelector("#nombre");
+  const favoritos = document.querySelector("#favoritos");
+  const genero = document.querySelector("#genero");
+  const description = document.querySelector("#description");
+  const physicalTouch = document.querySelector("#physicalTouch");
+  const actosOfService = document.querySelector("#actosOfService");
+  const qualityTime = document.querySelector("#qualityTime");
+  const wordsOfAffirmation = document.querySelector("#wordsOfAffirmation");
+  const receivingGifts = document.querySelector("#receivingGifts");
+  const closeButtonEdit = document.querySelector("#close-button-edit");
+  cargarCombo(datosGenero, selectGeneroUser());
+  
+  let userlocal = recuperarUsers();
+  let userExist = userlocal.find((user) => user.id === parseInt(userId));
+
+  if(localStorage.getItem("users")){
+    if(userExist != undefined){
+      id.value =  userExist.id;          
+      imagen.value = userExist.imagen;
+      nombre.value =  userExist.nombre;
+      favoritos.value = userExist.favoritos == true ? "⭐" : "😅";  
+      if (userExist.genero == "M"){
+        genero.value = "Masculino";
+      } else if (userExist.genero == "F") {
+        genero.value = "Femenino";
+      } else {
+        genero.value = "Indefinido";
+      }
+      description.value         = userExist.description;
+      physicalTouch.value       =  userExist.languages.physicalTouch;
+      actosOfService.value      = userExist.languages.actosOfService;
+      qualityTime.value         =  userExist.languages.qualityTime;
+      wordsOfAffirmation.value  = userExist.languages.wordsOfAffirmation;
+      receivingGifts.value      =  userExist.languages.receivingGifts;
+    }
+  }
+
+  closeButtonEdit.addEventListener("click", () => {
+    pushUserEdit(userExist, nombre, genero, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts);
+    const modalEditUser = document.querySelector(".modalEditUser");
+    closeModal(modalEditUser);
+  })
+}
+
+const popUpEditUser = (idUser) => {
+  PopUpEditUser.innerHTML = "";
+  PopUpEditUser.innerHTML = retornoUpdateUser();
+  recuperarDatosUser(idUser);
+}
+
+const activarBotonesPopUpEditUser = (idUser) => {
+  const openModalButtonsForm = document.querySelectorAll("[data-modal-target-edit]");
+  openModalButtonsForm.forEach((button) => {
+    button.addEventListener("click", () => {
+      const modal = document.querySelector(".modalEditUser"); // select our modal
+      openModalForm(modal);
+      popUpEditUser(idUser);
+    });
+  });
+};
+
+const updateUser = (userId) => {
+  if(localStorage.getItem("users")){
+    let localList = localStorage.getItem("users");
+    let list = JSON.parse(localList);
+    let user = list.find(object => {return object.id === parseInt(userId)});
+    // open a modal 
+  }
+}
+
+const activoBotonesUpdate = () => {
+  const btnUpdate = document.querySelectorAll(".button-update.button-small");
+        btnUpdate.forEach(btn => {
+          btn.addEventListener("click", (e) => {
+            activarBotonesPopUpEditUser(e.target.id);
+            updateUser(e.target.id);
+          })
+        })
+}
+
 // HTML para cargar el dashboard
 const topLenaguajes = (topLenguajeDelAmor) => {
   container.innerHTML = "";
@@ -98,6 +241,9 @@ const topLenaguajes = (topLenguajeDelAmor) => {
   topLenguajeDelAmor.forEach((user) => {
     tbody.innerHTML += retornoTableDashboard(user);
   });
+  activoBotonesDelete();
+  activoBotonesUpdate();
+  activoBotonesUpdate();
 };
 
 // Function para cargar info Dashboard
@@ -113,11 +259,12 @@ const displayLenguajesDelAmor = (userLocals) => {
       wordsOfAffirmation: user.languages.wordsOfAffirmation,
       receivingGifts: user.languages.receivingGifts,
       totalLanguage:
-        user.languages.physicalTouch +
-        user.languages.actosOfService +
-        user.languages.qualityTime +
-        user.languages.wordsOfAffirmation +
-        user.languages.receivingGifts,
+        parseInt(user.languages.physicalTouch) + 
+        parseInt(user.languages.actosOfService) +
+        parseInt(user.languages.qualityTime) +
+        parseInt(user.languages.wordsOfAffirmation) +
+        parseInt(user.languages.receivingGifts),
+      favoritos: user.favoritos == true ? "⭐" : "😅"
     };
   });
   topLenaguajes(topLenguajeDelAmor);
@@ -477,11 +624,12 @@ buttonOrdenar.addEventListener("click", () => {
   let localUsers = recuperarUsers();
   ordenar(localUsers);
   //alertaOrdenar("success", "Todos los usuarios fueron ordenados");
-  alertaOrdenarDashboard();
+  alertaOrdenarDashboard(localUsers.length);
 });
 
                                         /*** LIBRERIAS WINDOW **/
 
+/** https://sweetalert2.github.io/ */                                        
 const alerta = (titulo, mensaje, icono) => {
   Swal.fire({
       icon: icono || '', 
@@ -520,7 +668,7 @@ const alertaOrdenar = (icono, mensaje) => {
   });
 }
 
-const alertaOrdenarDashboard = () => {
+const alertaOrdenarDashboard = (arrayLenght) => {
   let timerInterval;
   Swal.fire({
     title: 'Ordenando los Usuarios',
@@ -574,6 +722,10 @@ window.addEventListener("load", (event) => {
   containerDashboard.style.display = "none";
   modal.style.display = "none";
   activarBotonesPopUpForm();
+  const displayLanguage = document.querySelector(".modalLanguage");
+  displayLanguage.style.display = "none";
+  const PopUpEditUser      = document.querySelector(".modalEditUser");
+  PopUpEditUser.style.display = "none";
   // localStorage.setItem("users", JSON.stringify(users));
 });
 

@@ -289,6 +289,53 @@ button .button-outline {
   color: white;
 }
 
+thead tr {
+  background-color: darkmagenta;
+  color: white;
+}
+
+#tablehead {
+  padding: 10px;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(173, 216, 230, 0.252) !important;
+}
+
+.centrar {
+  text-align: center;
+}
+
+
+
+@media screen and (width <= 420px) {
+
+  table {
+      margin: 0 auto;
+      width: 100% !important;
+      margin-bottom: 60px;
+  }
+}
+
+@media screen and (width <= 767px) {
+
+  table {
+      margin: 0 auto;
+      width: 100%;
+      margin-bottom: 60px;
+  }
+}
+
+@media screen and (width >= 768px) {
+
+
+  table {
+      margin: 0 auto;
+      max-width: 600px;
+      margin-bottom: 80px;
+  }
+}
+
 /* Modal PopUp */
 .modal {
   position:fixed;
@@ -305,7 +352,46 @@ button .button-outline {
   height: 500px;
 }
 
+.modalLanguage {
+  position:fixed;
+  top:50%; /*Center*/
+  left:50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: white;
+  width: fit-content;
+  max-width: 80%;
+  height: 500px;
+}
+
+.modalEditUser {
+  position:fixed;
+  top:50%; /*Center*/
+  left:50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: white;
+  width: fit-content;
+  max-width: 80%;
+  height: 600px;
+}
+
+.modalEditUser.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
 .modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modalLanguage.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
@@ -357,6 +443,18 @@ button .button-outline {
 }
 
 
+#overlayLanguage {
+  position: fixed;
+  transition: 200ms ease-in-out;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  pointer-events: none;
+}
+
 #overlay {
   position: fixed;
   transition: 200ms ease-in-out;
@@ -367,6 +465,11 @@ button .button-outline {
   bottom: 0;
   background-color: rgba(0, 0, 0, .5);
   pointer-events: none;
+}
+
+#overlayLanguage.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
 #overlay.active {
@@ -409,3 +512,9 @@ button .button-outline {
   position: absolute;
 }
 
+/** Edit User */
+
+.edit-form {
+  display: flex;
+  gap:2em;
+}

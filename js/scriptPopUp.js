@@ -1,6 +1,6 @@
-const openModalButtons  = document.querySelectorAll("[data-modal-target]");
-const closeModalButtons = document.querySelectorAll("[data-close-button]");
-const overlay           = document.getElementById("overlay");
+const openModalButtons  = document.querySelectorAll("[data-modal-target-lenguajes]");
+const closeModalButtons = document.querySelectorAll("[data-close-button-language]");
+const overlay           = document.getElementById("overlayLanguage");
 const infoPopUp         = document.getElementById("modal-porcentaje");
 const titleUser         = document.querySelector("titleUser");
 
@@ -12,7 +12,7 @@ function closeModal(modal) {
 
 closeModalButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const modal = button.closest(".modal");
+    const modal = button.closest(".modalLanguage");
     closeModal(modal);
   });
 });
@@ -31,11 +31,11 @@ function openModal(modal) {
 }
 
 const activarBotonesPopUp = () => {
-  const openModalButtons = document.querySelectorAll("[data-modal-target]");
+  const openModalButtons = document.querySelectorAll("[data-modal-target-lenguajes]");
   openModalButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      console.log("clicked")
-      const modal = document.querySelector(button.dataset.modalTarget); 
+      console.log("click open")
+      const modal = document.querySelector(".modalLanguage"); 
       openModal(modal);
       popUpTable(button.id);
     });

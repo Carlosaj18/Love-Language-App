@@ -1,5 +1,5 @@
 const openModalButtonsForm  = document.querySelectorAll("[data-modal-target-form]");
-const closeModalButtonsForm = document.querySelectorAll("[data-close-button]");
+const closeModalButtonsForm = document.querySelectorAll("[data-close-button-form]");
 const closeSendButton       = document.getElementById("close-button");
 const overlayForm           = document.getElementById("overlay");
 const infoPopUpForm         = document.querySelector(".modal-body.form");
@@ -14,13 +14,19 @@ function closeModal(modal){
 // Validar datos en el form
 const datosCompletos = (selectNombreUser, selectGenero) => selectNombreUser.value !== "..." && selectGenero.value !== "..." ? true : false;
 
-closeModalButtonsForm.forEach((button) => {
-  button.addEventListener("click", () => {
+const sendButton = () => {
+  closeSendButton.addEventListener("click", () => {
     if(datosCompletos(selectNombreUser(), selectGeneroUser())) {
       const modal = button.closest(".modal");
-      closeModal(modal); 
-      console.log("Click en enviar"); 
+      closeModal(modal);  
     }
+  })
+}
+
+closeModalButtonsForm.forEach((button) => {
+  button.addEventListener("click", () => {
+    const modal = button.closest(".modal");
+    closeModal(modal);
   });
 });
 
@@ -63,6 +69,12 @@ const recuperarUsers = () => {
   }
 }
 
+const timeUserCreation = () => {
+  const DateTime = luxon.DateTime;
+  const dt = DateTime.now();
+  console.log(`El usuario fue creado el ${dt.toLocalString(DateTime.DATETIME_SHORT)}`); 
+}
+
 // Almacenar datos de users en localStorage
 const agregarNewUser = (newUser) => {
   if(localStorage.getItem("users")) { 
@@ -71,7 +83,7 @@ const agregarNewUser = (newUser) => {
     if (user == undefined) {
         usersLocals.push(newUser);
         almacenarDatosLocalStorageUsers(usersLocals);
-        
+      
     }
   } else {
     let user = users.find(user => { return user.id == newUser.id });
@@ -90,6 +102,7 @@ const asignacionLenguajesNewUser = (NewUser) => {
     agregarNewUser(profileUser);
     userCreated.innerText = profileUser.imagen + "✅";
     alerta("", `El User ${NewUser.nombre} se ha creado con exito`, 'success');
+
   }
   else {  
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
