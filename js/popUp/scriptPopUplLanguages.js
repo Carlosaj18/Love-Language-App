@@ -20,7 +20,7 @@ closeModalButtons.forEach((button) => {
 const popUpTable = (userId) => {
   infoPopUp.innerHTML = "";
   let userMapeado = displayLenguajesDelAmorUser(userId);
-  infoPopUp.innerHTML = retornoInfoPopUp(userMapeado);
+  infoPopUp.innerHTML = retornoUserLanguagesPopUp(userMapeado);
 };
 
 function openModal(modal) {
@@ -34,7 +34,6 @@ const activarBotonesPopUp = () => {
   const openModalButtons = document.querySelectorAll("[data-modal-target-lenguajes]");
   openModalButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      console.log("click open")
       const modal = document.querySelector(".modalLanguage"); 
       openModal(modal);
       popUpTable(button.id);

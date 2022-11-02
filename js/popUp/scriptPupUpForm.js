@@ -14,6 +14,7 @@ function closeModal(modal){
 // Validar datos en el form
 const datosCompletos = (selectNombreUser, selectGenero) => selectNombreUser.value !== "..." && selectGenero.value !== "..." ? true : false;
 
+// Cerrar modal con enviar
 const sendButton = () => {
   closeSendButton.addEventListener("click", () => {
     if(datosCompletos(selectNombreUser(), selectGeneroUser())) {
@@ -56,23 +57,11 @@ const almacenarOneUserLocalStorage = (profileUser) => profileUser ? localStorage
 // Almacenar users en localStorage
 const almacenarDatosLocalStorageUsers = (usersLocals) => localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(usersLocals));
 
-// Recuperar Users localStorags || array 
-
-const recuperarUsers = () => {
-  if (localStorage.getItem("users")) {
-    let usersRecuperados = JSON.parse(localStorage.getItem("users"))
-      usersRecuperados.forEach(user => users.push(user));
-      return usersRecuperados;
-  } 
-  else {
-    return users;
-  }
-}
-
-const timeUserCreation = () => {
+// Time user creacion
+const timeUserCreation = (user) => {
   const DateTime = luxon.DateTime;
   const dt = DateTime.now();
-  console.log(`El usuario fue creado el ${dt.toLocalString(DateTime.DATETIME_SHORT)}`); 
+  console.log(`El usuario ${user.nombre} fue creado el ${dt.toLocalString(DateTime.DATETIME_SHORT)}`); 
 }
 
 // Almacenar datos de users en localStorage
@@ -94,21 +83,37 @@ const agregarNewUser = (newUser) => {
   }
 }
 
+// Inputs files form
+const infoInputForm = () => {
+  const infoForm = document.querySelector("#infoForm");
+  return infoForm;
+}
+
+// Create HTML dinamiclly to show languages of love 
+const asignarLenguagesUserForm = () => {
+
+  let infoForm = infoInputForm();
+
+  Object.entries(loveLanguages).forEach(([key]) => {
+    infoForm.innerHTML += `<label for="${key}">${key}</label>
+                              <input type="text" placeholder="${key}" id="${key}">`
+  });
+}
+
 // Asingacion de lenguajes al User 
-const asignacionLenguajesNewUser = (NewUser) => {
-  if(!validarUser(NewUser)){
-    let profileUser = NewUser.asingacionPorcentajesLenguajes(NewUser);
+const pushUser = (profileUser) => {
+  if(!validarUser(profileUser)){
     almacenarOneUserLocalStorage(profileUser);
     agregarNewUser(profileUser);
     userCreated.innerText = profileUser.imagen + "✅";
-    alerta("", `El User ${NewUser.nombre} se ha creado con exito`, 'success');
-
+    alerta("", `El User ${profileUser.nombre} se ha creado con exito`, 'success');
   }
   else {  
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
   }
 }
 
+// Template User
 const objetoUser = (selectDescription) => {
   let profileUser = {
     id          : "",
@@ -123,10 +128,12 @@ const objetoUser = (selectDescription) => {
 }
 
 // Create User
-const createUserForm = (selectNombre, selectGenero, selectDescription, userCreated) => {
+const createUserForm = (selectNombre, selectGenero, selectDescription) => {
+  
   if (datosCompletos(selectNombre, selectGenero)) {
     
     userTemplate = objetoUser(selectDescription);
+
     user = {
       ...userTemplate, 
       id          : idUser(),
@@ -135,19 +142,75 @@ const createUserForm = (selectNombre, selectGenero, selectDescription, userCreat
     }
 
     const NewUser = new User(user);
-    asignacionLenguajesNewUser(NewUser);
+    profile = NewUser.asingacionPorcentajesLenguajes(NewUser);
+    pushUser(profile);
+    timeUserCreation(profile);
 
   } else {
     alerta("", `⛔️ Debes completar todos los datos en pantalla.`, 'error');
   }
 };
 
-const clickBtnEnviar = (selectNombre, selectGenero, selectDescription, btnEnviar, userCreated) => {
+// Asignacion image user base on gender
+const asignacionImageProfile = (image, genero) => {
+    genero = genero.toUpperCase();
+    if (image == "") {
+      if (genero == "F") return (image = "👧");
+      else if (genero == "M") return (image = "👦");
+      else return "😄";
+    }
+}
+
+// Create user with all form fields
+const createUserFormCompleteInputs = (selectNombre, selectGenero, selectDescription) => {
+    const physicalTouch = document.querySelector("#physicalTouch");
+    const actosOfService = document.querySelector("#actosOfService");
+    const qualityTime = document.querySelector("#qualityTime");
+    const wordsOfAffirmation = document.querySelector("#wordsOfAffirmation");
+    const receivingGifts = document.querySelector("#receivingGifts");
+
+  if (datosCompletos(selectNombre, selectGenero)) {
+    
+    userTemplate = objetoUser(selectDescription);
+
+    user = {
+      ...userTemplate, 
+      id          : idUser(),
+      imagen      : asignacionImageProfile(userTemplate.imagen, selectGenero.value),
+      nombre      : selectNombre.value,
+      genero      : selectGenero.value,
+      languages   : {
+        physicalTouch : physicalTouch.value,     
+        actosOfService : actosOfService.value,    
+        qualityTime   : qualityTime.value,       
+        wordsOfAffirmation : wordsOfAffirmation.value,
+        receivingGifts : receivingGifts.value,   
+      }
+    }
+
+    const NewUser = new User(user);
+    pushUser(NewUser);
+    timeUserCreation(NewUser);
+
+  } else {
+    alerta("", `⛔️ Debes completar todos los datos en pantalla.`, 'error');
+  }
+}
+
+// Click boton enviar
+const clickBtnEnviar = (selectNombre, selectGenero, selectDescription, btnEnviar, opcion) => {
   btnEnviar.addEventListener("click", () => {
-    createUserForm(selectNombre, selectGenero, selectDescription, userCreated);
-    if(datosCompletos(selectNombreUser(), selectGeneroUser())){
-      closeModal(modal);
-    } 
+    if(opcion == 1) {
+      createUserForm(selectNombre, selectGenero, selectDescription, opcion);
+      if(datosCompletos(selectNombreUser(), selectGeneroUser())){
+        closeModal(modal);
+      }
+    } else{
+      createUserFormCompleteInputs(selectNombre, selectGenero, selectDescription, opcion);
+      if(datosCompletos(selectNombreUser(), selectGeneroUser())){
+        closeModal(modal);
+      }
+    }
   });
 }
 
@@ -179,13 +242,18 @@ const selectUserCreated = () => {
   return userCreated;
 }
 
+const infoFormUserInputs = () => {
+  const infoForm = document.querySelector("infoForm");
+  return infoForm;
+}
+
 const btnEnviarUser = () => {
   const btnEnviar = document.querySelector("button.button.button-outline");
   return btnEnviar;
 }
 
 // Carga info del Form 
-const popUpForm = () => {
+const popUpForm = (opcion) => {
   infoPopUpForm.innerHTML = "";
   infoPopUpForm.innerHTML = retornoFormAddUser();
   selectNombreUser();
@@ -193,8 +261,15 @@ const popUpForm = () => {
   cargarCombo(datosGenero, selectGeneroUser());
   selectDescriptionUser();
   selectUserCreated();
+  infoFormUserInputs();
   btnEnviarUser();
-  clickBtnEnviar(selectNombreUser(), selectGeneroUser(), selectDescriptionUser(), btnEnviarUser(), selectUserCreated());
+
+  if(opcion == 2){
+    asignarLenguagesUserForm();
+    clickBtnEnviar(selectNombreUser(), selectGeneroUser(), selectDescriptionUser(), btnEnviarUser(), opcion);
+  } else {
+    clickBtnEnviar(selectNombreUser(), selectGeneroUser(), selectDescriptionUser(), btnEnviarUser(), opcion);
+  }
 };
 
 // Opem Modal

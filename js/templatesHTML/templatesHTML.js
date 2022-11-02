@@ -23,23 +23,6 @@ const retornoCardUser = (user) => {
             </div>`;
 };
 
-// Template HTML Favorite Users
-const retornoCardUserFavoritos = ({ id, imagen, nombre, description }) => {
-  return `<div class="card" id="${id}">
-              <!--<img class="card-image"  src="https://media.giphy.com/media/64hEwo9SHwBjIX1J5g/giphy.gif"
-                alt="GFG image" />-->
-              <div class="card-image">${imagen}</div>
-              <div class="card-name">${nombre}</div>
-              <div class="card-description">${description}</div>
-              <div class="card-button-top">
-                <button data-modal-target="#modalLanguage" class="button button-outline" id="${id}" title="Clic para ver los lengajes del amor de '${nombre}'">Lenguajes</button>
-              </div>
-              <div class="card-button-icons">
-                  <button class="button button-clear button-delete" id="${id}-delete-favorite" title="Clic para eliminar de tus favoritos '${nombre}'">⛔</button>
-              </div>
-            </div>`;
-};
-
 // Template Dashboard HTML Users
 const retornoTableDashboard = ({
   id,
@@ -70,6 +53,40 @@ const retornoTableDashboard = ({
               <th><button id="${id}" class="button-delete button-small border-botton centrar">☠️</button></th>
             </tr>
           <span class="pln"> </span>`;
+};
+
+// Template PopuUp HTML create User
+const retornoFormAddUser = () => {
+  return `
+      <div>
+          <span class="pln">
+              </span>
+                  <div id="infoForm">
+                      <label for="nameField">Nombre</label>
+                      <input type="text" placeholder="Nombre" id="nombre">
+                      <span class="pln"></span>
+                      <label for="genero">Selecciona genero</label>
+                      <select id="genero">
+                          <option selected disabled>...</option>
+                      </select>
+                      <span class="pln"></span>
+                      <label for="description">Comment</label>
+                      <textarea placeholder="Hi ..." id="description"></textarea>  
+                  </div>
+                  <div class="float-right">
+                        <input type="checkbox" id="confirmField">
+                        <label class="label-inline" for="confirmField">Send a copy to yourself</label>
+                  </div>
+                  <div class="center separador">
+                        <button  id="close-button" class="button button-outline">Enviar</button>
+                  </div>
+                  <div class="center separador">
+                      <p class="importe"> <span id="userCreated"></span><span class="guardar ocultar" title="Enviar por Email"></span></p>
+                  </div>
+              <span class="pln">
+          </span>
+      </div>
+      `;
 };
 
 // Template PopuUp HTML edit User
@@ -108,7 +125,7 @@ const retornoUpdateUser = () => {
                       <label for="receivingGifts">receivingGifts</label>
                       <input type="text" placeholder="receivingGifts" id="receivingGifts">
 
-                      <div class="float-right">
+                      <div class="float-right separador">
                         <input type="checkbox" id="confirmField">
                         <label class="label-inline" for="confirmField">Send a copy to yourself</label>
                       </div>
@@ -122,42 +139,8 @@ const retornoUpdateUser = () => {
       `;
 };
 
-// Template PopuUp HTML create User
-const retornoFormAddUser = () => {
-  return `
-      <div>
-          <span class="pln">
-              </span>
-                  <div>
-                      <label for="nameField">Nombre</label>
-                      <input type="text" placeholder="Nombre" id="nombre">
-                      <span class="pln"></span>
-                      <label for="genero">Selecciona genero</label>
-                      <select id="genero">
-                          <option selected disabled>...</option>
-                      </select>
-                      <span class="pln"></span>
-                      <label for="description">Comment</label>
-                      <textarea placeholder="Hi ..." id="description"></textarea>
-                      <div class="float-right">
-                      <input type="checkbox" id="confirmField">
-                      <label class="label-inline" for="confirmField">Send a copy to yourself</label>
-                      </div>
-                      <div class="center separador">
-                        <button  id="close-button" class="button button-outline">Enviar</button>
-                      </div>
-                      <div class="center separador">
-                        <p class="importe">USUARIO CREADO <span id="userCreated"></span><span class="guardar ocultar" title="Enviar por Email"></span></p>
-                      </div>
-                  </div>
-              <span class="pln">
-          </span>
-      </div>
-      `;
-};
-
 // Template PopuUp HTML display User Lenguajes
-const retornoInfoPopUp = ({
+const retornoUserLanguagesPopUp = ({
   nombre,
   physicalTouch,
   actosOfService,
