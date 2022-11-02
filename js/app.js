@@ -60,7 +60,7 @@ allUsers.addEventListener("click", () => usersLoad());
 const containerDashboardLoad = () => {
   const containerDashboard         = document.querySelector(".container-dashboard");
   containerDashboard.style.display = "none";
-}
+};
 
 // PopuUps loading 
 const popUpsLoad = () => {
@@ -70,7 +70,7 @@ const popUpsLoad = () => {
   displayLanguage.style.display = "none";
   PopUpEditUser.style.display   = "none";
   modal.style.display           = "none";
-}
+};
 
 // Window loading 
 window.addEventListener("load", () => {
@@ -86,6 +86,4 @@ const localStorageKeys = () => {
     console.log("Clave ", clave);
     console.log("Valor " + localStorage.getItem(clave));
   }
-}
-
-
+};
