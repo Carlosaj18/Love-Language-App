@@ -16,33 +16,20 @@ const closeEditButton          = document.getElementById("close-button-edit");
 
                                           /*** SEARCH BAR SECTION */
 // Evento click search bar & keydown
-searchContainer.addEventListener("click", () => {
-  usersLoad();
-  findUserSearchBar();
-});
+searchContainer.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserSearchBar() :  alertaErrorUsuarios("warning", `No se encontró usuarios`) });
 
                                           /*** DASHBOARD SECTION **/
 // Evento click Dashboard
-buttonDashboard.addEventListener("click", () => {
-  containerDashboard.style.display = "block";
-  displayLenguajesDelAmor(recuperarUsers());
-  ordenarDashboard();
-});
+buttonDashboard.addEventListener("click", () => { recuperarUsers().length > 0 ? displayLenguajesDelAmor(recuperarUsers()) : alertaErrorUsuarios("warning", `No se encontró usuarios`) });
 
                                          /*** USER FAVORITES SECTION **/ 
 // Evento click boton Favoritos
 favoritosUsers.addEventListener("click", () => {
-  userFavoriteLoad();
-  if(usersFavorite.length <= 0) { return alertaErrorUsuarios("error", "No hay usuarios en favoritos") };
-  containerDashboardLoad();
-});
+  usersFavorite.length > 0 || recuperarUsersFavoritos().length > 0  ? userFavoriteLoad() && containerDashboardLoad() : alertaErrorUsuarios("error", "No hay usuarios en favoritos") });
 
                                           /*** FIND USER PROMT SECTION **/
 // Evento click boton Find User prompt
-findUser.addEventListener("click", () => {
-  findUserArray();
-  containerDashboardLoad();
-});
+findUser.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserArray() && containerDashboardLoad() : alertaErrorUsuarios("error", "No hay usuarios en favoritos") });
 
                                           /*** ADD USER SECTION **/                                          
 // Evento click boton Crear User
@@ -50,7 +37,7 @@ addUser.addEventListener("click", () => activarPopUpForm());
 
                                           /*** ALL USERS SECTION **/   
  // Evento click boton Ordenar
-buttonOrdenar.addEventListener("click", () => recuperarUsers() ? ordenar(recuperarUsers()) + alertaOrdenarDashboard() :  alertaErrorUsuarios("warning", `No se encontró usuarios`));
+buttonOrdenar.addEventListener("click", () => recuperarUsers() ? ordenar(recuperarUsers()) && alertaOrdenarDashboard() :  alertaErrorUsuarios("warning", `No se encontró usuarios`));
 
 // Evento click boton All Users
 allUsers.addEventListener("click", () => usersLoad()); 

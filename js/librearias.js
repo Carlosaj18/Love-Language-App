@@ -13,7 +13,7 @@ const alerta = (titulo, mensaje, icono) => {
         toast: true, 
         position: 'top-right',
         showConfirmButton: false,
-        timer: 4500,
+        timer: 6500,
         width: '240px',      
       });
   }
@@ -79,9 +79,7 @@ const alerta = (titulo, mensaje, icono) => {
       icon:"warning",
       text: "Are you sure to delete this user?", 
       showConfirmButton: true,
-    }).then(({value}) => {
-      if(value === true) return confirmationPromese(index, list);
-    })
+    }).then(({value}) => { if(value === true) return confirmationPromese(index, list) })
   }
   
   const toast = ()=> {

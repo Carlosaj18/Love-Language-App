@@ -1,5 +1,29 @@
                                      /*** DASHBOARD SECTION **/
                                      
+// Ordenar Boton Dashboard
+const ordenarDashboardButton = (array) => {
+  let userOrdenados = array.sort((a, b) => {
+    if (a.nombre > b.nombre) {
+      return 1;
+    }
+    if (a.nombre < b.nombre) {
+      return -1;
+    }
+    return 0;
+  });
+  displayLenguajesDelAmor(userOrdenados);
+};
+
+// Boton ordenar Dashboard
+const ordenarDashboard = () => {
+  const ordenarButtonDashboard = document.querySelector(".button-outline.ordenar-dashboard");
+  ordenarButtonDashboard.addEventListener("click", () => {
+    let localUsers = recuperarUsers();
+    ordenarDashboardButton(localUsers);
+    alertaOrdenar("success", "Todos los usuarios fueron ordenados");
+  });
+}
+
 const activoBotonesDelete = () => {
     const btnsDelete = document.querySelectorAll(".button-delete.button-small");
           btnsDelete.forEach(btn => {
@@ -22,13 +46,18 @@ const activoBotonesDelete = () => {
   
   // HTML para cargar el dashboard
   const topLenaguajes = (topLenguajeDelAmor) => {
-    container.innerHTML = "";
-    tbody.innerHTML = "";
-    topLenguajeDelAmor.forEach((user) => {
-      tbody.innerHTML += retornoTableDashboard(user);
-    });
-    activoBotonesDelete();
-    activoBotonesUpdate();
+    container.innerHTML = loader(); 
+    setTimeout(() => {
+      containerDashboard.style.display = "block";
+      container.innerHTML = "";
+      tbody.innerHTML = "";
+      topLenguajeDelAmor.forEach((user) => {
+        tbody.innerHTML += retornoTableDashboard(user);
+      });
+      activoBotonesDelete();
+      activoBotonesUpdate();
+      ordenarDashboard();
+    }, 2500);
   };
   
   // Function para cargar info Dashboard
@@ -55,26 +84,4 @@ const activoBotonesDelete = () => {
     topLenaguajes(topLenguajeDelAmor);
   };
   
-  // Ordenar Boton Dashboard
-  const ordenarDashboardButton = (array) => {
-    let userOrdenados = array.sort((a, b) => {
-      if (a.nombre > b.nombre) {
-        return 1;
-      }
-      if (a.nombre < b.nombre) {
-        return -1;
-      }
-      return 0;
-    });
-    displayLenguajesDelAmor(userOrdenados);
-  };
   
-  // Boton ordenar Dashboard
-  const ordenarDashboard = () => {
-    const ordenarButtonDashboard = document.querySelector(".button-outline.ordenar-dashboard");
-    ordenarButtonDashboard.addEventListener("click", () => {
-      let localUsers = recuperarUsers();
-      ordenarDashboardButton(localUsers);
-      alertaOrdenar("success", "Todos los usuarios fueron ordenados");
-    });
-  }

@@ -9,7 +9,7 @@ const retornoCardUser = (user) => {
   } = user;
 
   return `<div class="card" id="${id}">
-              <!--<div class="card-image"> <img class="card-image"  src='${imagen}' alt=" "> </div>-->
+              <!--<div class="card-image"> <img class="card-image"  src='images/${imagen}' alt=" "> </div>-->
               <div class="card-image">${imagen}</div>
               <div class="card-name">${nombre}</div>
               <div class="card-description">${description}</div>
@@ -189,3 +189,12 @@ const retornoUserLanguagesPopUp = ({
                 </footer>
             </article>`;
 };
+
+// Template HTML Error Messages
+const retornoError = ()=> {
+  return  `<div class="card-error">
+              <h2>Houston, tenemos un problema 🧨</h2>
+              <h3>No pudimos cargar los Usuarios. 🤦🏻‍♂️</h3>
+              <h3>Intenta nuevamente en unos instantes...</h3>
+          </div>`
+  }

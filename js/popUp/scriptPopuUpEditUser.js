@@ -24,7 +24,7 @@ const pushUserEdit = (userExist, nombre, genero, description, physicalTouch, act
           id: userExist.id, 
           imagen: userExist.imagen,
           nombre      : nombre.value,
-          favoritos: userExist.favoritos,
+          favoritos   : userExist.favoritos,
           description : description.value,
           genero      : genero.value,
           languages   : {
@@ -61,7 +61,7 @@ const recuperarDatosUser = (userId)=> {
 
     let userlocal = recuperarUsers();
     let userExist = userlocal.find((user) => user.id === parseInt(userId));
-
+    console.log(userExist)
     if(localStorage.getItem("users")){
         if(userExist != undefined){
         id.value =  userExist.id;          

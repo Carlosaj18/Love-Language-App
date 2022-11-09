@@ -11,8 +11,8 @@
         "physicalTouch": 20,
         "actosOfService": 20,
         "qualityTime": 20,
-        "wordsOfAffirmation": 20,
-        "receivingGifts": 20
+        "wordsOfAffirmation": 10,
+        "receivingGifts": 10
       }
     },
     {

@@ -46,12 +46,15 @@ const eliminarCacheFavoritos = () => {
   
   // Read favoritos
   const cargarUsersFavoritos = (array) => {
-    tbody.innerHTML = "";
-    container.innerHTML = "";
-    array.forEach((user) => container.innerHTML += retornoCardUser(user));
-    activarBotonesDeleteFavoritos();
-    comprobarIconoFavoritos();
-    activarBotonesPopUp();
+    container.innerHTML = loader(); 
+    setTimeout(() => {
+      tbody.innerHTML = "";
+      container.innerHTML = "";
+      array.forEach((user) => container.innerHTML += retornoCardUser(user));
+      activarBotonesDeleteFavoritos();
+      comprobarIconoFavoritos();
+      activarBotonesPopUp();
+    }, 2500);
   };
   
   // Recuperar Favoritos LocalStorage

@@ -3,27 +3,28 @@ const closeModalButtonsForm = document.querySelectorAll("[data-close-button-form
 const closeSendButton       = document.getElementById("close-button");
 const overlayForm           = document.getElementById("overlay");
 const infoPopUpForm         = document.querySelector(".modal-body.form");
+const selectNombreUser      = () => { return document.querySelector("#nombre") };
+const selectGeneroUser      = () => { return document.querySelector("#genero") };
+const cargarCombo           = (array, select) => { array.forEach((elemento) => (select.innerHTML += `<option value="${elemento.valor}">${elemento.genero}</option>`)) };  //DRY - KISS - YAGNI
+const selectDescriptionUser = () => { return document.querySelector("#description") };
+const selectUserCreated     = () => { return document.querySelector("#userCreated") };
+const infoFormUserInputs    = () => { return document.querySelector("infoForm") };
+const btnEnviarUser         = () => { return document.querySelector("button.button.button-outline") };
+const physicalTouch         = () => { return document.querySelector("#physicalTouch") };
+const actosOfService        = () => { return document.querySelector("#actosOfService") };
+const qualityTime           = () => { return document.querySelector("#qualityTime") };
+const wordsOfAffirmation    = () => { return document.querySelector("#wordsOfAffirmation") };
+const receivingGifts        = () => { return document.querySelector("#receivingGifts") };
+const infoInputForm         = () => { return document.querySelector("#infoForm") };
 
 
-function closeModal(modal){
+function closeModal(modal) {
   if (modal == null) return;
   modal.classList.remove("active");
   overlay.classList.remove("active");
 }
 
-// Validar datos en el form
-const datosCompletos = (selectNombreUser, selectGenero) => selectNombreUser.value !== "..." && selectGenero.value !== "..." ? true : false;
-
 // Cerrar modal con enviar
-const sendButton = () => {
-  closeSendButton.addEventListener("click", () => {
-    if(datosCompletos(selectNombreUser(), selectGeneroUser())) {
-      const modal = button.closest(".modal");
-      closeModal(modal);  
-    }
-  })
-}
-
 closeModalButtonsForm.forEach((button) => {
   button.addEventListener("click", () => {
     const modal = button.closest(".modal");
@@ -38,244 +39,193 @@ const idUser = () => parseInt(Math.random() * 10000);
 const validarUser = (newUser) => {
   let userFound = users.find((userArray) => userArray.id === parseInt(newUser.id));
   if (userFound == undefined) return userFound;
-}
+};
 
 // Recuperar datos de un solo user
-const recuperarUserLocalStorage = (id)=> {
-  //debugger
+const recuperarUserLocalStorage = (id) => {
   if (localStorage.getItem(`${id}`)) {
-    let obj = localStorage.getItem(`${id}`)
+    let obj = localStorage.getItem(`${id}`);
     let userRecuperado = JSON.parse(obj);
-    console.log("User recuperado local", userRecuperado);
     return cargarOneUser(userRecuperado);
   }
-}
+};
 
 // Almacenar one user en localStorage
-const almacenarOneUserLocalStorage = (profileUser) => profileUser ? localStorage.setItem(`${profileUser.id}`, JSON.stringify(profileUser)) : null;
+const almacenarOneUserLocalStorage = (profileUser) => { profileUser ? localStorage.setItem(`${profileUser.id}`, JSON.stringify(profileUser)) : null };
 
 // Almacenar users en localStorage
-const almacenarDatosLocalStorageUsers = (usersLocals) => localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(usersLocals));
+const almacenarDatosLocalStorageUsers = (usersLocals) => { validationLocalStorageUsers(localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(usersLocals))) };
 
 // Time user creacion
-const timeUserCreation = (user) => {
+const timeUserCreation = () => {
   const DateTime = luxon.DateTime;
   const dt = DateTime.now();
-  console.log(`El usuario ${user.nombre} fue creado el ${dt.toLocalString(DateTime.DATETIME_SHORT)}`); 
-}
+  return `el ${dt.toLocaleString(DateTime.DATETIME_SHORT)}`;
+};
 
 // Almacenar datos de users en localStorage
 const agregarNewUser = (newUser) => {
-  if(localStorage.getItem("users")) { 
-    let usersLocals = recuperarUsers(); 
-    let user = usersLocals.find(user => { return user.id == newUser.id });
+  if (localStorage.getItem("users")) {
+    let usersLocals = recuperarUsers();
+    let user = usersLocals.find((user) => {
+      return user.id == newUser.id;
+    });
     if (user == undefined) {
-        usersLocals.push(newUser);
-        almacenarDatosLocalStorageUsers(usersLocals);
-      
+      usersLocals.push(newUser);
+      almacenarDatosLocalStorageUsers(usersLocals);
     }
   } else {
-    let user = users.find(user => { return user.id == newUser.id });
+    let user = users.find((user) => {
+      return user.id == newUser.id;
+    });
     if (user == undefined) {
-        users.push(newUser);
-        almacenarDatosLocalStorageUsers(users); // seteo el localstorage
+      users.push(newUser);
+      almacenarDatosLocalStorageUsers(users); // seteo el localstorage
     }
   }
-}
+};
 
-// Inputs files form
-const infoInputForm = () => {
-  const infoForm = document.querySelector("#infoForm");
-  return infoForm;
-}
-
-// Create HTML dinamiclly to show languages of love 
+// Create HTML dinamiclly to show languages of love
 const asignarLenguagesUserForm = () => {
-
   let infoForm = infoInputForm();
 
   Object.entries(loveLanguages).forEach(([key]) => {
     infoForm.innerHTML += `<label for="${key}">${key}</label>
-                              <input type="text" placeholder="${key}" id="${key}">`
+                              <input type="text" placeholder="${key}" id="${key}">`;
   });
-}
+};
 
-// Asingacion de lenguajes al User 
+// Asingacion de lenguajes al User
 const pushUser = (profileUser) => {
-  if(!validarUser(profileUser)){
+  if (!validarUser(profileUser)) {
     almacenarOneUserLocalStorage(profileUser);
     agregarNewUser(profileUser);
     userCreated.innerText = profileUser.imagen + "✅";
-    alerta("", `El User ${profileUser.nombre} se ha creado con exito`, 'success');
-  }
-  else {  
+    let timeCreation = timeUserCreation(profileUser);
+    alerta("",`El User ${profileUser.nombre} se ha creado con exito ${timeCreation}`, "success");
+  } else {
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
   }
-}
+};
 
 // Template User
-const objetoUser = (selectDescription) => {
+const objetoUser = (selectNombreUser, selectDescription, selectGeneroUser) => {
   let profileUser = {
-    id          : "",
-    imagen      : "",
-    nombre      : "",
-    favoritos   : false,
-    description : selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-    genero      : "",
-    languages   : loveLanguages,
+    id: "",
+    imagen: "",
+    nombre: selectNombreUser.value != "" ? selectNombreUser.value : "Invitado",
+    favoritos: false,
+    description: selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
+    genero: selectGeneroUser.value != "" ? selectGeneroUser.value : "I",
+    languages: loveLanguages,
   };
   return profileUser;
-}
+};
 
 // Create User
-const createUserForm = (selectNombre, selectGenero, selectDescription) => {
-  
-  if (datosCompletos(selectNombre, selectGenero)) {
-    
-    userTemplate = objetoUser(selectDescription);
+const createUserForm = () => {
+  if (datosCompletos(selectNombreUser(), selectGeneroUser())) {
+    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser());
 
     user = {
-      ...userTemplate, 
-      id          : idUser(),
-      nombre      : selectNombre.value,
-      genero      : selectGenero.value,
-    }
+      ...userTemplate,
+      id: idUser(),
+      nombre: selectNombreUser().value,
+      genero: selectGeneroUser().value,
+    };
 
     const NewUser = new User(user);
     profile = NewUser.asingacionPorcentajesLenguajes(NewUser);
     pushUser(profile);
-    timeUserCreation(profile);
-
   } else {
-    alerta("", `⛔️ Debes completar todos los datos en pantalla.`, 'error');
+    alerta("", `⛔️ Debes completar todos los datos en pantalla.`, "error");
   }
 };
 
 // Asignacion image user base on gender
 const asignacionImageProfile = (image, genero) => {
-    genero = genero.toUpperCase();
-    if (image == "") {
-      if (genero == "F") return (image = "👧");
-      else if (genero == "M") return (image = "👦");
-      else return "😄";
-    }
-}
+  genero = genero.toUpperCase();
+  if (image == "") {
+    if (genero == "F") return (image = "👧");
+    else if (genero == "M") return (image = "👦");
+    else return "😄";
+  }
+};
 
 // Create user with all form fields
-const createUserFormCompleteInputs = (selectNombre, selectGenero, selectDescription) => {
-    const physicalTouch = document.querySelector("#physicalTouch");
-    const actosOfService = document.querySelector("#actosOfService");
-    const qualityTime = document.querySelector("#qualityTime");
-    const wordsOfAffirmation = document.querySelector("#wordsOfAffirmation");
-    const receivingGifts = document.querySelector("#receivingGifts");
-
-  if (datosCompletos(selectNombre, selectGenero)) {
+const createUserFormCompleteInputs = () => {
+  // VALIDACION 
+  console.log(datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts()));
+  
+  if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
     
-    userTemplate = objetoUser(selectDescription);
+    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser());
 
     user = {
-      ...userTemplate, 
-      id          : idUser(),
-      imagen      : asignacionImageProfile(userTemplate.imagen, selectGenero.value),
-      nombre      : selectNombre.value,
-      genero      : selectGenero.value,
-      languages   : {
-        physicalTouch : physicalTouch.value,     
-        actosOfService : actosOfService.value,    
-        qualityTime   : qualityTime.value,       
-        wordsOfAffirmation : wordsOfAffirmation.value,
-        receivingGifts : receivingGifts.value,   
-      }
-    }
+      ...userTemplate,
+      id: idUser(),
+      imagen: asignacionImageProfile(userTemplate.imagen, selectGeneroUser().value),
+      languages: {
+        physicalTouch: physicalTouch().value,
+        actosOfService: actosOfService().value,
+        qualityTime: qualityTime().value,
+        wordsOfAffirmation: wordsOfAffirmation().value,
+        receivingGifts: receivingGifts().value,
+      },
+    };
 
     const NewUser = new User(user);
     pushUser(NewUser);
-    timeUserCreation(NewUser);
-
+    
   } else {
-    alerta("", `⛔️ Debes completar todos los datos en pantalla.`, 'error');
+    alerta("", `⛔️ Debes completar todos los datos en pantalla del formulario.`, "error");
   }
-}
+};
+
+// Validar datos en el form
+const datosCompletos = (selectNombreUser, selectGenero) => { 
+  if(selectNombreUser.value !== "" && selectGenero.value !== "...") { return true } 
+  else { return false }
+};
+
+// Validar datos en el form completo
+const datosCompletosForm = (selectNombreUser, selectGenero, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => { 
+  if(selectNombreUser.value !== "" && selectGenero.value !== "" && physicalTouch.value !== "" && actosOfService.value !== "" && qualityTime.value !== "" && wordsOfAffirmation.value !== "" && receivingGifts.value !== ""){
+    return true;
+  } else {
+    return false;
+  }
+};
 
 // Click boton enviar
-const clickBtnEnviar = (selectNombre, selectGenero, selectDescription, btnEnviar, opcion) => {
+const clickBtnEnviar = (opcion, btnEnviar) => {
   btnEnviar.addEventListener("click", () => {
-    if(opcion == 1) {
-      createUserForm(selectNombre, selectGenero, selectDescription, opcion);
-      if(datosCompletos(selectNombreUser(), selectGeneroUser())){
+    if (opcion == 1) {
+      createUserForm();
+      if (datosCompletos(selectNombreUser(), selectGeneroUser())) {
         closeModal(modal);
       }
-    } else{
-      createUserFormCompleteInputs(selectNombre, selectGenero, selectDescription, opcion);
-      if(datosCompletos(selectNombreUser(), selectGeneroUser())){
+    } else {
+      createUserFormCompleteInputs();
+      if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
         closeModal(modal);
       }
     }
   });
-}
-
-const selectNombreUser = () => {
-  const selectNombreUser = document.querySelector("#nombre")
-  return selectNombreUser;
-}
-
-const selectGeneroUser = () => {
-  const selectGenero = document.querySelector("#genero");
-  return selectGenero;
-}
-
-const cargarCombo = (array, select) => {
-  //DRY - KISS - YAGNI
-  array.forEach(
-    (elemento) =>
-      (select.innerHTML += `<option value="${elemento.valor}">${elemento.genero}</option>`)
-  );
 };
 
-const selectDescriptionUser = () => {
-  const selectDescription = document.querySelector("#description");
-  return selectDescription;
-}
-
-const selectUserCreated = () => {
-  const userCreated = document.querySelector("#userCreated");
-  return userCreated;
-}
-
-const infoFormUserInputs = () => {
-  const infoForm = document.querySelector("infoForm");
-  return infoForm;
-}
-
-const btnEnviarUser = () => {
-  const btnEnviar = document.querySelector("button.button.button-outline");
-  return btnEnviar;
-}
-
-// Carga info del Form 
+// Carga info del Form
 const popUpForm = (opcion) => {
   infoPopUpForm.innerHTML = "";
   infoPopUpForm.innerHTML = retornoFormAddUser();
-  selectNombreUser();
-  selectGeneroUser();
   cargarCombo(datosGenero, selectGeneroUser());
-  selectDescriptionUser();
-  selectUserCreated();
-  infoFormUserInputs();
-  btnEnviarUser();
-
-  if(opcion == 2){
-    asignarLenguagesUserForm();
-    clickBtnEnviar(selectNombreUser(), selectGeneroUser(), selectDescriptionUser(), btnEnviarUser(), opcion);
-  } else {
-    clickBtnEnviar(selectNombreUser(), selectGeneroUser(), selectDescriptionUser(), btnEnviarUser(), opcion);
-  }
+  opcion == 2 ? asignarLenguagesUserForm() + clickBtnEnviar(opcion, btnEnviarUser()) : clickBtnEnviar(opcion, btnEnviarUser());
 };
 
 // Opem Modal
-const openModalForm = (modal) => {
+const openModalForm = (modal) => { 
   if (modal == null) return "no hay modal";
   modal.style.display = "block";
   modal.classList.add("active");
   overlay.classList.add("active");
-}
+};

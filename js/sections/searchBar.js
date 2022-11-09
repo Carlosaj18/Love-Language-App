@@ -52,6 +52,7 @@ const capitalizeFirstLetter = (string) => {
   };
   
   const findUserSearchBar = () => {
+    usersLoad();
     searchContainer.addEventListener("keydown", (e) => {
       let targetValue = e.target.value; // Toma un valor atras
       let key = e.key.toUpperCase();
