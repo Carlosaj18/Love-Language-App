@@ -50,6 +50,14 @@ const capitalizeFirstLetter = (string) => {
   const inputListener = (e) => {
     input.addEventListener("input", updateValue(e));
   };
+
+  const filterURLParameters = () => {
+    var url = window.location.href;
+    URL = (typeof window !== 'undefined' && window.URL) ? window.URL : require('url').URL
+    let params = url.search
+    url.searchParams.set('foo', 4)
+    console.log(url)
+  }
   
   const findUserSearchBar = () => {
     usersLoad();
@@ -68,3 +76,4 @@ const capitalizeFirstLetter = (string) => {
       inputListener(e);
     });
   };
+

@@ -21,7 +21,7 @@ const alerta = (titulo, mensaje, icono) => {
   const alertaErrorUsuarios = (icono, mensaje) => {
     Swal.fire({
       icon: icono,
-      timer: 3000,
+      timer: 5000,
       text: mensaje, 
       showConfirmButton: false,
     });
@@ -74,12 +74,12 @@ const alerta = (titulo, mensaje, icono) => {
     })
   }
   
-  const confirmDeleteUser = (index, list) => {
+  const confirmDeleteUser = (id, index, list) => {
     Swal.fire({
       icon:"warning",
       text: "Are you sure to delete this user?", 
       showConfirmButton: true,
-    }).then(({value}) => { if(value === true) return confirmationPromese(index, list) })
+    }).then(({value}) => { if(value === true) return confirmationPromese(id, index, list) })
   }
   
   const toast = ()=> {

@@ -24,18 +24,24 @@ const ordenarDashboard = () => {
   });
 }
 
-const activoBotonesDelete = () => {
+const eliminarUserDashboard = async (userId) => {
+  eliminarLocalStorageUsers(userId);
+  let usersJSON = await usersLoadJSON();
+  if(usersJSON.ok) { loadingDataUser(usersJSON); }
+}
+
+const activoBotonesDeleteDashboard = () => {
     const btnsDelete = document.querySelectorAll(".button-delete.button-small");
           btnsDelete.forEach(btn => {
             btn.addEventListener("click", (e)=> { //LES ASIGNO EL EVENTO CLICK
-                eliminarUser(e.target.id); 
+                eliminarUserDashboard(e.target.id); 
                 let userLocals = recuperarUsers();
                 displayLenguajesDelAmor(userLocals);
             })
         })
   }
   
-  const activoBotonesUpdate = () => {
+  const activoBotonesUpdateDashboard = () => {
     const btnUpdate = document.querySelectorAll(".button-update.button-small");
           btnUpdate.forEach(btn => {
             btn.addEventListener("click", (e) => {
@@ -54,8 +60,8 @@ const activoBotonesDelete = () => {
       topLenguajeDelAmor.forEach((user) => {
         tbody.innerHTML += retornoTableDashboard(user);
       });
-      activoBotonesDelete();
-      activoBotonesUpdate();
+      activoBotonesDeleteDashboard();
+      activoBotonesUpdateDashboard();
       ordenarDashboard();
     }, 2500);
   };

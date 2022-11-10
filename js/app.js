@@ -1,3 +1,4 @@
+const URL                      = 'https://63630f9937f2167d6f716022.mockapi.io/api/v1';
 const allUsers                 = document.querySelector("button.allUsers");
 const buttonOrdenar            = document.querySelector("button.ordenar");
 const addUser                  = document.getElementById("createUser");

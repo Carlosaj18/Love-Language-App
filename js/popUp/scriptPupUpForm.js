@@ -54,7 +54,7 @@ const recuperarUserLocalStorage = (id) => {
 const almacenarOneUserLocalStorage = (profileUser) => { profileUser ? localStorage.setItem(`${profileUser.id}`, JSON.stringify(profileUser)) : null };
 
 // Almacenar users en localStorage
-const almacenarDatosLocalStorageUsers = (usersLocals) => { validationLocalStorageUsers(localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(usersLocals))) };
+const almacenarDatosLocalStorageUsers = (usersLocals) => { validationLocalStorageUsers(localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(users))) };
 
 // Time user creacion
 const timeUserCreation = () => {
@@ -62,6 +62,28 @@ const timeUserCreation = () => {
   const dt = DateTime.now();
   return `el ${dt.toLocaleString(DateTime.DATETIME_SHORT)}`;
 };
+
+const usersCreatedJSON = async (newUser) => {
+  let headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    "Content-Type": "application/json"
+   }
+   let bodyContent = JSON.stringify(newUser)
+  try {
+    let response = await fetch("https://63630f9937f2167d6f716022.mockapi.io/api/v1/users/", { 
+      method: "POST",
+      body: bodyContent,
+      headers: headersList
+    });
+      if(response.ok){
+        let data = await response.text();
+        console.log(data);          
+      }
+  } catch (error) {
+      return error;
+  } 
+}
 
 // Almacenar datos de users en localStorage
 const agregarNewUser = (newUser) => {
@@ -73,6 +95,7 @@ const agregarNewUser = (newUser) => {
     if (user == undefined) {
       usersLocals.push(newUser);
       almacenarDatosLocalStorageUsers(usersLocals);
+      usersCreatedJSON(newUser);
     }
   } else {
     let user = users.find((user) => {
@@ -102,6 +125,7 @@ const pushUser = (profileUser) => {
     agregarNewUser(profileUser);
     userCreated.innerText = profileUser.imagen + "✅";
     let timeCreation = timeUserCreation(profileUser);
+    usersLoad();
     alerta("",`El User ${profileUser.nombre} se ha creado con exito ${timeCreation}`, "success");
   } else {
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
@@ -176,7 +200,7 @@ const createUserFormCompleteInputs = () => {
 
     const NewUser = new User(user);
     pushUser(NewUser);
-    
+    usersLoad();
   } else {
     alerta("", `⛔️ Debes completar todos los datos en pantalla del formulario.`, "error");
   }

@@ -17,7 +17,7 @@ const ordenar = (array) => {
 // Info PopuUp
 const displayLenguajesDelAmorUser = (userId) => {
 
-  let user = recuperarUsers().find((userArray) => userArray.id === parseInt(userId));
+  let user = recuperarUsers().find((userArray) => userArray.id === parseInt(userId) || userArray.id === userId.toString());
   return {
     nombre: user.nombre,
     physicalTouch: user.languages.physicalTouch,
@@ -41,28 +41,63 @@ const elimarUserFavoritoLocalStorage = (userId) => {
   almacenarDatosLocalStorageFavoritos(listaFavoritos);
 };
 
-const confirmationPromese = (index, list) => {
+const usersDeleteJSON = async (id) => {
+  let headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    "Content-Type": "application/json"
+   }
+   try {
+    let response = await fetch(`${URL}/users/${id}`, { 
+      method: "DELETE",
+      headers: headersList
+    });
+      if(response.ok){
+        let data = await response.text();
+        console.log(`Usuario eliminado en el endpoint /users/ por medio del metodo DELETE: ${data}`);  
+      }
+  } catch (error) {
+      console.log(error);
+  } 
+}
+
+const confirmationPromese = (id, index, list) => {
   list.splice(index, 1);
+  usersDeleteJSON(id);
   almacenarDatosLocalStorageUsers(list);
   toast();
-  usersLoad();
 };
 
 // Eliminar usuario
 const eliminarLocalStorageUsers = (userId) => {
   if (localStorage.getItem("users")) {
     let list = recuperarUsers();
-    let index = list.findIndex((object) => { return object.id === parseInt(userId) });
+    let index = list.findIndex((object) => { return object.id === parseInt(userId) || object.id === userId.toString() });
     elimarUserFavoritoLocalStorage(userId);
-    confirmDeleteUser(index, list);
+    confirmDeleteUser(parseInt(userId), index, list);
+    return true;
   } else {
     let index = users.findIndex((user) => user.id === parseInt(userId));
     users.splice(index, 1);
   }
 };
 
+const loadingDataUserCads = (users) => {
+  container.innerHTML = loader();
+  let armoHTML = "";
+  setTimeout(() => {
+    container.innerHTML = armoHTML;
+    cargarUsers(users);
+  }, 1500);  
+}
+
 // Eliminar usuarios
-const eliminarUser = (userId) => { eliminarLocalStorageUsers(userId) };
+const eliminarUser = async (userId) => { 
+  if(eliminarLocalStorageUsers(userId) == true) {
+    let usersJSON = await usersLoadJSON();
+    if(usersJSON.ok) loadingDataUserCads(usersJSON);
+  }
+};
 
 // Activar Bottones de delete
 const activarBotonesDelete = () => {
@@ -79,20 +114,20 @@ const almacenarDatosLocalStorageFavoritos = (usersFavoriteLocals) => { localStor
 
 const editarUsersIcon = (array, user, bandera) => {
   const newArrLocalUsers = array.map((obj) => {
-    if (obj.id === parseInt(user.id)) { return { ...obj, favoritos: bandera } }
+    if (parseInt(obj.id) === parseInt(user.id)) { return { ...obj, favoritos: bandera } }
     return obj;
   });
   almacenarDatosLocalStorageUsers(newArrLocalUsers);
 };
 
 // Agregar a favoritos
-const agregarAFavoritos = async (userId) => {
+const agregarAFavoritos = (userId) => {
   let localStorageUsers = recuperarUsers();
-  let userExist = localStorageUsers.find((user) => { return user.id === parseInt(userId) }); // btn-id = 1-add 
+  let userExist = localStorageUsers.find((user) => { return parseInt(user.id) === parseInt(userId) }); // btn-id = 1-add 
   if (userExist) {
     if (localStorage.getItem("usersFavorite")) {
       let = localStorageUsersFavoritos = recuperarUsersFavoritos();
-      let userFound = localStorageUsersFavoritos.find((user) => { return user.id == userExist.id });
+      let userFound = localStorageUsersFavoritos.find((user) => { return parseInt(user.id) == parseInt(userExist.id) });
       if (userFound == undefined) {
           userExist = {
             ...userExist,
@@ -106,7 +141,7 @@ const agregarAFavoritos = async (userId) => {
           alerta("", `User ${userExist.nombre} already in Favoritos`, "error");
       }
     } else {
-      let userFound = usersFavorite.find((user) => { user.id == parseInt(userId) });
+      let userFound = usersFavorite.find((user) => { parseInt(user.id) == parseInt(userId) });
       if (userFound == undefined) {
         userExist = {
           ...userExist,
@@ -122,10 +157,10 @@ const agregarAFavoritos = async (userId) => {
 };
 
 // Ocultar el Botton de Favoritos
-const iconCardAdd = async (userId) => {
+const iconCardAdd = (userId) => {
   let btnFavorites = document.getElementById(userId);
-  let userLocals = await recuperarUsers();
-  let userFound = userLocals.find((userArray) => userArray.id === parseInt(userId));
+  let userLocals = recuperarUsers();
+  let userFound = userLocals.find((userArray) => parseInt(userArray.id) === parseInt(userId));
   userFound.favoritos === true ? (btnFavorites.style.display = "none") : (btnFavorites.style.display = "block");
 };
 
@@ -169,13 +204,6 @@ const cargarUsers = async (usersData) => {
     armoHTML = retornoError();
     activoBotones = false;
   } finally {
-    container.innerHTML = armoHTML;
-    activoBotones == true;
-    activarBotonesAdd();
-    activarBotonesDelete();
-    activarBotonesPopUp();
-    comprobarIconoFavoritos();
-    /*
     setTimeout(() => {
       container.innerHTML = armoHTML;
       activoBotones == true
@@ -184,7 +212,7 @@ const cargarUsers = async (usersData) => {
           activarBotonesPopUp() +
           comprobarIconoFavoritos()
         : (activoBotones = false);
-    }, 2500);*/
+    }, 2500);
   }
 };
 
@@ -241,7 +269,7 @@ const validationJSONAndLocalStorage = async () => {
 };
 
 // REVIEW CAMBIO EN EL JSON O EN LOCALSTORAGE PARA HACER EL UPDATE -> Implementar un boton para hacer el update
-/*const recuperarUsers = async () => {
+/*const recuperarUsersJSON = async () => {
   if (validationLocalStorageUsers(localStorage.getItem("users"))) {
     let validation = await validationJSONAndLocalStorage();
     if (validation) {
@@ -273,17 +301,25 @@ const userInArrayUsers = (user) => {
 // Cargar users from JSON
 const usersLoadJSON = async () => {
   let usersJSON;
+  let headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    "Content-Type": "application/json"
+   }
   try {
-    const response = await fetch(`../../bbdd/users.json`, {cache: 'no-cache'} );
-    if(response.ok){
-      usersJSON = await response.json();
-      usersJSON.forEach((user) => { userInArrayUsers(user) == true ? users.push(user) : null });
-      almacenarDatosLocalStorageUsers(usersJSON);
-    }
+      const response = await fetch(`${URL}/users/`, { 
+        method: "GET",
+        headers: headersList
+      });
+      if(response.ok){
+        usersJSON = await response.json();
+        usersJSON.forEach((user) => { userInArrayUsers(user) == true ? users.push(user) : null });
+        almacenarDatosLocalStorageUsers(usersJSON);
+      }
   } catch (error) {
-    return error;
+          return error;
   } finally {
-    return usersJSON;
+          return usersJSON;
   }
 };
 
