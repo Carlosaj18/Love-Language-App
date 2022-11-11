@@ -1,0 +1,17 @@
+[
+   { 
+    "id": "1",
+    "genero": "Femenino", 
+     "valor": "F" 
+    },
+    { 
+    "id": "2",    
+    "genero": "Masculino", 
+    "valor": "M" 
+    },
+    { 
+    "id": "3",    
+    "genero": "Indefinido", 
+    "valor": "I" 
+    }
+]

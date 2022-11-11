@@ -198,3 +198,7 @@ const retornoError = ()=> {
               <h3>Intenta nuevamente en unos instantes...</h3>
           </div>`
   }
+
+const retornoComboBoxGenero = (elemento) => {
+  return `<option value="${elemento.valor}">${elemento.genero}</option>`
+}

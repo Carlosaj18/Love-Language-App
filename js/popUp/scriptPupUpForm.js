@@ -5,7 +5,7 @@ const overlayForm           = document.getElementById("overlay");
 const infoPopUpForm         = document.querySelector(".modal-body.form");
 const selectNombreUser      = () => { return document.querySelector("#nombre") };
 const selectGeneroUser      = () => { return document.querySelector("#genero") };
-const cargarCombo           = (array, select) => { array.forEach((elemento) => (select.innerHTML += `<option value="${elemento.valor}">${elemento.genero}</option>`)) };  //DRY - KISS - YAGNI
+const deleteGenderUser      = () => { return selectGeneroUser().innerHTML = "" };
 const selectDescriptionUser = () => { return document.querySelector("#description") };
 const selectUserCreated     = () => { return document.querySelector("#userCreated") };
 const infoFormUserInputs    = () => { return document.querySelector("infoForm") };
@@ -16,7 +16,6 @@ const qualityTime           = () => { return document.querySelector("#qualityTim
 const wordsOfAffirmation    = () => { return document.querySelector("#wordsOfAffirmation") };
 const receivingGifts        = () => { return document.querySelector("#receivingGifts") };
 const infoInputForm         = () => { return document.querySelector("#infoForm") };
-
 
 function closeModal(modal) {
   if (modal == null) return;
@@ -238,11 +237,63 @@ const clickBtnEnviar = (opcion, btnEnviar) => {
   });
 };
 
+// Validar users in array
+const generoInArrayUsers = (genero) => {
+  let generoNotArray = false;
+  generoExist = datosGenero.find((generoJSON) => { 
+    return generoJSON.id == genero });
+  if (generoExist == undefined) { generoNotArray = true }
+  return generoNotArray;
+};
+
+const almacenarDatosLocalStorageGenero = (userGeneroLocals) => { localStorage.getItem("userGenero") ? localStorage.setItem("userGenero", JSON.stringify(userGeneroLocals)) : localStorage.setItem("userGenero", JSON.stringify(datosGenero)) };
+
+const fetchDatosGenero = async () => {
+  let usersGeneroJSON;
+  let headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    "Content-Type": "application/json"
+   }
+  try {
+      const response = await fetch(`../../bbdd/datosGenero.json`, { 
+        method: "GET",
+        headers: headersList
+      });
+      if(response.ok){
+        usersGeneroJSON = await response.json();
+        usersGeneroJSON.forEach((genero) => { generoInArrayUsers(genero.id) == true ? datosGenero.push(genero) : null });
+        almacenarDatosLocalStorageGenero(usersGeneroJSON);
+        return datosGenero;
+      }
+  } catch (error) {
+          return error;
+  }
+}
+
+const cargarCombo = (array, select) => { array.forEach((elemento) => {
+  select.innerHTML += retornoComboBoxGenero(elemento);
+}) };  //DRY - KISS - YAGNI
+
+const recuperarUserGeneroLocalStorage = (userGeneroLocals) => {
+  if (userGeneroLocals !== null) {
+    let userGeneroRecuperados = JSON.parse(userGeneroLocals);
+        userGeneroRecuperados.forEach((genero) => { generoInArrayUsers(genero) == true ? datosGenero.push(genero) : null });
+      return userGeneroRecuperados; 
+  }
+};
+
 // Carga info del Form
-const popUpForm = (opcion) => {
+const popUpForm = async (opcion) => {
+  console.log("click")
   infoPopUpForm.innerHTML = "";
   infoPopUpForm.innerHTML = retornoFormAddUser();
-  cargarCombo(datosGenero, selectGeneroUser());
+  if(localStorage.getItem("userGenero")) {
+    cargarCombo(recuperarUserGeneroLocalStorage(localStorage.getItem("userGenero")), selectGeneroUser());
+  } else {
+    //deleteGenderUser();
+    cargarCombo(await fetchDatosGenero(), selectGeneroUser());
+  }
   opcion == 2 ? asignarLenguagesUserForm() + clickBtnEnviar(opcion, btnEnviarUser()) : clickBtnEnviar(opcion, btnEnviarUser());
 };
 

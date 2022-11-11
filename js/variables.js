@@ -1,5 +1,6 @@
 const users = [];
 const usersFavorite = [];
+const datosGenero = [];
 
 const loveLanguages = {
   physicalTouch: 0,
@@ -9,8 +10,4 @@ const loveLanguages = {
   receivingGifts: 0,
 };
 
-const datosGenero = [
-  { genero: "Femenino", valor: "F" },
-  { genero: "Masculino", valor: "M" },
-  { genero: "Indefinido", valor: "I" },
-];
+
