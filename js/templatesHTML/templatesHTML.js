@@ -199,6 +199,9 @@ const retornoError = ()=> {
           </div>`
   }
 
-const retornoComboBoxGenero = (elemento) => {
-  return `<option value="${elemento.valor}">${elemento.genero}</option>`
-}
+// Template HTML ComboBox Genero
+const retornoComboBoxGenero = (elemento) => { return `<option value="${elemento.valor}">${elemento.genero}</option>` }
+
+// Template HTML image loader
+const retornoImageLoader = () => { return `<img src="images/Ellipsis-1.1s-44px.gif" width="30px">`}
+

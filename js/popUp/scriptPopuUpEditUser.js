@@ -42,10 +42,7 @@ const usersUodatedJSON = async (id, newUser) => {
     });
       if(response.ok){
         let data = await response.text();
-        console.log(`Data enviada al endpoint /users/ por medio del metodo POST: ${data}`);   
-        /** Traer los datos del JSON */
-        let usersJSON = await usersLoadJSON();
-        loadingDataUser(usersJSON);
+        console.log(`Data enviada al endpoint /users/ por medio del metodo PUT: ${data}`);   
         alerta("Usuario Editado", `Se edito el usuario ${newUser.nombre} en el archivo JSON y en el localStorage`, "success");
       } else {
         /** Traer los datos del localStorage */
@@ -82,6 +79,8 @@ const pushUserEdit = async (userExist, nombre, genero, description, physicalTouc
     });
     usersUodatedJSON(userExist.id, userEdited);
     almacenarDatosLocalStorageUsers(newArr);
+    let usersJSON = await usersLoadJSON();
+    loadingDataUser(usersJSON);
 }
   
 const recuperarDatosUser = (userId)=> {
@@ -132,8 +131,8 @@ const recuperarDatosUser = (userId)=> {
 }
 
 const popUpEditUser = (idUser) => {
-    PopUpEditUser.innerHTML = "";
-    PopUpEditUser.innerHTML = retornoUpdateUser();
+    PopUpBodyEditUser.innerHTML = "";
+    PopUpBodyEditUser.innerHTML = retornoUpdateUser();
     recuperarDatosUser(idUser);
 }
 

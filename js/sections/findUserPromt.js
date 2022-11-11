@@ -1,22 +1,33 @@
                                         /*** FIND USER PROMT SECTION **/
 
 const comprobarIconoFavoritosUser = (user) => {
-    let btnFavorites = document.getElementById(`${user.id}-add`);
+    let btnFavorites = document.getElementById(`${parseInt(user.id)}-add`);
     user.favoritos === true ? btnFavorites.style.display = "none" : btnFavorites.style.display = "block";
 };
-    
-    // Read One User
-const cargarOneUser = (user) => {
+
+// Read One User
+const cargarOneUser = async (user) => {
+  let userFound;
+  let armoHTML = "";
+  let activoBotones = true;
+  containerDashboardLoad();
+  container.innerHTML = loader();
+  try {
     tbody.innerHTML = "";
-    container.innerHTML = "";
-    container.innerHTML += retornoCardUser(user);
-    activarBotonesAdd();
-    activarBotonesDelete();
-    activarBotonesPopUp(); 
-    comprobarIconoFavoritosUser(user);
-    alerta("", `Se encontro el usuario '${user.nombre}'`, 'success');
+    userFound = await user;
+    armoHTML = retornoCardUser(userFound);
+  } catch (error) {
+    armoHTML += retornoError();
+    activoBotones = false;
+  } finally {
+    setTimeout(() => {
+      container.innerHTML = armoHTML;
+      activoBotones == true ? activarBotonesDelete() + activarBotonesAdd() + activarBotonesPopUp() + comprobarIconoFavoritosUser(userFound) + alerta("", `Se encontro el usuario '${user.nombre}'`, 'success') : activoBotones = false;
+    }, 1500);
+  }
 };
 
+// Peticion al JSON
 const userInJSON = async (id) => {
   let userJSON;
   let headersList = {
@@ -60,11 +71,11 @@ const userFindInJSONByName = async (nombre) => {
         return error;
   }
 }
-    
+
+// Buscar user en JSON
 const userSearchContainer = async (userLocals, userName) => {
     let userJSON;
     let userFound = userLocals.find((userArray) => userArray.nombre === userName);
-    console.log(userFound.nombre);
     if(userFound !== undefined) {
         // userJSON = await userFindInJSONByName(userFound.nombre);
         userJSON = await userInJSON(userFound.id);
@@ -74,5 +85,5 @@ const userSearchContainer = async (userLocals, userName) => {
     
 const findUserArray = () => {
     let userName = prompt("Ingresa el usuario a buscar: ");
-    localStorage.getItem("users") ? userSearchContainer(recuperarUsers(), capitalizeFirstLetter(userName)) : userSearchContainer(users);
+    localStorage.getItem("users") ? userSearchContainer(recuperarUsers(), userName) : userSearchContainer(users);
 };

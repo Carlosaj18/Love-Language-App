@@ -81,6 +81,14 @@ const alerta = (titulo, mensaje, icono) => {
       showConfirmButton: true,
     }).then(({value}) => { if(value === true) return confirmationPromese(id, index, list) })
   }
+
+  const confirmDeleteUserDashboard = (id, index, list) => {
+    Swal.fire({
+      icon:"warning",
+      text: "Are you sure to delete this user?", 
+      showConfirmButton: true,
+    }).then(({value}) => { if(value === true) return confirmationPromeseDashboard(id, index, list) })
+  }
   
   const toast = ()=> {
     Toastify({

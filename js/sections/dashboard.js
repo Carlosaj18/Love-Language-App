@@ -24,10 +24,31 @@ const ordenarDashboard = () => {
   });
 }
 
-const eliminarUserDashboard = async (userId) => {
-  eliminarLocalStorageUsers(userId);
+const confirmationPromeseDashboard = async (id, index, list) => {
+  list.splice(index, 1);
+  almacenarDatosLocalStorageUsers(list);
+  await usersDeleteJSON(id);
+  toast();
   let usersJSON = await usersLoadJSON();
-  if(usersJSON.ok) { loadingDataUser(usersJSON); }
+  loadingDataUser(usersJSON);
+};
+
+// Eliminar usuario
+const eliminarLocalStorageUsersDashboard = (userId) => {
+  if (localStorage.getItem("users")) {
+    let list = recuperarUsers();
+    let index = list.findIndex((object) => { return parseInt(object.id) === parseInt(userId) || object.id === userId.toString() });
+    let userEnFavoritos = recuperarUsersFavoritos().find((user) => { return parseInt(user.id) == parseInt(userId)})
+    userEnFavoritos ? elimarUserFavoritoLocalStorage(userId) : false;
+    confirmDeleteUserDashboard(parseInt(userId), index, list);
+  } else {
+    let index = users.findIndex((user) => user.id === parseInt(userId));
+    users.splice(index, 1);
+  }
+};
+
+const eliminarUserDashboard = async (userId) => {
+  eliminarLocalStorageUsersDashboard(userId);
 }
 
 const activoBotonesDeleteDashboard = () => {

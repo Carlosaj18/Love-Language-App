@@ -12,8 +12,11 @@ const container                = document.querySelector(".containerCards");
 const containerDashboard       = document.querySelector(".container-dashboard");
 const tbody                    = document.querySelector(".tbody");
 const modal                    = document.querySelector(".modal");
-const PopUpEditUser            = document.querySelector(".modal-body.editUser");
+const PopUpBodyEditUser        = document.querySelector(".modal-body.editUser");
 const closeEditButton          = document.getElementById("close-button-edit");
+const displayLanguage          = document.querySelector(".modalLanguage");
+const PopUpEditUser            = document.querySelector(".modalEditUser");
+const modalForm                = document.querySelector(".modal");
 
                                           /*** SEARCH BAR SECTION */
 // Evento click search bar & keydown
@@ -30,7 +33,7 @@ favoritosUsers.addEventListener("click", () => {
 
                                           /*** FIND USER PROMT SECTION **/
 // Evento click boton Find User prompt
-findUser.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserArray() && containerDashboardLoad() : alertaErrorUsuarios("error", "No hay usuarios en favoritos") });
+findUser.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserArray() && containerDashboardLoad() : alertaErrorUsuarios("error", "No se encontro el usuario") });
 
                                           /*** ADD USER SECTION **/                                          
 // Evento click boton Crear User
@@ -38,10 +41,10 @@ addUser.addEventListener("click", () => activarPopUpForm());
 
                                           /*** ALL USERS SECTION **/   
  // Evento click boton Ordenar
-buttonOrdenar.addEventListener("click", () => recuperarUsers() ? ordenar(recuperarUsers()) && alertaOrdenarDashboard() :  alertaErrorUsuarios("warning", `No se encontró usuarios`));
+buttonOrdenar.addEventListener("click", () => { recuperarUsers() ? ordenar(recuperarUsers()) && alertaOrdenarDashboard() :  alertaErrorUsuarios("warning", `No se encontró usuarios`) });
 
 // Evento click boton All Users
-allUsers.addEventListener("click", () => usersLoad()); 
+allUsers.addEventListener("click", async () => { recuperarUsers().length > 0 || await usersLoadJSON().length > 0 ? usersLoad() && containerDashboardLoad() : alertaErrorUsuarios("warning", `No se encontró usuarios`) }); 
 
                                           /*** LOAD WINDOW **/
 // Container Dashboard loading                                             
@@ -52,12 +55,9 @@ const containerDashboardLoad = () => {
 
 // PopuUps loading 
 const popUpsLoad = () => {
-  const displayLanguage         = document.querySelector(".modalLanguage");
-  const PopUpEditUser           = document.querySelector(".modalEditUser");
-  const modal                   = document.querySelector(".modal");
   displayLanguage.style.display = "none";
   PopUpEditUser.style.display   = "none";
-  modal.style.display           = "none";
+  modalForm.style.display       = "none";
 };
 
 // Window loading 
@@ -67,11 +67,3 @@ window.addEventListener("load", () => {
   activarPopUpForm();
 });
 
-// See localStorage Keys
-const localStorageKeys = () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    let clave = localStorage.key(i);
-    console.log("Clave ", clave);
-    console.log("Valor " + localStorage.getItem(clave));
-  }
-};
