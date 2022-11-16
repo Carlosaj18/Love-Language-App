@@ -1,4 +1,5 @@
 const URL                      = 'https://63630f9937f2167d6f716022.mockapi.io/api/v1';
+const URLRandomaizer           = 'https://63729a98348e947299f99ae0.mockapi.io/api/v1'
 const allUsers                 = document.querySelector("button.allUsers");
 const buttonOrdenar            = document.querySelector("button.ordenar");
 const addUser                  = document.getElementById("createUser");
@@ -17,7 +18,7 @@ const closeEditButton          = document.getElementById("close-button-edit");
 const displayLanguage          = document.querySelector(".modalLanguage");
 const PopUpEditUser            = document.querySelector(".modalEditUser");
 const modalForm                = document.querySelector(".modal");
-
+const searchNameDisplay        = document.querySelector(".search-name-display")
                                           /*** SEARCH BAR SECTION */
 // Evento click search bar & keydown
 searchContainer.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserSearchBar() :  alertaErrorUsuarios("warning", `No se encontró usuarios`) });
@@ -53,6 +54,10 @@ const containerDashboardLoad = () => {
   containerDashboard.style.display = "none";
 };
 
+const botonOrdenarLoad = () => {
+  buttonOrdenar.style.display = "block";
+}
+
 // PopuUps loading 
 const popUpsLoad = () => {
   displayLanguage.style.display = "none";
@@ -65,5 +70,6 @@ window.addEventListener("load", () => {
   popUpsLoad();
   containerDashboardLoad();
   activarPopUpForm();
+  buttonOrdenar.style.display = "none";
 });
 

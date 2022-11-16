@@ -1,5 +1,5 @@
                                      /*** DASHBOARD SECTION **/
-                                     
+                                    
 // Ordenar Boton Dashboard
 const ordenarDashboardButton = (array) => {
   let userOrdenados = array.sort((a, b) => {
@@ -54,7 +54,7 @@ const eliminarUserDashboard = async (userId) => {
 const activoBotonesDeleteDashboard = () => {
     const btnsDelete = document.querySelectorAll(".button-delete.button-small");
           btnsDelete.forEach(btn => {
-            btn.addEventListener("click", (e)=> { //LES ASIGNO EL EVENTO CLICK
+            btn.addEventListener("click", (e) => { //LES ASIGNO EL EVENTO CLICK
                 eliminarUserDashboard(e.target.id); 
                 let userLocals = recuperarUsers();
                 displayLenguajesDelAmor(userLocals);
@@ -77,6 +77,7 @@ const activoBotonesDeleteDashboard = () => {
     setTimeout(() => {
       containerDashboard.style.display = "block";
       container.innerHTML = "";
+      searchNameDisplay.innerHTML = "";
       tbody.innerHTML = "";
       topLenguajeDelAmor.forEach((user) => {
         tbody.innerHTML += retornoTableDashboard(user);
@@ -93,6 +94,7 @@ const activoBotonesDeleteDashboard = () => {
       return {
         id: user.id,
         imagen: user.imagen,
+        pariente: user.pariente,
         nombre: user.nombre,
         physicalTouch: user.languages.physicalTouch,
         actosOfService: user.languages.actosOfService,
@@ -105,7 +107,7 @@ const activoBotonesDeleteDashboard = () => {
           parseInt(user.languages.qualityTime) +
           parseInt(user.languages.wordsOfAffirmation) +
           parseInt(user.languages.receivingGifts),
-        favoritos: user.favoritos == true ? "⭐" : "😅"
+        favoritos: user.favoritos == true ? "⭐" : "💭"
       };
     });
     topLenaguajes(topLenguajeDelAmor);

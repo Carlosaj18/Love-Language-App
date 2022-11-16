@@ -114,6 +114,36 @@ p, span, strong, em, code {
   text-align: center;
 }
 
+@media screen and (width < 900px) {
+  
+  .container-button {
+    flex-direction: column;
+  }
+
+  .container-right {
+    flex-direction: row;
+  }
+  .container-left {
+    flex-direction: row;
+  }
+}
+
+@media screen and (width < 600px) {
+  
+  .container-button {
+    flex-direction: column;
+  }
+
+  .container-right {
+    display: flex;
+    flex-direction: column;
+  }
+  .container-left {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 /** Container Cards */
 .containerCards {
   display: flex;
@@ -129,6 +159,7 @@ p, span, strong, em, code {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 2em;
 }
 
 .card {
@@ -137,11 +168,33 @@ p, span, strong, em, code {
     border-radius: 12px;
     height: 420px;
     width: 270px;
+    position: relative;
 }
 
 .card:hover {
     transition: .5s ease-in;
     box-shadow: 5px 20px 60px rgba(211, 211, 211, 0.519);
+}
+
+.card .card-tag {
+  background-color: yellowgreen;
+  height: 30px;
+  width: 50px;
+  border-radius: 15px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  font-size: 16px;
+  margin: 0.3em;
+}
+
+.card .card-tag .text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  margin-right: 1px;
+  padding: 0px !important;
 }
 
 .card .card-image {
@@ -276,7 +329,8 @@ thead tr th {
 }
 
 tbody span tr td {
-  font-size: 1.5em;
+  font-size: 2em;
+  color: black;
 }
 
 .border-botton {
@@ -304,6 +358,13 @@ tbody tr:nth-child(even) {
 
 .centrar {
   text-align: center;
+
+}
+
+.edit-style {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-bottom: 1px solid #9b4dca;
 }
 
 
@@ -364,7 +425,8 @@ tbody tr:nth-child(even) {
   background-color: white;
   width: fit-content;
   max-width: 80%;
-  height: 500px;
+  min-width: 489px;
+  height: 550px;
 }
 
 .modalEditUser {
@@ -417,6 +479,13 @@ tbody tr:nth-child(even) {
   font-weight: bold;
 }
 
+.scroll-container {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: auto;
+  height: 600px;
+}
+
 .modal-body {
   padding: 10px 15px;
 }
@@ -426,13 +495,32 @@ tbody tr:nth-child(even) {
   text-align: center;
 }
 
-.titleUser .descriptionUser p {
-  font-size: 5.5em;
-  text-align: center;
+.descriptionUser {
+  font-size: 2em !important;
 }
 
 .titleUserLanguage {
   font-size: 1em;
+}
+
+.container-image {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2em;
+  margin-bottom: 5em;
+}
+
+.container-image button {
+  float: right;
+  background: transparent !important;
+  font-size: 27px;
+  border: none;
+  cursor: pointer;
+}
+
+.container-image button img {
+  font-size: 3em;
 }
 
 .tbody-user tr td {
@@ -440,6 +528,16 @@ tbody tr:nth-child(even) {
   align-items: center;
   align-self: center;
   align-content: center;
+}
+
+.id-user {
+  display: none;
+  transform: scale(0);
+}
+
+#id-user {
+  display: none;
+  transform: scale(0);
 }
 
 
@@ -477,6 +575,54 @@ tbody tr:nth-child(even) {
   pointer-events: all;
 }
 
+/** Buton ordenar PopUp Languages */
+
+.container-footer {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  gap: 2em;
+  margin-bottom: 4em;
+}
+
+
+.verLenguaje-Ordenar {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.centrar .lenguages {
+  text-decoration: none !important;
+  color: #ffff !important;
+  font-size: 3em;
+}
+
+a#ordenarPopUpLenguajes {
+  text-decoration: none !important;
+  color: #ffff !important;
+  font-size: 1.5em;
+}
+
+a.crearActividad {
+  text-decoration: none !important;
+  color: #ffff !important;
+  font-size: 1.5em;
+}
+
+a#randomPopUpLenguajes {
+  text-decoration: none !important;
+  color: #ffff !important;
+  font-size: 1.5em;
+}
+
+.button-ideas {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-bottom: 1px solid #9b4dca;
+}
+
+
 /** Button Ordenar*/
 
 .ordenar {
@@ -485,6 +631,16 @@ tbody tr:nth-child(even) {
   align-items: center;
   margin-right: 20px;
   position: static;
+}
+
+.button .ordenar {
+  margin-left: 2em;
+}
+
+#ordenarCards {
+  margin-left: 15em;
+  margin-bottom: 2em;  
+  margin-top: 2em;
 }
 
 /** OTHER */
@@ -521,4 +677,12 @@ tbody tr:nth-child(even) {
 
 div .separador {
   margin-top: 3em;
+}
+
+/** containerActivity */
+
+.containerActivity {
+  display: flex;
+  gap: 3em;
+  margin-bottom: 3em;
 }

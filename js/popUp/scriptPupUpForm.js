@@ -5,6 +5,7 @@ const overlayForm           = document.getElementById("overlay");
 const infoPopUpForm         = document.querySelector(".modal-body.form");
 const selectNombreUser      = () => { return document.querySelector("#nombre") };
 const selectGeneroUser      = () => { return document.querySelector("#genero") };
+const selectParienteUser    = () => { return document.querySelector("#pariente") };
 const deleteGenderUser      = () => { return selectGeneroUser().innerHTML = "" };
 const selectDescriptionUser = () => { return document.querySelector("#description") };
 const selectUserCreated     = () => { return document.querySelector("#userCreated") };
@@ -132,7 +133,7 @@ const pushUser = (profileUser) => {
 };
 
 // Template User
-const objetoUser = (selectNombreUser, selectDescription, selectGeneroUser) => {
+const objetoUser = (selectNombreUser, selectDescription, selectGeneroUser, selectPariente) => {
   let profileUser = {
     id: "",
     imagen: "",
@@ -140,6 +141,7 @@ const objetoUser = (selectNombreUser, selectDescription, selectGeneroUser) => {
     favoritos: false,
     description: selectDescription.value != "" ? selectDescription.value : "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
     genero: selectGeneroUser.value != "" ? selectGeneroUser.value : "I",
+    pariente: selectPariente.value != "" ? selectPariente.value : "Indefinido",
     languages: loveLanguages,
   };
   return profileUser;
@@ -147,14 +149,15 @@ const objetoUser = (selectNombreUser, selectDescription, selectGeneroUser) => {
 
 // Create User
 const createUserForm = () => {
-  if (datosCompletos(selectNombreUser(), selectGeneroUser())) {
-    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser());
+  if (datosCompletos(selectNombreUser(), selectGeneroUser(), selectParienteUser())) {
+    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser(), selectParienteUser());
 
-    user = {
+    let user = {
       ...userTemplate,
       id: idUser(),
       nombre: selectNombreUser().value,
       genero: selectGeneroUser().value,
+      pariente: selectParienteUser().value,
     };
 
     const NewUser = new User(user);
@@ -177,12 +180,10 @@ const asignacionImageProfile = (image, genero) => {
 
 // Create user with all form fields
 const createUserFormCompleteInputs = () => {
-  // VALIDACION 
-  console.log(datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts()));
   
-  if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
+  if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), selectParienteUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
     
-    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser());
+    userTemplate = objetoUser(selectNombreUser(), selectDescriptionUser(), selectGeneroUser(), selectParienteUser());
 
     user = {
       ...userTemplate,
@@ -206,14 +207,14 @@ const createUserFormCompleteInputs = () => {
 };
 
 // Validar datos en el form
-const datosCompletos = (selectNombreUser, selectGenero) => { 
-  if(selectNombreUser.value !== "" && selectGenero.value !== "...") { return true } 
+const datosCompletos = (selectNombreUser, selectGenero, selectPariente) => { 
+  if(selectNombreUser.value !== "" && selectGenero.value !== "..." && selectPariente.value !== "...") { return true } 
   else { return false }
 };
 
 // Validar datos en el form completo
-const datosCompletosForm = (selectNombreUser, selectGenero, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => { 
-  if(selectNombreUser.value !== "" && selectGenero.value !== "" && physicalTouch.value !== "" && actosOfService.value !== "" && qualityTime.value !== "" && wordsOfAffirmation.value !== "" && receivingGifts.value !== ""){
+const datosCompletosForm = (selectNombreUser, selectGenero, selectPariente, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => { 
+  if(selectNombreUser.value !== "" && selectGenero.value !== "..." && selectPariente.value !== "..." && physicalTouch.value !== "" && actosOfService.value !== "" && qualityTime.value !== "" && wordsOfAffirmation.value !== "" && receivingGifts.value !== ""){
     return true;
   } else {
     return false;
@@ -225,75 +226,41 @@ const clickBtnEnviar = (opcion, btnEnviar) => {
   btnEnviar.addEventListener("click", () => {
     if (opcion == 1) {
       createUserForm();
-      if (datosCompletos(selectNombreUser(), selectGeneroUser())) {
+      if (datosCompletos(selectNombreUser(), selectGeneroUser(), selectParienteUser())) {
         closeModal(modal);
       }
     } else {
       createUserFormCompleteInputs();
-      if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
+      if (datosCompletosForm(selectNombreUser(), selectGeneroUser(), selectParienteUser(), physicalTouch(), actosOfService(), qualityTime(), wordsOfAffirmation(), receivingGifts())) {
         closeModal(modal);
       }
     }
   });
 };
 
-// Validar users in array
-const generoInArrayUsers = (genero) => {
-  let generoNotArray = false;
-  generoExist = datosGenero.find((generoJSON) => { 
-    return generoJSON.id == genero });
-  if (generoExist == undefined) { generoNotArray = true }
-  return generoNotArray;
-};
-
-const almacenarDatosLocalStorageGenero = (userGeneroLocals) => { localStorage.getItem("userGenero") ? localStorage.setItem("userGenero", JSON.stringify(userGeneroLocals)) : localStorage.setItem("userGenero", JSON.stringify(datosGenero)) };
-
-const fetchDatosGenero = async () => {
-  let usersGeneroJSON;
-  let headersList = {
-    "Accept": "*/*",
-    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-    "Content-Type": "application/json"
-   }
-  try {
-      const response = await fetch(`../../bbdd/datosGenero.json`, { 
-        method: "GET",
-        headers: headersList
-      });
-      if(response.ok){
-        usersGeneroJSON = await response.json();
-        usersGeneroJSON.forEach((genero) => { generoInArrayUsers(genero.id) == true ? datosGenero.push(genero) : null });
-        almacenarDatosLocalStorageGenero(usersGeneroJSON);
-        return datosGenero;
-      }
-  } catch (error) {
-          return error;
+const validarParientesComboBoxLocal = async () => {
+  if(localStorage.getItem("userParientes")) {
+    cargarComboPariente(recuperarDatosLocalStorage(localStorage.getItem("userPariente")), selectParienteUser());
+  } else {
+    cargarComboPariente(await fetchDatosComboBox("../../bbdd/datosTagsFamily.json", "userPariente", datosTagsFamilia), selectParienteUser());
   }
 }
 
-const cargarCombo = (array, select) => { array.forEach((elemento) => {
-  select.innerHTML += retornoComboBoxGenero(elemento);
-}) };  //DRY - KISS - YAGNI
-
-const recuperarUserGeneroLocalStorage = (userGeneroLocals) => {
-  if (userGeneroLocals !== null) {
-    let userGeneroRecuperados = JSON.parse(userGeneroLocals);
-        userGeneroRecuperados.forEach((genero) => { generoInArrayUsers(genero) == true ? datosGenero.push(genero) : null });
-      return userGeneroRecuperados; 
+const validarGeneroComboBoxLocal = async () => {
+  if(localStorage.getItem("userGenero")) {
+    cargarComboGenero(recuperarDatosLocalStorage(localStorage.getItem("userGenero")), selectGeneroUser());
+  } else {
+    cargarComboGenero(await fetchDatosComboBox("../../bbdd/datosGenero.json", "userGenero", datosGenero), selectGeneroUser());
   }
-};
+}
 
 // Carga info del Form
-const popUpForm = async (opcion) => {
+const popUpForm = (opcion) => {
   console.log("click")
   infoPopUpForm.innerHTML = "";
   infoPopUpForm.innerHTML = retornoFormAddUser();
-  if(localStorage.getItem("userGenero")) {
-    cargarCombo(recuperarUserGeneroLocalStorage(localStorage.getItem("userGenero")), selectGeneroUser());
-  } else {
-    //deleteGenderUser();
-    cargarCombo(await fetchDatosGenero(), selectGeneroUser());
-  }
+  validarGeneroComboBoxLocal();
+  validarParientesComboBoxLocal();
   opcion == 2 ? asignarLenguagesUserForm() + clickBtnEnviar(opcion, btnEnviarUser()) : clickBtnEnviar(opcion, btnEnviarUser());
 };
 

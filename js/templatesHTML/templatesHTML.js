@@ -3,6 +3,7 @@ const retornoCardUser = (user) => {
   /* Alias + Destructuracion*/
   let {
     id: id,
+    pariente: pariente,
     imagen: imagen,
     nombre: nombre,
     description: description,
@@ -10,6 +11,7 @@ const retornoCardUser = (user) => {
 
   return `<div class="card" id="${id}">
               <!--<div class="card-image"> <img class="card-image"  src='images/${imagen}' alt=" "> </div>-->
+              <div class="card-tag"><div class="text">${pariente}</div></div>
               <div class="card-image">${imagen}</div>
               <div class="card-name">${nombre}</div>
               <div class="card-description">${description}</div>
@@ -27,6 +29,7 @@ const retornoCardUser = (user) => {
 const retornoTableDashboard = ({
   id,
   imagen,
+  pariente,
   nombre,
   physicalTouch,
   actosOfService,
@@ -41,6 +44,7 @@ const retornoTableDashboard = ({
             <tr>
               <td class="border-botton centrar">${id}</td>
               <td class="border-botton centrar">${imagen}</td>
+              <td class="border-botton centrar">${pariente}</td>
               <td class="border-botton centrar">${nombre}</td>
               <td class="border-botton centrar">${physicalTouch}</td>
               <td class="border-botton centrar">${actosOfService}</td>
@@ -49,8 +53,8 @@ const retornoTableDashboard = ({
               <td class="border-botton centrar">${receivingGifts}</td>
               <td class="border-botton centrar">${totalLanguage}</td>
               <td class="border-botton centrar">${favoritos}</td>
-              <th><button id="${id}" data-modal-target-edit="#modalEditUser" class="button-update button-small border-botton centrar">🤳</button></th>
-              <th><button id="${id}" class="button-delete button-small border-botton centrar">☠️</button></th>
+              <th><button id="${id}" data-modal-target-edit="#modalEditUser" class="button-update button-small border-botton centrar edit-style">✔️</button></th>
+              <th><button id="${id}" class="button-delete button-small border-botton centrar edit-style">⛔</button></th>
             </tr>
           <span class="pln"> </span>`;
 };
@@ -67,6 +71,11 @@ const retornoFormAddUser = () => {
                       <span class="pln"></span>
                       <label for="genero">Selecciona genero</label>
                       <select id="genero">
+                          <option selected disabled>...</option>
+                      </select>
+                      <span class="pln"></span>
+                      <label for="pariente">Pariente</label>
+                      <select id="pariente">
                           <option selected disabled>...</option>
                       </select>
                       <span class="pln"></span>
@@ -110,20 +119,25 @@ const retornoUpdateUser = () => {
                           <option selected disabled>...</option>
                       </select>
                       <span class="pln"></span>
+                      <label for="pariente">Pariente</label>
+                      <select id="pariente">
+                          <option selected disabled>...</option>
+                      </select>
+                      <span class="pln"></span>
                       <label for="description">Comment</label>
                       <textarea placeholder="Hi ..." id="description"></textarea>
                     </div>
                     <div>
                       <label for="physicalTouch">PhysicalTouch</label>
-                      <input type="text" placeholder="physicalTouch" id="physicalTouch">
+                      <input type="text" placeholder="physicalTouch" id="physicalTouch-edit">
                       <label for="actosOfService">ActosOfService</label>
-                      <input type="text" placeholder="actosOfService" id="actosOfService">
+                      <input type="text" placeholder="actosOfService" id="actosOfService-edit">
                       <label for="qualityTime">QualityTime</label>
-                      <input type="text" placeholder="qualityTime" id="qualityTime">
+                      <input type="text" placeholder="qualityTime" id="qualityTime-edit">
                       <label for="wordsOfAffirmation">wordsOfAffirmation</label>
-                      <input type="text" placeholder="wordsOfAffirmation" id="wordsOfAffirmation">
+                      <input type="text" placeholder="wordsOfAffirmation" id="wordsOfAffirmation-edit">
                       <label for="receivingGifts">receivingGifts</label>
-                      <input type="text" placeholder="receivingGifts" id="receivingGifts">
+                      <input type="text" placeholder="receivingGifts" id="receivingGifts-edit">
 
                       <div class="float-right separador">
                         <input type="checkbox" id="confirmField">
@@ -141,6 +155,8 @@ const retornoUpdateUser = () => {
 
 // Template PopuUp HTML display User Lenguajes
 const retornoUserLanguagesPopUp = ({
+  id,
+  pariente,
   nombre,
   physicalTouch,
   actosOfService,
@@ -151,57 +167,189 @@ const retornoUserLanguagesPopUp = ({
 }) => {
   return `<article class="container popUp">
                 <div class="container titleUser"> 
-                    <h1>Hi, ${nombre}!</h1>
-                    <p class="descriptionUser">  Estos son tus 5 lenguajes del amor: </p>
+                    <h1> ¿Quieres amar hoy a tu ${pariente}?</h1>
+                    <p class="descriptionUser">  Estos son los 5 lenguajes del amor de ${nombre}: </p>
+                    <div class="container-image">
+                      <button> <img src='../images/physicalTouch.jpg'     id='physicalTouch-imagen'      class="images-languages" alt="physicalTouch" width="60" height="60"> </button> 
+                      <button> <img src='../images/actosOfService.jpg'     id='actosOfService-imagen'      class="images-languages" alt="actosOfService" width="60" height="60"> </button> 
+                      <button> <img src='../images/qualityTime.jpg'       id='qualityTime-imagen'        class="images-languages" alt="qualityTime" width="60" height="60"> </button> 
+                      <button> <img src='../images/wordsOfAffirmation.jpg' id='wordsOfAffirmation-imagen'  class="images-languages" alt="wordsOfAffirmation" width="60" height="60"> </button> 
+                      <button> <img src='../images/receivingGifts.jpg'     id='receivingGifts-imagen'      class="images-languages" alt="receivingGifts" width="60" height="60"> </button> 
+                    </div>
                 </div>
                 <div class="containerTable">
                     <table>
-                    <img src='../images/physicalTouch.jpg' alt="physicalTouch" width="50" height="60"> 
                     <thead class="titleUserLanguage">
                         <tr class="header">
-                          <th id="tablehead">PhysicalTouch</th>
-                          <th id="tablehead">ActosOfService</th>
-                          <th id="tablehead">QualityTime</th>
-                          <th id="tablehead">WordsOfAffirmation</th>
-                          <th id="tablehead">ReceivingGifts</th>
+                          <th class="id-user">ID</th>
+                          <th>PhysicalTouch</th>
+                          <th>ActosOfService</th>
+                          <th>QualityTime</th>
+                          <th>WordsOfAffirmation</th>
+                          <th>ReceivingGifts</th>
                           <th id="tablehead" class="border-right">TOTAL</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-user">
                         <tr>
-                            <td class="border-botton">${physicalTouch}</td>
-                            <td class="border-botton">${actosOfService}</td>
-                            <td class="border-botton">${qualityTime}</td>
-                            <td class="border-botton">${wordsOfAffirmation}</td>
-                            <td class="border-botton">${receivingGifts}</td>
-                            <td class="border-botton"right">${totalLanguage}</td>
+                            <td id="id-user">${id}</td>
+                            <td class="border-botton centrar">${physicalTouch}</td>
+                            <td class="border-botton centrar">${actosOfService}</td>
+                            <td class="border-botton centrar">${qualityTime}</td>
+                            <td class="border-botton centrar">${wordsOfAffirmation}</td>
+                            <td class="border-botton centrar">${receivingGifts}</td>
+                            <td class="border-botton centrar"right">${totalLanguage}</td>
+                        </tr>
+                        <tr>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="physicalTouch">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="actosOfService">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="qualityTime">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="wordsOfAffirmation">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="receivingGifts">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button></td>
                         </tr>
                     </tbody>
                     </table>
                 </div>
-                <footer>
-                    <button class="btn verCurso">
-                    <a href="#" class="reservar">Listar</a>
+                <footer class="container-footer">
+                    <button class="button verLenguaje-Ordenar">
+                      <a href="#" class="centrar lenguages" id="ordenarPopUpLenguajes">Ordenar Lenguajes del Amor</a>
                     </button>
-                    <button class="btn verCurso">
-                    <a class="reservar">Editar</a>
+                    <button class="button  verLenguaje-Ordenar" >
+                      <a class="centrar lenguages crearActividad" id="crearActividad">Crear Actividad ➕ </a>
+                    </button>
+                </footer>
+            </article>`;
+};
+
+// Template PopuUp HTML display User Lenguajes
+const retornoUserLanguagesPopUpOrdenados = ({
+  id,
+  pariente,
+  nombre,
+  elemento1,
+  elemento2,
+  elemento3,
+  elemento4,
+  elemento5,
+  valor1,
+  valor2,
+  valor3,
+  valor4,
+  valor5,
+  totalLanguage,
+}) => {
+  return `<article class="container popUp">
+                <div class="container titleUser"> 
+                    <h1> ¿Quieres amar hoy a tu ${pariente}?</h1>
+                    <p class="descriptionUser">  Estos son los 5 lenguajes del amor de ${nombre}: </p>
+                    <div class="container-image">
+                      <button> <img src='../images/${elemento1}.jpg' id='${elemento1}-imagen'      class="images-languages" alt="physicalTouch" width="60" height="60"> </button> 
+                      <button> <img src='../images/${elemento2}.jpg'  id='${elemento2}-imagen'      class="images-languages" alt="actosOfService" width="60" height="60"> </button> 
+                      <button> <img src='../images/${elemento3}.jpg' id='${elemento3}-imagen'        class="images-languages" alt="qualityTime" width="60" height="60"> </button> 
+                      <button> <img src='../images/${elemento4}.jpg'  id='${elemento4}-imagen'  class="images-languages" alt="wordsOfAffirmation" width="60" height="60"> </button> 
+                      <button> <img src='../images/${elemento5}.jpg' id='${elemento5}-imagen'      class="images-languages" alt="receivingGifts" width="60" height="60"> </button> 
+                    </div>
+                </div>
+                <div class="containerTable">
+                    <table>
+                    <thead class="titleUserLanguage">
+                        <tr class="header">
+                          <th class="id-user">ID</th>
+                          <th>${elemento1}</th> 
+                          <th>${elemento2}</th>
+                          <th>${elemento3}</th>
+                          <th>${elemento4}</th>
+                          <th>${elemento5}</th>
+                          <th id="" class="border-right">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-user">
+                        <tr>
+                            <td id="id-user">${id}</td>
+                            <td class="border-botton centrar">${valor1}</td>
+                            <td class="border-botton centrar">${valor2}</td>
+                            <td class="border-botton centrar">${valor3}</td>
+                            <td class="border-botton centrar">${valor4}</td>
+                            <td class="border-botton centrar">${valor5}</td>
+                            <td class="border-botton centrar"right">${totalLanguage}</td>
+                        </tr>
+                        <tr>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento1}">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento2}">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento3}">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento4}">💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id=${elemento5}>💡</button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button></td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                <footer class="container-footer">
+                    <button class="button verLenguaje-Ordenar">
+                      <a href="#" class="centrar lenguages" id="ordenarPopUpLenguajes">Ordenar Lenguajes del Amor</a>
+                    </button>
+                    <button class="button verLenguaje-Ordenar" >
+                      <a class="centrar lenguages crearActividad" id="crearActividad">Crear Actividad ➕ </a>
                     </button>
                 </footer>
             </article>`;
 };
 
 // Template HTML Error Messages
-const retornoError = ()=> {
-  return  `<div class="card-error">
+const retornoError = () => {
+  return `<div class="card-error">
               <h2>Houston, tenemos un problema 🧨</h2>
               <h3>No pudimos cargar los Usuarios. 🤦🏻‍♂️</h3>
               <h3>Intenta nuevamente en unos instantes...</h3>
-          </div>`
-  }
+          </div>`;
+};
 
 // Template HTML ComboBox Genero
-const retornoComboBoxGenero = (elemento) => { return `<option value="${elemento.valor}">${elemento.genero}</option>` }
+const retornoComboBoxGenero = (elemento) => {
+  return `<option value="${elemento.valor}">${elemento.genero}</option>`;
+};
+
+// Template HTML ComboBox Pariente
+const retornoComboBoxPariente = (elemento) => {
+  return `<option value="${elemento.pariente}">${elemento.pariente}</option>`;
+};
+
+// Template HTML ComboBox Lenguajes 
+const retornoComboBoxLenguajes = (elemento) => {
+  return `<option value="${elemento.nombre}">${elemento.nombre}</option>`;
+};
+
 
 // Template HTML image loader
-const retornoImageLoader = () => { return `<img src="images/Ellipsis-1.1s-44px.gif" width="30px">`}
+const retornoImageLoader = () => {
+  return `<img src="images/Ellipsis-1.1s-44px.gif" width="30px">`;
+};
 
+const retornoBottonAgregarActivity = () => {
+  return `<button  id="buttonAddActivity" class="button button-outline">➕</button>`
+}
+
+// Template HTML New Actividad
+const retornoNewActivity = (id) => {
+  return `<div id="${id}" class="containerActivity">
+            <span class="pln">
+                </span>
+                <div class="center separador botonAgregar"> <button  id="${id}" class="button button-outline buttonDeleteActivity">❌</button> </div>
+                    <div id="infoForm">
+                        <label for="targetLanguage">Selecciona Lenguaje del Amor </label>
+                        <select id="${id}-option" class="targetLanguage">
+                            <option selected disabled>...</option>
+                        </select>
+                        <span class="pln"></span>
+                        <label for="idea">Idea 💡</label>
+                        <textarea placeholder="La actividad es ..." id="idea"></textarea>  
+                    </div>
+                    <div class="center separador">
+                          <button  id="${id}-enviar" class="button button-outline">Enviar</button>
+                    </div>
+
+                <span class="pln">
+            </span>
+          </div>`
+}

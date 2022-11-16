@@ -1,6 +1,9 @@
 const users = [];
 const usersFavorite = [];
 const datosGenero = [];
+const datosTagsFamilia = [];
+const datosLenguajes = [];
+let newArrIdeasLenguajes = []; 
 
 const loveLanguages = {
   physicalTouch: 0,

@@ -1,11 +1,12 @@
 class User {
-  constructor({ id, imagen, nombre, favoritos, description, genero, languages }) {
+  constructor({ id, imagen, nombre, favoritos, description, genero, pariente, languages }) {
     this.id = id;
     this.imagen = imagen;
     this.nombre = nombre;
     this.favoritos = favoritos;
     this.description = description;
     this.genero = genero;
+    this.pariente = pariente;
     this.languages = languages;
   }
 
@@ -25,6 +26,7 @@ class User {
       favoritos: user.favoritos,
       description: user.description,
       genero: user.genero,
+      pariente: user.pariente,
       languages,
     };
     return profile;

@@ -1,0 +1,59 @@
+[
+    { 
+    "id": "1",
+    "pariente": "Dad"
+    },
+     { 
+     "id": "2",    
+     "pariente": "Mom"
+     },
+     { 
+     "id": "3",    
+     "pariente": "Bro"
+     },
+     { 
+     "id": "4",    
+     "pariente": "Nana"
+     },
+     { 
+     "id": "5",    
+     "pariente": "Abuelo"
+     },
+     { 
+     "id": "6",    
+     "pariente": "Abuela"
+     },
+     { 
+     "id": "7",    
+     "pariente": "Tio"
+     },
+     { 
+     "id": "8",    
+     "pariente": "Tia"
+     },
+     { 
+     "id": "9",    
+     "pariente": "Prima"
+     },
+     { 
+     "id": "10",    
+     "pariente": "Primo"
+     },
+     { 
+     "id": "11",    
+     "pariente": "Novia"
+     },
+     { 
+     "id": "12",    
+     "pariente": "Esposa"
+     },
+     { 
+     "id": "13",    
+     "pariente": "Hijo"
+     },
+     { 
+     "id": "14",    
+     "pariente": "Hija"
+     }
+
+ ]

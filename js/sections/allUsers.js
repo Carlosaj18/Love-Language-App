@@ -14,26 +14,6 @@ const ordenar = (array) => {
   cargarUsers(userOrdenados);
 };
 
-// Info PopuUp
-const displayLenguajesDelAmorUser = (userId) => {
-
-  let user = recuperarUsers().find((userArray) => userArray.id === parseInt(userId) || userArray.id === userId.toString());
-  return {
-    nombre: user.nombre,
-    physicalTouch: user.languages.physicalTouch,
-    actosOfService: user.languages.actosOfService,
-    qualityTime: user.languages.qualityTime,
-    wordsOfAffirmation: user.languages.wordsOfAffirmation,
-    receivingGifts: user.languages.receivingGifts,
-    totalLanguage:
-      parseInt(user.languages.physicalTouch) +
-      parseInt(user.languages.actosOfService) +
-      parseInt(user.languages.qualityTime) +
-      parseInt(user.languages.wordsOfAffirmation) +
-      parseInt(user.languages.receivingGifts),
-  };
-};
-
 const elimarUserFavoritoLocalStorage = (userId) => {
   let listaFavoritos = recuperarUsersFavoritos();
   let indexFavoritos = listaFavoritos.findIndex((object) => { return parseInt(object.id) === parseInt(userId) });
@@ -327,7 +307,7 @@ const usersLoadJSON = async () => {
 // Recuperar Users localStorags
 const recuperarUsers = () => {
   if (localStorage.getItem("users")) {
-      let usersRecuperados = JSON.parse(localStorage.getItem("users"));
+      let usersRecuperados = JSON.parse(localStorage.getItem("users") || []);
           usersRecuperados.forEach((user) => { userInArrayUsers(user) == true ? users.push(user) : null });
           return usersRecuperados;
   } else {
@@ -336,4 +316,4 @@ const recuperarUsers = () => {
 };
 
 // Revisar si hay users en localStorage || users json para cargar en las cards
-const usersLoad = () => { localStorage.getItem("users") != undefined ? cargarUsers(recuperarUsers()) : cargarUsers(usersLoadJSON()) };
+const usersLoad = () => { localStorage.getItem("users") != undefined ? cargarUsers(recuperarUsers()) && botonOrdenarLoad() : cargarUsers(usersLoadJSON()) && botonOrdenarLoad() };

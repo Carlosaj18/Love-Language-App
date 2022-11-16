@@ -55,7 +55,8 @@ const usersUodatedJSON = async (id, newUser) => {
   } 
 }
   
-const pushUserEdit = async (userExist, nombre, genero, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => {
+const pushUserEdit = async (userExist, nombre, genero, pariente, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts) => {
+  
   let userEdited = { 
     id: userExist.id, 
     imagen: userExist.imagen,
@@ -63,6 +64,7 @@ const pushUserEdit = async (userExist, nombre, genero, description, physicalTouc
     favoritos   : userExist.favoritos,
     description : description.value,
     genero      : genero.value,
+    pariente    : pariente.value,
     languages   : {
       physicalTouch : physicalTouch.value,     
       actosOfService : actosOfService.value,    
@@ -71,13 +73,15 @@ const pushUserEdit = async (userExist, nombre, genero, description, physicalTouc
       receivingGifts : receivingGifts.value,   
     }
   }
+
   const newArr = recuperarUsers().map(obj => {
-      if (obj.id === parseInt(userExist.id)) {
-        return userEdited;
+      if (obj.id === parseInt(userExist.id) || obj.id === userExist.id) {
+        return obj;
       }
       return obj;
     });
-    usersUodatedJSON(userExist.id, userEdited);
+
+    usersUodatedJSON(userEdited.id, userEdited);
     almacenarDatosLocalStorageUsers(newArr);
     let usersJSON = await usersLoadJSON();
     loadingDataUser(usersJSON);
@@ -89,42 +93,39 @@ const recuperarDatosUser = (userId)=> {
     const nombre = document.querySelector("#nombre");
     const favoritos = document.querySelector("#favoritos");
     const genero = document.querySelector("#genero");
+    const pariente = document.querySelector("#pariente");
     const description = document.querySelector("#description");
-    const physicalTouch = document.querySelector("#physicalTouch");
-    const actosOfService = document.querySelector("#actosOfService");
-    const qualityTime = document.querySelector("#qualityTime");
-    const wordsOfAffirmation = document.querySelector("#wordsOfAffirmation");
-    const receivingGifts = document.querySelector("#receivingGifts");
+    const physicalTouch = document.querySelector("#physicalTouch-edit");
+    const actosOfService = document.querySelector("#actosOfService-edit");
+    const qualityTime = document.querySelector("#qualityTime-edit");
+    const wordsOfAffirmation = document.querySelector("#wordsOfAffirmation-edit");
+    const receivingGifts = document.querySelector("#receivingGifts-edit");
     const closeButtonEdit = document.querySelector("#close-button-edit");
-    cargarCombo(datosGenero, selectGeneroUser());
+    validarGeneroComboBoxLocal();
+    validarParientesComboBoxLocal();
     
     let userlocal = recuperarUsers(); 
     let userExist = userlocal.find((user) => user.id === parseInt(userId) || user.id.toString() === userId);
-    
+    console.log(userExist)
     if(localStorage.getItem("users")){
         if(userExist != undefined){
         id.value =  userExist.id;          
         imagen.value = userExist.imagen;
         nombre.value =  userExist.nombre;
         favoritos.value = userExist.favoritos == true ? "⭐" : "😅";  
-        if (userExist.genero == "M"){
-            genero.value = "Masculino";
-        } else if (userExist.genero == "F") {
-            genero.value = "Femenino";
-        } else {
-            genero.value = "Indefinido";
-        }
+        genero.value              = userExist.genero;
+        pariente.value            = userExist.pariente;
         description.value         = userExist.description;
-        physicalTouch.value       =  userExist.languages.physicalTouch;
+        physicalTouch.value       = userExist.languages.physicalTouch;
         actosOfService.value      = userExist.languages.actosOfService;
-        qualityTime.value         =  userExist.languages.qualityTime;
+        qualityTime.value         = userExist.languages.qualityTime;
         wordsOfAffirmation.value  = userExist.languages.wordsOfAffirmation;
-        receivingGifts.value      =  userExist.languages.receivingGifts;
+        receivingGifts.value      = userExist.languages.receivingGifts;
         }
     }
 
     closeButtonEdit.addEventListener("click", () => {
-        pushUserEdit(userExist, nombre, genero, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts);
+        pushUserEdit(userExist, nombre, genero, pariente, description, physicalTouch, actosOfService, qualityTime, wordsOfAffirmation, receivingGifts);
         const modalEditUser = document.querySelector(".modalEditUser");
         closeModal(modalEditUser);
     })

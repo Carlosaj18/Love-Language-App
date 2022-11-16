@@ -1,0 +1,22 @@
+[
+    { 
+    "id": "1",
+    "nombre": "physicalTouch"
+    },
+     { 
+     "id": "2",    
+     "nombre": "actosOfService"
+     },
+     { 
+     "id": "3",    
+     "nombre": "qualityTime"
+     },
+     { 
+     "id": "4",    
+     "nombre": "wordsOfAffirmation"
+     },
+     { 
+     "id": "5",    
+     "nombre": "receivingGifts"
+     }
+]

@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>App 5 Love Languages </title>
+    <title>App 5 Lenguajes del Amor - Familia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
@@ -14,11 +14,13 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="js/user.class.js"></script>
+    <script src="js/class/idea.class.js"></script>
+    <script src="js/class/user.class.js"></script>
     <script defer src="js/variables.js"></script>
     <script defer src="js/librearias.js"></script>
+    <script defer src="js/comboBox/comboBox.js"></script>
     <script defer src="js/popUp/scriptPopUplLanguages.js"></script>
-    <script defer src="js/popUp/scriptPupUpForm.js"></script>
+    <script defer src="js/popUp/scriptPupUpForm.js" ></script>
     <script defer src="js/popUp/scriptPopuUpEditUser.js"></script>
     <script defer src="js/templateshtml/templatesHTML.js"></script>
     <script defer src="js/sections/allUsers.js"></script>
@@ -41,7 +43,7 @@
             <input
               class="input"
               type="text"
-              placeholder="Search.."
+              placeholder="Buscar.."
               name="name"
             />
             <button type="submit"><i class="fa fa-search"></i></button>
@@ -50,20 +52,25 @@
       </div>
       <!-- Main Titles -->
       <div class="main-title" style="padding-left: 16px">
-        <h1>5 Love Languages App </h1>
+        <h1 style="display: compact">Los 5 Lenguajes del Amor de la Familia</h1>
         <blockquote>
           <p><em>¿Cuáles son los 5 lenguajes del amor?</em></p>
           <p><em>¿Cómo mantener vivo el amor por tanto tiempo?</em></p>
           <p><em>¿Por qué tan pocas parejas parecen haber encontrado el secreto para mantener vivo el amor después de tanto tiempo?</em></p>
+          <p><em>"Diferentes personas con diferentes personalidades dan y reciben amor de diferentes maneras. Al aprender a reconocer estas preferencias en usted mismo y en sus seres queridos, puede aprender a identificar la raíz de sus conflictos, conectarse más profundamente y realmente comenzar a acercarse más".</em></p>
         </blockquote>
       </div>
       <!-- Container Buttons -->
       <section class="container-button">
-        <button class="button allUsers">All Users</button>
-        <button data-modal-target-form ="#modal" id="createUser" class="button button-grey"> Add User </button>
-        <button class="button findUser">Find User</button>
-        <button class="button button-favoritos">Favorites</button>
-        <button class="button button-dashboard">Dashboard</button>
+        <div class="container-right">
+          <button class="button allUsers">Mi Familia </button>
+          <button data-modal-target-form ="#modal" id="createUser" class="button button-grey"> Agregar a Familiar </button>
+          <button class="button findUser">Encontrar a Familiar</button>
+        </div>
+        <div class="container-left">
+          <button class="button button-favoritos">Love Target</button>
+          <button class="button button-dashboard">Dashboard Family</button>
+        </div>
       </section>
       <!-- Search Buttons -->
       <div class="search-name-display"><p id="values"></p></div>
@@ -82,6 +89,7 @@
             <tr>           
               <th id="tablehead">ID</th>
               <th id="tablehead">Imagen</th>
+              <th id="tablehead">Pariente</th>
               <th id="tablehead">Nombre</th>            
               <th id="tablehead">PhysicalTouch</th>             
               <th id="tablehead">ActosOfService</th>             
@@ -107,7 +115,7 @@
         </div>
       </div>
       <!-- Modal PopUp Form -->
-      <div class="modal active" id="modal" style="display: block">
+      <div class="modal active scroll-container" id="modal" style="display: block">
         <div class="modal-header">
           <div class="title">Form 5 Love of Language</div>
           <button data-close-button-form="close-button form">&times;</button>
@@ -116,16 +124,17 @@
       </div>
       <div id="overlay"></div>
       <!-- Modal PopUp Language -->
-      <div class="modalLanguage active" id="modalLanguage" style="display: block">
+      <div class="modalLanguage active scroll-container" id="modalLanguage" style="display: block">
         <div class="modal-header">
-          <div class="title">5 Love of Language</div>
+          <div class="title">Los 5 Lenguajes del Amor </div>
           <button data-close-button-language="close-button">&times;</button>
         </div>
         <div class="modal-body form" id="modal-porcentaje"></div>
+        <div class="newActivityLanguage"></div>
       </div>
       <div id="overlayLanguage"></div>
       <!-- Modal PopUp Edit User -->
-      <div class="modalEditUser active" id="modalEditUser" style="display: block">
+      <div class="modalEditUser active scroll-container" id="modalEditUser" style="display: block">
         <div class="modal-header">
           <div class="title">Edit User Form 5 Love of Language</div>
           <button data-close-button-edit="close-button editUser">&times;</button>
@@ -134,7 +143,7 @@
       </div>
       <div id="overlayEditUser"></div>
       <!-- Order Button -->
-      <button class="button ordenar">
+      <button class="button ordenar" id="ordenarCards">
         <a href="#" class="button-outline">Ordenar</a>
       </button>
     </main>

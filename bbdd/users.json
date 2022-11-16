@@ -5,7 +5,8 @@
    "nombre": "Carlos Jaramillo",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "",
+   "genero": "M",
+   "pariente": "Dad",
    "languages": {
     "physicalTouch": "20",
     "actosOfService": "20",
@@ -20,7 +21,8 @@
    "nombre": "Vale Martinez",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "",
+   "genero": "F",
+   "pariente": "Novia",
    "languages": {
     "physicalTouch": "20",
     "actosOfService": "20",
@@ -32,10 +34,11 @@
   {
    "id": "3",
    "imagen": "😄",
-   "nombre": "Andres Ramirez",
+   "nombre": "Esteban Jaramillo",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "",
+   "genero": "M",
+   "pariente": "Bro",
    "languages": {
     "physicalTouch": "20",
     "actosOfService": "20",
@@ -50,7 +53,8 @@
    "nombre": "Tommy Antonio",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "",
+   "genero": "M",
+   "pariente": "Hijo",
    "languages": {
     "physicalTouch": "20",
     "actosOfService": "20",
@@ -62,10 +66,11 @@
   {
    "id": "5",
    "imagen": "😄",
-   "nombre": "Mia",
+   "nombre": "Juliana Jaramillo",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
    "genero": "F",
+   "pariente": "Nana",
    "languages": {
     "physicalTouch": 20,
     "actosOfService": 20,
@@ -77,10 +82,11 @@
   {
    "id": "6",
    "imagen": "😄",
-   "nombre": "Alberto",
+   "nombre": "Lorena Portilla",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "M",
+   "genero": "F",
+   "pariente": "Mom",
    "languages": {
     "physicalTouch": 20,
     "actosOfService": 20,
@@ -92,10 +98,11 @@
   {
    "id": "7",
    "imagen": "😄",
-   "nombre": "Esteban",
+   "nombre": "Humberto Montenegro",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
    "genero": "M",
+   "pariente": "Abuelo",
    "languages": {
     "physicalTouch": 20,
     "actosOfService": 20,
@@ -107,10 +114,11 @@
   {
    "id": "8",
    "imagen": "😄",
-   "nombre": "Angel",
+   "nombre": "Estela Sosa",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
-   "genero": "M",
+   "genero": "F",
+   "pariente": "Abuela",
    "languages": {
     "physicalTouch": 20,
     "actosOfService": 20,
@@ -122,10 +130,11 @@
   {
    "id": "9",
    "imagen": "😄",
-   "nombre": "Juli",
+   "nombre": "Liliana Jaramillo",
    "favoritos": false,
    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
    "genero": "F",
+   "pariente": "Tia",
    "languages": {
     "physicalTouch": 20,
     "actosOfService": 20,
@@ -133,5 +142,53 @@
     "wordsOfAffirmation": 20,
     "receivingGifts": 20
    }
-  }
+  },
+  {
+    "id": "10",
+    "imagen": "😄",
+    "nombre": "Ricardo Sosa",
+    "favoritos": false,
+    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
+    "genero": "M",
+    "pariente": "Tio",
+    "languages": {
+     "physicalTouch": 20,
+     "actosOfService": 20,
+     "qualityTime": 20,
+     "wordsOfAffirmation": 20,
+     "receivingGifts": 20
+    }
+   },
+   {
+    "id": "11",
+    "imagen": "😄",
+    "nombre": "Mia",
+    "favoritos": false,
+    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
+    "genero": "F",
+    "pariente": "Prima",
+    "languages": {
+     "physicalTouch": 20,
+     "actosOfService": 20,
+     "qualityTime": 20,
+     "wordsOfAffirmation": 20,
+     "receivingGifts": 20
+    }
+   },
+   {
+    "id": "12",
+    "imagen": "😄",
+    "nombre": "David",
+    "favoritos": false,
+    "description": "Cuando una acción no es algo natural para ti, eso es una expresión de amor",
+    "genero": "M",
+    "pariente": "Primo",
+    "languages": {
+     "physicalTouch": 20,
+     "actosOfService": 20,
+     "qualityTime": 20,
+     "wordsOfAffirmation": 20,
+     "receivingGifts": 20
+    }
+   }
  ]

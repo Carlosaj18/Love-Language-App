@@ -1,0 +1,152 @@
+[
+    {
+        "id": "1",
+        "targetLanguage": "physicalTouch",
+        "idea": "Apoyar la cabeza en el hombro",
+        "status": false
+    },
+    {
+        "id": "2",
+        "targetLanguage": "physicalTouch",
+        "idea": "Agarar la mano",
+        "status": false
+    },
+    {
+        "id": "3",
+        "targetLanguage": "physicalTouch",
+        "idea": "Abrazo",
+        "status": false
+    },
+    {
+        "id": "4",
+        "targetLanguage": "physicalTouch",
+        "idea": "Sentarse cerca",
+        "status": false
+    },
+    {
+        "id": "5",
+        "targetLanguage": "physicalTouch",
+        "idea": "Mirar a los ojos",
+        "status": false
+    },
+    {
+        "id": "6",
+        "targetLanguage": "actosOfService",
+        "idea": "Sacar a caminar el perro",
+        "status": false
+    },
+    {
+        "id": "7",
+        "targetLanguage": "actosOfService",
+        "idea": "Hacer Cafe",
+        "status": false
+    },
+    {
+        "id": "8",
+        "targetLanguage": "actosOfService",
+        "idea": "Desayuno en la cama",
+        "status": false
+    },
+    {
+        "id": "9",
+        "targetLanguage": "actosOfService",
+        "idea": "Tanquear el carro",
+        "status": false
+    },
+    {
+        "id": "10",
+        "targetLanguage": "actosOfService",
+        "idea": "Limpear la casa",
+        "status": false
+    },
+    {
+        "id": "11",
+        "targetLanguage": "qualityTime",
+        "idea": "Ir a cenar juntos",
+        "status": false
+    },
+    {
+        "id": "12",
+        "targetLanguage": "qualityTime",
+        "idea": "Ir a la cama a la misma hora",
+        "status": false
+    },
+    {
+        "id": "13",
+        "targetLanguage": "qualityTime",
+        "idea": "Tomar cafe juntos",
+        "status": false
+    },
+    {
+        "id": "14",
+        "targetLanguage": "qualityTime",
+        "idea": "Ir a un evento juntos",
+        "status": false
+    },
+    {
+        "id": "15",
+        "targetLanguage": "qualityTime",
+        "idea": "Tomar una clase juntos",
+        "status": false
+    },
+    {
+        "id": "16",
+        "targetLanguage": "wordsOfAffirmation",
+        "idea": "Dar un cumplido en grupo de amigos",
+        "status": false
+    },
+    {
+        "id": "17",
+        "targetLanguage": "wordsOfAffirmation",
+        "idea": "Notas de amor secretas",
+        "status": false
+    },
+    {
+        "id": "18",
+        "targetLanguage": "wordsOfAffirmation",
+        "idea": "Animar para intentarlo de nuevo",
+        "status": false
+    },
+    {
+        "id": "19",
+        "targetLanguage": "wordsOfAffirmation",
+        "idea": "Decir: 'Estoy muy orgullosa de ti por ...'",
+        "status": false
+    },
+    {
+        "id": "20",
+        "targetLanguage": "receivingGifts",
+        "idea": "Hacer un regalo especial",
+        "status": false
+    },
+    {
+        "id": "21",
+        "targetLanguage": "receivingGifts",
+        "idea": "Sorprender con un detalle",
+        "status": false
+    },
+    {
+        "id": "22",
+        "targetLanguage": "receivingGifts",
+        "idea": "Sorprender con cafe",
+        "status": false
+    },
+    {
+        "id": "23",
+        "targetLanguage": "receivingGifts",
+        "idea": "Sorprender con un almuerzo",
+        "status": false
+    },
+    {
+        "id": "24",
+        "targetLanguage": "receivingGifts",
+        "idea": "Hacer un journal juntos",
+        "status": false
+    },
+    {
+        "id": "25",
+        "targetLanguage": "receivingGifts",
+        "idea": "Regalar una giftcard",
+        "status": false
+    }
+]
