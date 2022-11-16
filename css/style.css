@@ -99,6 +99,20 @@ p, span, strong, em, code {
   text-align: center;
 }
 
+/** Container boton test */
+
+.container-test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3em;
+  margin-top: 3em;
+}
+
+.container-test:hover {
+  transform: scale(1.5)
+}
+
 /** Container-button */
 .container-button {
   display: flex;
@@ -505,7 +519,7 @@ tbody tr:nth-child(even) {
 
 .container-image {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-top: 2em;
   margin-bottom: 5em;

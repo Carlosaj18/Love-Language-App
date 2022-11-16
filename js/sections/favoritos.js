@@ -31,6 +31,12 @@ const eliminarCacheFavoritos = () => {
   // Eliminar usuario de favoritos
   const eliminarFavoritoUser = (userId) => {
     eliminarLocalStorageFavoritos(userId);
+    let userExist = recuperarUsers().find((user) => parseInt(user.id) === parseInt(userId));
+    userExist = {
+      ...userExist,
+      favoritos: false,
+    }
+    usersUodatedJSON(userExist.id, userExist);
     userFavoriteLoad();
   }
   

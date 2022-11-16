@@ -30,7 +30,7 @@ buttonDashboard.addEventListener("click", () => { recuperarUsers().length > 0 ? 
                                          /*** USER FAVORITES SECTION **/ 
 // Evento click boton Favoritos
 favoritosUsers.addEventListener("click", () => {
-  usersFavorite.length > 0 || recuperarUsersFavoritos().length > 0  ? userFavoriteLoad() && containerDashboardLoad() : alertaErrorUsuarios("error", "No hay usuarios en favoritos") });
+  usersFavorite.length > 0 || recuperarUsersFavoritos().length > 0  ? userFavoriteLoad() + containerDashboardLoad() : alertaErrorUsuarios("error", "No hay usuarios en favoritos") });
 
                                           /*** FIND USER PROMT SECTION **/
 // Evento click boton Find User prompt

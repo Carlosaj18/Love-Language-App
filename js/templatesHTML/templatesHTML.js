@@ -182,6 +182,7 @@ const retornoUserLanguagesPopUp = ({
                     <thead class="titleUserLanguage">
                         <tr class="header">
                           <th class="id-user">ID</th>
+                          <th>Nombre</th>
                           <th>PhysicalTouch</th>
                           <th>ActosOfService</th>
                           <th>QualityTime</th>
@@ -193,6 +194,7 @@ const retornoUserLanguagesPopUp = ({
                     <tbody class="tbody-user">
                         <tr>
                             <td id="id-user">${id}</td>
+                            <td class="border-botton centrar">${nombre}</td>
                             <td class="border-botton centrar">${physicalTouch}</td>
                             <td class="border-botton centrar">${actosOfService}</td>
                             <td class="border-botton centrar">${qualityTime}</td>
@@ -201,12 +203,13 @@ const retornoUserLanguagesPopUp = ({
                             <td class="border-botton centrar"right">${totalLanguage}</td>
                         </tr>
                         <tr>
+                            <td class="centrar">Ideas de Amor </td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="physicalTouch">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="actosOfService">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="qualityTime">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="wordsOfAffirmation">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="receivingGifts">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style">💘</button></td>
                         </tr>
                     </tbody>
                     </table>
@@ -256,6 +259,7 @@ const retornoUserLanguagesPopUpOrdenados = ({
                     <thead class="titleUserLanguage">
                         <tr class="header">
                           <th class="id-user">ID</th>
+                          <th>Nombre</th>
                           <th>${elemento1}</th> 
                           <th>${elemento2}</th>
                           <th>${elemento3}</th>
@@ -267,6 +271,7 @@ const retornoUserLanguagesPopUpOrdenados = ({
                     <tbody class="tbody-user">
                         <tr>
                             <td id="id-user">${id}</td>
+                            <td class="border-botton centrar">${nombre}</td>
                             <td class="border-botton centrar">${valor1}</td>
                             <td class="border-botton centrar">${valor2}</td>
                             <td class="border-botton centrar">${valor3}</td>
@@ -275,12 +280,13 @@ const retornoUserLanguagesPopUpOrdenados = ({
                             <td class="border-botton centrar"right">${totalLanguage}</td>
                         </tr>
                         <tr>
+                            <td class="centrar">Ideas de Amor </td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento1}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento2}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento3}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento4}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id=${elemento5}>💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button></td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button>💘</td>
                         </tr>
                     </tbody>
                     </table>

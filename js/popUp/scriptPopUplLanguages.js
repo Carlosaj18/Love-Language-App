@@ -108,10 +108,10 @@ const ordenarPopUpLenguajes = () => {
     let idUser = document.getElementById("id-user").innerText;
     let userFound = recuperarUsers().find(user => user.id === idUser);
     let userMapeado = displayLenguajesDelAmorUserOrdenados(userFound, userFound.languages);
-    infoPopUp.innerHTML = retornoUserLanguagesPopUpOrdenados(userMapeado, idUser());
+    infoPopUp.innerHTML = retornoUserLanguagesPopUpOrdenados(userMapeado);
     activarBotonesLenguajesInfo();
     randomaizerIdeasLenguajes();
-  
+    createActividadLenguajeDelAmor();
   });
 };
 
@@ -380,7 +380,7 @@ const popUpTable = (userId) => {
   infoPopUp.innerHTML = "";
   newActivityLanguage().innerHTML = "";
   let userMapeado = displayLenguajesDelAmorUser(userId);
-  infoPopUp.innerHTML = retornoUserLanguagesPopUp(userMapeado, idUser());
+  infoPopUp.innerHTML = retornoUserLanguagesPopUp(userMapeado);
   activarBotonesLenguajesInfo();
   ordenarPopUpLenguajes();
   randomaizerIdeasLenguajes();
