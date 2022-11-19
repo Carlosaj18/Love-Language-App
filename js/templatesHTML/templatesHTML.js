@@ -1,3 +1,94 @@
+
+const retornoBotonEnviarTest = () => {
+  return `<button  id="close-button" class="button button-outline botonEnviarTest">Enviar</button>`
+}
+
+const retornoBotonSiguientePregunta = () => {
+  return `<button  id="close-button" class="button button-outline centrar">Siguiente</button>`
+}
+
+const retornoContainerRespuestas = (obj, key, value) => {
+  return `<input autocomplete="off" type="radio" id="${obj.id}" name="${obj.id}" value="${key}">
+          <label for="html">${value}</label><br>`
+}
+
+const retornoContainerPregunta = (obj, contador) => {
+  return `<label class="pregunta" for="pregunta">Pregunta ${contador}: ${obj.pregunta} </label>`
+}
+
+const retornoContadorPregunta = (id) => {
+  return `<div class="contador"> ${id}/12 </div>`
+}
+
+const retornoResultadosTest = () => { 
+  return `<div class="containerValues"> 
+            <div class="container"> 
+              <div class="titleValueP"> PhysicalTouch </div>
+              <div class="valuesCards physicalTouch">
+                <div class="values">${valuePhysicalTouch}%</div>
+              </div> 
+            </div>
+            <div class="container"> 
+              <div class="titleValueA"> ActosOfService </div>
+              <div class="valuesCards actosOfService">
+                <div class="values">${valueActosOfService}%</div>
+              </div> 
+            </div>
+            <div class="container"> 
+              <div class="titleValueQ"> QualityTime </div>
+              <div class="valuesCards qualityTime">
+                <div class="values">${valueQualityTime}%</div>
+              </div> 
+            </div>
+            <div class="container"> 
+              <div class="titleValueW"> WordsOfAffirmation </div>
+              <div class="valuesCards wordsOfAffirmation">
+                <div class="values">${valueWordsOfAffirmation}%</div>
+              </div> 
+            </div>
+            <div class="container"> 
+              <div class="titleValueR"> ReceivingGifts </div>
+              <div class="valuesCards receivingGifts">
+                <div class="values">${valueReceivingGifts}%</div>
+              </div> 
+            </div>
+          </div>
+          <div class="container-footer margin">
+                  <button class="button verLenguaje-Ordenar" id="guardarResultados" title="Guarda tus resultados"><a>Guardar Resultados 💗</a></button>
+                  <button class="button verLenguaje-Ordenar" id="descartarResultados" title="Descarta tus resultados"><a>Eliminar Resultados ⛔</a></button>
+              </div>
+          `
+}
+
+// Template HTML Error Messages
+const retornoFinalizacionTest = () => {
+  return `<div class="card-error">
+              <h2>Perfecto, haz completado tu test de los lenguajes del amor ❤️</h2>
+              <h3>❗️Tus resultados los podras ver aqui abajo❕</h3>
+              <h3>Gracias por usar Family App 📣 </h3>
+          </div>`;
+};
+// Template PopuUp HTML Test Lenguajes 
+const retornoFormTestUser = () => {
+  return `
+      <fieldset>
+        <div class="containerComenzarTest"> 
+            <button  id="close-button" class="button button-outline centrar comenzarTest">Comenzar Test </button>
+        </div>
+          <span class="pln">
+              </span>
+                  <div class="infoFormTest notBorder loader" > 
+                    <div class="containerPregunta"> </div>
+                    <div class="radio-info"> </div>
+                    <div class="containerContador centrar "> </div>
+                  </div>
+                  <div class="botonSiguiente center separador"> </div>
+                  <div class="botonEnviarFormTest center separador"> </div>
+              <span class="pln">
+          </span>
+      </fieldset>
+      `;
+};
 // Template HTML Users
 const retornoCardUser = (user) => {
   /* Alias + Destructuracion*/
@@ -329,7 +420,7 @@ const retornoComboBoxLenguajes = (elemento) => {
 
 // Template HTML image loader
 const retornoImageLoader = () => {
-  return `<img src="images/Ellipsis-1.1s-44px.gif" width="30px">`;
+  return `<img class="centrado" src="images/Ellipsis-1.1s-44px.gif" width="30px">`;
 };
 
 const retornoBottonAgregarActivity = () => {
@@ -352,7 +443,7 @@ const retornoNewActivity = (id) => {
                         <textarea placeholder="La actividad es ..." id="idea"></textarea>  
                     </div>
                     <div class="center separador">
-                          <button  id="${id}-enviar" class="button button-outline">Enviar</button>
+                          <button  id="${id}-enviar" class="button button-outline enviar">Enviar</button>
                     </div>
 
                 <span class="pln">

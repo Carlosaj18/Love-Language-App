@@ -256,7 +256,6 @@ const validarGeneroComboBoxLocal = async () => {
 
 // Carga info del Form
 const popUpForm = (opcion) => {
-  console.log("click")
   infoPopUpForm.innerHTML = "";
   infoPopUpForm.innerHTML = retornoFormAddUser();
   validarGeneroComboBoxLocal();

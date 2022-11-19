@@ -411,6 +411,27 @@ tbody tr:nth-child(even) {
   }
 }
 
+/** Modal test  */
+
+.modalTest {
+  position:fixed;
+  top:50%; /*Center*/
+  left:50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: white;
+  width: auto !important;
+  max-width: 90%;
+  height: fit-content !important;
+}
+
+.modalTest.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
 /* Modal PopUp */
 .modal {
   position:fixed;
@@ -553,7 +574,6 @@ tbody tr:nth-child(even) {
   display: none;
   transform: scale(0);
 }
-
 
 #overlayLanguage {
   position: fixed;
@@ -699,4 +719,157 @@ div .separador {
   display: flex;
   gap: 3em;
   margin-bottom: 3em;
+}
+
+/** Test Lenguajes */
+
+.fieldset .infoForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.infoFormTest {
+  padding: 1em;
+  border: 1px solid #9b4dca;
+}
+
+.pregunta {
+  font-size: 2.5em;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5em;
+  
+}
+
+.containerPregunta {
+  margin-bottom: 2em;
+}
+
+.contador {
+  margin-top: 1em;
+  font-size: 2em;
+}
+
+.radio-info {
+  font-size: 3em;
+}
+
+.botonSiguiente  {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.containerComenzarTest, .botonEnviarFormTest {
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
+
+.comenzarTest, .botonEnviarTest {
+  font-size: 3em !important;
+  margin-top: 2em;
+}
+
+.notBorder {
+  border: none;
+}
+
+.containerValues {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.titleValue {
+  font-size: 1.5em;
+}
+
+.valuesCards {
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+.titleValueP {
+  color: #fd7e14;
+  font-size: 2em;
+}
+
+.physicalTouch {
+  border: 3px solid #fd7e14;
+}
+
+.titleValueA {
+  color: #0d6efd;
+  font-size: 2em;
+}
+.actosOfService{
+  border: 3px solid #0d6efd;
+}
+
+.titleValueQ {
+  color: #ffc107;
+  font-size: 2em;
+}
+.qualityTime{
+  border: 3px solid #ffc107;
+}
+.titleValueW {
+  color: greenyellow;
+  font-size: 2em;
+}
+.wordsOfAffirmation{
+  border: 3px solid greenyellow;
+}
+.titleValueR {
+  color: #dc3545;
+  font-size: 2em;
+}
+.receivingGifts{
+  border: 3px solid #dc3545;
+}
+
+.values {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  font-size: 2.5em;
+}
+
+.card-button-icons-results {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row !important;
+  margin-top: 10em;
+}
+
+.card-button-icons-results .button-add {
+  font-size: 3em;
+}
+
+.card-button-icons-results .button-delete {
+  font-size: 3em;
+}
+
+.margin {
+  margin-top: 5em;
 }

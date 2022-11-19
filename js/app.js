@@ -1,5 +1,6 @@
 const URL                      = 'https://63630f9937f2167d6f716022.mockapi.io/api/v1';
-const URLRandomaizer           = 'https://63729a98348e947299f99ae0.mockapi.io/api/v1'
+const URLRandomaizer           = 'https://63729a98348e947299f99ae0.mockapi.io/api/v1';
+const doTest                   = document.getElementById("createTest");
 const allUsers                 = document.querySelector("button.allUsers");
 const buttonOrdenar            = document.querySelector("button.ordenar");
 const addUser                  = document.getElementById("createUser");
@@ -18,7 +19,10 @@ const closeEditButton          = document.getElementById("close-button-edit");
 const displayLanguage          = document.querySelector(".modalLanguage");
 const PopUpEditUser            = document.querySelector(".modalEditUser");
 const modalForm                = document.querySelector(".modal");
-const searchNameDisplay        = document.querySelector(".search-name-display")
+const searchNameDisplay        = document.querySelector(".search-name-display"); 
+const modalTest                = document.querySelector(".modalTest");
+
+
                                           /*** SEARCH BAR SECTION */
 // Evento click search bar & keydown
 searchContainer.addEventListener("click", () => { recuperarUsers().length > 0 ? findUserSearchBar() :  alertaErrorUsuarios("warning", `No se encontró usuarios`) });
@@ -47,6 +51,12 @@ buttonOrdenar.addEventListener("click", () => { recuperarUsers() ? ordenar(recup
 // Evento click boton All Users
 allUsers.addEventListener("click", async () => { recuperarUsers().length > 0 || await usersLoadJSON().length > 0 ? usersLoad() && containerDashboardLoad() : alertaErrorUsuarios("warning", `No se encontró usuarios`) }); 
 
+                                          /*** TEST LENGUAJES */
+
+doTest.addEventListener("click", () => {
+  activarPopUpTest();
+});
+
                                           /*** LOAD WINDOW **/
 // Container Dashboard loading                                             
 const containerDashboardLoad = () => {
@@ -63,6 +73,7 @@ const popUpsLoad = () => {
   displayLanguage.style.display = "none";
   PopUpEditUser.style.display   = "none";
   modalForm.style.display       = "none";
+  modalTest.style.display       = "none";
 };
 
 // Window loading 

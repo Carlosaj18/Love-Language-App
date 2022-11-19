@@ -19,10 +19,12 @@
     <script defer src="js/variables.js"></script>
     <script defer src="js/librearias.js"></script>
     <script defer src="js/comboBox/comboBox.js"></script>
+    <script defer src="js/popUp/scriptPopUpTest.js"></script>
     <script defer src="js/popUp/scriptPopUplLanguages.js"></script>
     <script defer src="js/popUp/scriptPupUpForm.js" ></script>
     <script defer src="js/popUp/scriptPopuUpEditUser.js"></script>
     <script defer src="js/templateshtml/templatesHTML.js"></script>
+    <script defer src="js/sections/testLenguajes.js"></script>
     <script defer src="js/sections/allUsers.js"></script>
     <script defer src="js/sections/addUser.js"></script>
     <script defer src="js/sections/findUserPromt.js"></script>
@@ -62,7 +64,7 @@
       </div>
       <!-- Container Test Lenguajes -->
       <div class="container-test center">
-        <button class="button test center">TEST LENGUAJES DEL AMOR </button>
+        <button data-modal-target-test ="#modalTest" id="createTest" class="button test center">TEST LENGUAJES DEL AMOR </button>
       </div>
       <!-- Container Buttons -->
       <section class="container-button">
@@ -118,6 +120,16 @@
           </button>
         </div>
       </div>
+      <!-- Modal login -->
+      <!-- Modal Test Lenguage -->
+      <div class="modalTest active scroll-container" id="modalTest" style="display: block">
+        <div class="modal-header">
+          <div class="title">Test 5 Lenguajes del Amor</div>
+          <button data-close-button-test="close-button test">&times;</button>
+        </div>
+        <div class="modal-body test"></div>
+      </div>
+      <div id="overlay"></div>
       <!-- Modal PopUp Form -->
       <div class="modal active scroll-container" id="modal" style="display: block">
         <div class="modal-header">

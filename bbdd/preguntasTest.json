@@ -1,0 +1,62 @@
+[
+    {
+        "id": "1",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    },
+    {
+        "id": "2",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    },
+    {
+        "id": "3",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    },
+    {
+        "id": "4",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    },
+    {
+        "id": "5",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    },
+    {
+        "id": "6",
+        "targetLanguage": "physicalTouch",
+        "pregunta": "Es mas importante para mi cuando ... ",
+        "respuestas" : {
+            "opcion1" : "Si me dan una nota de amor sin ninguna razon en especial de un ser querido.",
+            "opcion2" : "Nos damos un abrazo con mi pareja."
+        },
+        "status": true
+    }
+]
