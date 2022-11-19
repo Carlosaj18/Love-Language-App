@@ -82,5 +82,6 @@ window.addEventListener("load", () => {
   containerDashboardLoad();
   activarPopUpForm();
   buttonOrdenar.style.display = "none";
+  activarPopUpLogin();
 });
 

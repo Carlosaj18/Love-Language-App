@@ -42,16 +42,11 @@ const validarUser = (newUser) => {
 };
 
 // Recuperar datos de un solo user
-const recuperarUserLocalStorage = (id) => {
-  if (localStorage.getItem(`${id}`)) {
-    let obj = localStorage.getItem(`${id}`);
+const recuperarUserLocalStorage = () => {
+    let obj = localStorage.getItem('IdUser');
     let userRecuperado = JSON.parse(obj);
-    return cargarOneUser(userRecuperado);
-  }
+    return userRecuperado;
 };
-
-// Almacenar one user en localStorage
-const almacenarOneUserLocalStorage = (profileUser) => { profileUser ? localStorage.setItem(`${profileUser.id}`, JSON.stringify(profileUser)) : null };
 
 // Almacenar users en localStorage
 const almacenarDatosLocalStorageUsers = (usersLocals) => { validationLocalStorageUsers(localStorage.getItem("users") ? localStorage.setItem("users", JSON.stringify(usersLocals)) : localStorage.setItem("users", JSON.stringify(users))) };

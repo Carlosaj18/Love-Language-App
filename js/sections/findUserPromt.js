@@ -58,7 +58,7 @@ const userFindInJSONByName = async (nombre) => {
     "Content-Type": "application/json"
    }
   try {
-      const response = await fetch(`${URL}/users?title=${nombre}`, { 
+      const response = await fetch(`${URL}/users?filter=${nombre}`, { 
         method: "GET",
         headers: headersList
       });

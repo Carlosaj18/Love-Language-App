@@ -413,6 +413,25 @@ tbody tr:nth-child(even) {
 
 /** Modal test  */
 
+.modalLogin {
+  position:fixed;
+  top:50%; /*Center*/
+  left:50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 1px solid black;
+  border-radius: 20px;
+  z-index: 10;
+  background-color: white;
+  width: auto !important;
+  max-width: 90%;
+  height: fit-content !important;
+}
+
+.modalLogin.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
 .modalTest {
   position:fixed;
   top:50%; /*Center*/

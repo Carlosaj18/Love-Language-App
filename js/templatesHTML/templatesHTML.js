@@ -1,3 +1,28 @@
+/// Template HTML Login 
+const retornoLogin = () => {
+  return `
+      <div>
+          <span class="pln">
+              </span>
+                  <div id="infoForm">
+                      <label for="nameField">Nombre</label>
+                      <input type="text" placeholder="Nombre" id="nombre">
+                      <span class="pln"></span>
+                      <label for="password">Password</label>
+                      <input type="password" placeholder="Password" id="password">
+                      <span class="pln"></span>
+                  </div>
+                  <div class="center separador">
+                        <button  id="close-button" class="button button-outline enviar">Enviar</button>
+                  </div>
+                  <div class="center separador">
+                        <button class="button button-outline registrarse">Registrarse</button>
+                  </div>
+              <span class="pln">
+          </span>
+      </div>
+      `;
+}
 
 const retornoBotonEnviarTest = () => {
   return `<button  id="close-button" class="button button-outline botonEnviarTest">Enviar</button>`

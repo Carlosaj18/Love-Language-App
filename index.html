@@ -19,11 +19,13 @@
     <script defer src="js/variables.js"></script>
     <script defer src="js/librearias.js"></script>
     <script defer src="js/comboBox/comboBox.js"></script>
+    <script defer src="js/popUp/scriptPopUpLogin.js"></script>
     <script defer src="js/popUp/scriptPopUpTest.js"></script>
     <script defer src="js/popUp/scriptPopUplLanguages.js"></script>
     <script defer src="js/popUp/scriptPupUpForm.js" ></script>
     <script defer src="js/popUp/scriptPopuUpEditUser.js"></script>
     <script defer src="js/templateshtml/templatesHTML.js"></script>
+    <script defer src="js/sections/login.js"></script>
     <script defer src="js/sections/testLenguajes.js"></script>
     <script defer src="js/sections/allUsers.js"></script>
     <script defer src="js/sections/addUser.js"></script>
@@ -121,6 +123,13 @@
         </div>
       </div>
       <!-- Modal login -->
+      <div class="modalLogin active scroll-container" id="modalLogin" style="display: block">
+        <div class="modal-header">
+          <div class="title">Login</div>
+        </div>
+        <div class="modal-body login"></div>
+      </div>
+      <div id="overlay"></div>
       <!-- Modal Test Lenguage -->
       <div class="modalTest active scroll-container" id="modalTest" style="display: block">
         <div class="modal-header">
