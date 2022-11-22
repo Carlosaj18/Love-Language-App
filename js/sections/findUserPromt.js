@@ -10,10 +10,9 @@ const cargarOneUser = async (user) => {
   let userFound;
   let armoHTML = "";
   let activoBotones = true;
-  containerDashboardLoad();
-  container.innerHTML = loader();
+  containerCards().innerHTML = loader();
   try {
-    tbody.innerHTML = "";
+    containerCards().innerHTML = "";
     userFound = await user;
     armoHTML = retornoCardUser(userFound);
   } catch (error) {
@@ -21,7 +20,7 @@ const cargarOneUser = async (user) => {
     activoBotones = false;
   } finally {
     setTimeout(() => {
-      container.innerHTML = armoHTML;
+      containerCards().innerHTML = armoHTML;
       activoBotones == true ? activarBotonesDelete() + activarBotonesAdd() + activarBotonesPopUp() + comprobarIconoFavoritosUser(userFound) + alerta("", `Se encontro el usuario '${user.nombre}'`, 'success') : activoBotones = false;
     }, 1500);
   }
@@ -79,8 +78,11 @@ const userSearchContainer = async (userLocals, userName) => {
     if(userFound !== undefined) {
         // userJSON = await userFindInJSONByName(userFound.nombre);
         userJSON = await userInJSON(userFound.id);
+        cargarOneUser(userJSON); 
+    } else {
+      console.log("User not found")
+      alertaErrorUsuarios("error", `No se encontró el usuario '${userName}' en tus contactos`);
     }
-    userJSON ? cargarOneUser(userJSON) : alerta("", `No se encontró el usuario '${userName}' en tus contactos`, 'error');
 };
     
 const findUserArray = () => {

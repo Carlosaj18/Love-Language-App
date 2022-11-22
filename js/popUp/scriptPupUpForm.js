@@ -2,7 +2,7 @@ const openModalButtonsForm  = document.querySelectorAll("[data-modal-target-form
 const closeModalButtonsForm = document.querySelectorAll("[data-close-button-form]");
 const closeSendButton       = document.getElementById("close-button");
 const overlayForm           = document.getElementById("overlay");
-const infoPopUpForm         = document.querySelector(".modal-body.form");
+const infoPopUpForm         = () => { return document.querySelector(".modal-body.form") };
 const selectNombreUser      = () => { return document.querySelector("#nombre") };
 const selectGeneroUser      = () => { return document.querySelector("#genero") };
 const selectParienteUser    = () => { return document.querySelector("#pariente") };
@@ -121,6 +121,7 @@ const pushUser = (profileUser) => {
     userCreated.innerText = profileUser.imagen + "✅";
     let timeCreation = timeUserCreation(profileUser);
     usersLoad();
+    loadCardsInfo();
     alerta("",`El User ${profileUser.nombre} se ha creado con exito ${timeCreation}`, "success");
   } else {
     confirm("El usuario " + profileUse?.nombre + " ya existen en el array de usuarios. ¿Deseas agregar otro?") ? createUserForm() : null;
@@ -196,6 +197,7 @@ const createUserFormCompleteInputs = () => {
     const NewUser = new User(user);
     pushUser(NewUser);
     usersLoad();
+    loadCardsInfo();
   } else {
     alerta("", `⛔️ Debes completar todos los datos en pantalla del formulario.`, "error");
   }
@@ -251,8 +253,9 @@ const validarGeneroComboBoxLocal = async () => {
 
 // Carga info del Form
 const popUpForm = (opcion) => {
-  infoPopUpForm.innerHTML = "";
-  infoPopUpForm.innerHTML = retornoFormAddUser();
+  //modalForm().style.display       = "block";
+  infoPopUpForm().innerHTML = "";
+  infoPopUpForm().innerHTML += retornoFormAddUser();
   validarGeneroComboBoxLocal();
   validarParientesComboBoxLocal();
   opcion == 2 ? asignarLenguagesUserForm() + clickBtnEnviar(opcion, btnEnviarUser()) : clickBtnEnviar(opcion, btnEnviarUser());

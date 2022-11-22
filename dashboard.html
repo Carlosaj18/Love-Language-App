@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css" />
+    <script src="https://kit.fontawesome.com/3964fc737d.js" crossorigin="anonymous" ></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <script src="https://kit.fontawesome.com/6faef4fc76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/dashboard.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://moment.github.io/luxon/global/luxon.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="js/class/idea.class.js"></script>
+    <script src="js/class/user.class.js"></script>
+    <script defer src="js/variables.js"></script>
+    <script defer src="js/librearias.js"></script>
+    <script defer src="js/comboBox/comboBox.js"></script>
+    <script defer src="js/popUp/scriptPopUpLogin.js"></script>
+    <script defer src="js/popUp/scriptPopUpTest.js"></script>
+    <script defer src="js/popUp/scriptPopUplLanguages.js"></script>
+    <script defer src="js/popUp/scriptPupUpForm.js" ></script>
+    <script defer src="js/popUp/scriptPopuUpEditUser.js"></script>
+    <script defer src="js/templateshtml/templatesHTML.js"></script>
+    <script defer src="js/sections/login.js"></script>
+    <script defer src="js/sections/testLenguajes.js"></script>
+    <script defer src="js/sections/allUsers.js"></script>
+    <script defer src="js/sections/addUser.js"></script>
+    <script defer src="js/sections/findUserPromt.js"></script>
+    <script defer src="js/sections/favoritos.js"></script>
+    <script defer src="js/sections/dashboard.js"></script>
+    <script defer src="js/sections/searchBar.js"></script>
+    <script defer src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <!-- Container SideBar  -->  
+    <div class="sidebar">
+      <div class="logo-container">
+        <img src="./images/5-Love-Language_Logo.png" alt="logo" />
+        <i class="fa-solid fa-xmark close-btn"></i>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="selected">
+            <i class="fa-solid fa-chart-pie"></i>
+            <button class="button section">Overview</button>
+          </li>
+          <li>
+            <i class="fa-solid fa-ticket"></i>
+            <button class="button allUsers">Mi Familia </button>
+          </li>
+          <li>
+            <i class="fa-solid fa-lightbulb"></i>
+            <button data-modal-target-form ="#modal" id="createUser" class="button button-grey"> Agregar a Familiar </button>
+          </li>
+          <li>
+            <i class="fa-solid fa-users"></i>
+            <button class="button findUser">Buscar Familiar</button>
+          </li>
+          <li>
+            <i class="fa-solid fa-user-tie"></i>
+            <button class="button button-favoritos">Love Target</button>
+          </li>
+          <li>
+            <i class="fa-solid fa-book"></i>
+            <button class="button button-dashboard">Dashboard Family</button>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <i class="fa-solid fa-gear"></i>
+            <button class="button setting">Configuracion </button>
+          </li>
+          <li>
+            <i class="fa-solid fa-award"></i>
+            <button data-modal-target-test ="#modalTest" id="createTest" class="button test center">TEST LENGUAJES DEL AMOR </button>
+          </li>
+        </ul>
+      </nav>
+      <div class="fill-bottom"></div>
+    </div>
+
+    <main>
+      
+      <!-- Container Header -->  
+      <header class="header section">
+        <h1 class="mainTitle">Lenguajes del Amor </h1>
+        <div class="user">
+          <div class="icons">
+            <div class="search-container">
+              <form action="#">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Buscar.."
+                  name="name"
+                />
+                <button type="submit"><i class="fa fa-search"></i></button>
+              </form>
+            </div>
+            <button class="searchButton"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+            
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <p class="name">Hi, Carlos</p>
+          <div class="user-img">
+            <img src="../images/userimg.jpg" alt="user image" />
+          </div>
+        </div>
+      </header>
+
+      <!-- Container Cards Info -->  
+      <div class="info-cards section">
+        <div class="info-card ">
+          <p>Total Familiares</p>
+          <p class="totalFamily">15</p>
+        </div>
+        <div class="info-card">
+          <p>Target Love </p>
+          <p class="targetLove">3</p>
+        </div>
+        <div class="info-card">
+          <p>Objetivos</p>
+          <p class="goals">5</p>
+        </div>
+        <div class="info-card">
+          <p>Recordatorios</p>
+          <p class="recordatorios">4</p>
+        </div>
+      </div>
+
+      <!-- Main Container -->  
+      <!-- Container Graph Info -->
+      <div class="trends-container section">
+        <div class="trends">
+          <p class="trend-title">Tus 5 Lenguajes del Amor </p>
+          <img src="./images/doughnut-chart-example.svg" alt="chart" />
+        </div>
+        <div class="data-container1">
+          <div class="data-item">
+            <p>PhysicalTouch</p>
+            <p class="porcentajeLenguaje">50%</p>
+          </div>
+          <div class="data-item">
+            <p>ActosOfService</p>
+            <p class="porcentajeLenguaje">10%</p>
+          </div>
+          <div class="data-item">
+            <p>QualityTime</p>
+            <p class="porcentajeLenguaje">13%</p>
+          </div>
+        </div>
+        <div class="data-container">
+          <div class="data-item">
+            <p>WordsOfAffirmation</p>
+            <p class="porcentajeLenguaje">20%</p>
+          </div>
+          <div class="data-item">
+            <p>ReceivingGifts</p>
+            <p class="porcentajeLenguaje">7%</p>
+          </div>
+          <div class="data-item">
+            <p>Total</p>
+            <p class="total">100%</p>
+          </div>
+        </div>
+        
+        <!-- Search Buttons -->
+        <div class="search-name-display"><p id="values"></p></div>
+
+        <!-- Main Container Cards -->
+        <div class="containerCards mt-5"></div>
+        
+        <!-- Modal PopUp Language -->
+        <div class="modalLanguage active scroll-containerY" id="modalLanguage" style="display: block">
+            <div class="modal-header">
+            <div class="title">Los 5 Lenguajes del Amor </div>
+            <button data-close-button-language="close-button">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-porcentaje"></div>
+            <div class="newActivityLanguage"></div>
+        </div>
+        <!-- Modal PopUp Form -->
+        <div class="modal active scroll-containerY" id="modal" style="display: block">
+            <div class="modal-header">
+            <div class="title">Form 5 Love of Language</div>
+            <button data-close-button-form="close-button form">&times;</button>
+            </div>
+            <div class="modal-body form"></div>
+        </div>
+        <!-- Modal PopUp Edit User -->
+        <div class="modalEditUser active scroll-containerY" id="modalEditUser" style="display: block">
+            <div class="modal-header">
+            <div class="title">Edit User Form 5 Love of Language</div>
+            <button data-close-button-edit="close-button editUser">&times;</button>
+            </div>
+            <div class="modal-body editUser"></div>
+        </div>
+        <!-- Modal Test Lenguage -->
+        <div class="modalTest active scroll-containerY" id="modalTest" style="display: block">
+            <div class="modal-header">
+            <div class="title">Test 5 Lenguajes del Amor</div>
+            <button data-close-button-test="close-button test">&times;</button>
+            </div>
+            <div class="modal-body test"></div>
+        </div>
+        <div id="overlayLanguage"></div>
+
+        <!-- Dashboard -->
+      <div class="container-dashboard scroll-container">
+        <table class="table align-middle mb-0 bg-white">
+          <span class="pln"> </span>
+          <div class="containerTitle">
+            <h1>User Dashboard</h1>
+          </div>
+          <thead class="bg-light">
+            <span class="pln"> </span>
+            <tr>           
+              <th class="fw-bold mb-1" id="tablehead">ID</th>
+              <th class="fw-bold mb-1" id="tablehead">Imagen</th>
+              <th class="fw-bold mb-1" id="tablehead">Pariente</th>
+              <th class="fw-bold mb-1" id="tablehead">Nombre</th>            
+              <th class="fw-bold mb-1" id="tablehead">PhysicalTouch</th>             
+              <th class="fw-bold mb-1" id="tablehead">ActosOfService</th>             
+              <th class="fw-bold mb-1" id="tablehead">QualityTime</th>             
+              <th class="fw-bold mb-1" id="tablehead">WordsOfAffirmation</th>             
+              <th class="fw-bold mb-1" id="tablehead">ReceivingGifts</th>             
+              <th class="fw-bold mb-1" id="tablehead">TOTAL SCORE</th>  
+              <th class="fw-bold mb-1" id="tablehead">Favoritos</th> 
+              <th class="fw-bold mb-1" id="tablehead">Editar User</th> 
+              <th class="fw-bold mb-1" id="tablehead">Eliminar User</th> 
+            </tr>
+            <span class="pln"> </span>
+          </thead>
+          <span class="pln"> </span>
+          <tbody class="tbody"></tbody>
+          <span class="pln"> </span>
+        </table>
+        <span class="pln"> </span>
+        <div>
+          <button class="button">
+            <a href="#" class="button-outline ordenar-dashboard">Ordenar</a>
+          </button>
+        </div>
+      </div>
+
+        <!-- Order Button -->
+        <button class="button ordenar" id="ordenarCards">
+            <a href="#" class="button-outline">Ordenar</a>
+        </button>
+      </div>
+
+      <!-- Container Goals Info -->  
+      <div class="lg-cards section">
+        <div class="lg-card left">
+            <div class="card-header">
+              <div class="card-title">
+                <h2>Objetivos Proximos </h2>
+                <a href="#">View all</a>
+              </div>
+              <p>11 de Noviembre del 2022</p>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox1" />
+                  <label for="checkbox1"></label>
+                </div>
+                <p>Dar un abrazo a mi Padre</p>
+              </div>
+              <p class="badge" style="background-color: #fd7e14; color: #fff">
+                PhysicalTouch
+              </p>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox2" />
+                  <label for="checkbox2"></label>
+                </div>
+                <p>Escribir una nota de amor a mi Novia</p>
+              </div>
+              <p class="badge" style="background-color: greenyellow; color: #fff">
+                WordsOfAffirmation
+              </p>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox3" />
+                  <label for="checkbox3"></label>
+                </div>
+                <p>Hacer la Cena </p>
+              </div>
+              <p class="badge" style="background-color: #0d6efd; color: #fff">ActosOfService</p>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox4" />
+                  <label for="checkbox4"></label>
+                </div>
+                <p>Leer un Libro Juntos en Familia </p>
+              </div>
+              <p class="badge" style="background-color: #ffc107; color: #fff">
+                QualityTime
+              </p>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <div class="checkbox">
+                  <input type="checkbox" id="checkbox4" />
+                  <label for="checkbox4"></label>
+                </div>
+                <p> Regalar un ticket para un evento </p>
+              </div>
+              <p class="badge" style="background-color: #dc3545; color: #fff">
+                ReceivingGifts
+              </p>
+            </div>
+          </div>
+        <div class="lg-card right ">
+          <div class="card-header">
+            <div class="card-title">
+              <h2>Objetivos Cumplidos </h2>
+              <a href="#">View details</a>
+            </div>
+            <p>Group: <span>Familia </span></p>
+          </div>
+          <div>
+            <p>PhysicalTouch</p>
+            <p class="lg-card-num">50</p>
+          </div>
+          <div>
+            <p>ActosOfService</p>
+            <p class="lg-card-num">87</p>
+          </div>
+          <div>
+            <p>QualityTime</p>
+            <p class="lg-card-num">23</p>
+          </div>
+          <div>
+            <p>WordsOfAffirmation</p>
+            <p class="lg-card-num">42</p>
+          </div>
+          <div>
+            <p>ReceivingGifts</p>
+            <p class="lg-card-num">17</p>
+          </div>
+        </div>
+        
+      </div>
+
+      <!-- Container SideNav -->  
+      <div class="announ-and-trending">
+        <div class="announcements">
+          <h4>Lenguajes del Amor </h4>
+          <div class="trending-content">
+            <div class="trend">
+              <img
+                class="trend-img"
+                src="./images/physicalTouch.jpg"
+                alt="physicalTouch"
+              />
+              <p>
+                <span class="trend-tag">@PhysicalTouch</span><br />
+                <span class="trend-text">Para esta persona, nada habla más profundamente que el contacto físico apropiado. <a href="www.youtube.com/watch?v=kI6U1o9lQy0" target="_blank">Ver Video</a></span>
+              </p>
+            </div>
+            <div class="trend">
+              <img
+                class="trend-img"
+                src="./images/actosOfService.jpg"
+                alt="actosOfService"
+              />
+              <p>
+                <span class="trend-tag">@actosOfService</span><br />
+                <span class="trend-text">Para estas personas, las acciones hablan más que las palabras. <a href="www.youtube.com/watch?v=RAKyUljqRWw" target="_blank">Ver Video</a></span>
+              </p>
+            </div>
+            <div class="trend">
+              <img
+                class="trend-img"
+                src="./images/qualityTime.jpg"
+                alt="qualityTime"
+              />
+              <p>
+                <span class="trend-tag">@qualityTime</span><br />
+                <span class="trend-text">Este lenguaje tiene que ver con darle a la otra persona toda tu atención. <a href="http://www.youtube.com/watch?v=57NzzpmwQs0" target="_blank">Ver Video</a></span>
+              </p>
+            </div>
+            <div class="trend">
+              <img
+                class="trend-img"
+                src="./images/wordsOfAffirmation.jpg"
+                alt="wordsOfAffirmation"
+              />
+              <p>
+                <span class="trend-tag">@wordsOfAffirmation</span><br />
+                <span class="trend-text">Este lenguaje usa palabras para afirmar a otras personas. <a href="www.youtube.com/watch?v=WEA-wEuNg4s" target="_blank">Ver Video</a></span>
+              </p>
+            </div>
+            <div class="trend">
+                <img
+                  class="trend-img"
+                  src="./images/receivingGifts.jpg"
+                  alt="receivingGifts"
+                />
+                <p>
+                  <span class="trend-tag">@receivingGifts</span><br />
+                  <span class="trend-text">Para algunas personas, recibir un regalo sincero es lo que las hace sentir más amadas. <a href="www.youtube.com/watch?v=l4QXTpV4WiU" target="_blank">Ver Video</a></span>
+                </p>
+              </div>
+          </div>
+        </div>
+        <div class="announcements">
+          <h4>Anuncios</h4>
+          <div class="announ-content">
+            <div class="Announcement">
+                <h6>Test Lenguajes del Amor </h6>
+                <p>¿Cuáles son los 5 lenguajes del amor?</p>
+              </div>
+              <div class="Announcement-border"></div>
+            <div class="Announcement">
+              <h6>Parejas</h6>
+              <p>¿Cómo mantener vivo el amor por tanto tiempo en las Familias?</p>
+            </div>
+            <div class="Announcement-border"></div>
+            <div class="Announcement">
+              <h6>Familia</h6>
+              <p> ¿Por qué tan pocas parejas parecen haber encontrado el secreto para mantener vivo el amor después de tanto tiempo? </p>
+            </div>
+            <div class="Announcement-border"></div>
+            <div class="Announcement">
+                <h6>Amor</h6>
+                <p><em>"Amarás, pues, al Señor tu Dios con todo tu corazón, y con toda tu alma, y con toda tu mente y con todas tus fuerzas; este es el principal mandamiento. 31 Y el segundo es semejante a este: Amarás a tu prójimo como a ti mismo. No hay otro mandamiento mayor que estos (Marcos 12:30–31. 3)".</em></p>
+            </p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

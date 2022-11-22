@@ -42,10 +42,10 @@ const usersDeleteJSON = async (id) => {
 }
 
 const loadingDataUserCads = (usersJSON) => {
-  container.innerHTML = loader();
+  containerCards().innerHTML = loader();
   let armoHTML = "";
   setTimeout(() => {
-    container.innerHTML = armoHTML;
+    containerCards().innerHTML = armoHTML;
     cargarUsers(usersJSON);
   }, 500);  
 }
@@ -71,6 +71,7 @@ const eliminarLocalStorageUsers = (userId) => {
     let list = recuperarUsers();
     let index = list.findIndex((object) => { return parseInt(object.id) === parseInt(userId) || object.id === userId.toString() });
     let userEnFavoritos = recuperarUsersFavoritos().find((user) => { return parseInt(user.id) == parseInt(userId)})
+    console.log(userEnFavoritos)
     userEnFavoritos ? elimarUserFavoritoLocalStorage(userId) : false;
     confirmDeleteUser(parseInt(userId), index, list);
   } else {
@@ -157,6 +158,7 @@ const activarBotonesAdd = () => {
     btn.addEventListener("click", () => {
       agregarAFavoritos(btn.id); 
       iconCardAdd(btn.id); 
+      loadCardsInfo();
     });
   });
 };
@@ -181,10 +183,10 @@ const cargarUsers = async (usersData) => {
   let array;
   let armoHTML = "";
   let activoBotones = true;
-  containerDashboardLoad();
-  container.innerHTML = loader();
+  // containerDashboardLoad();
+  buttonOrdenarCards().style.display = "block"; 
+  containerCards().innerHTML = loader();
   try {
-    tbody.innerHTML = "";
     array = await usersData;
     array.forEach((user) => { user != undefined ? armoHTML += retornoCardUser(user) : console.log("Usuario Indefinido") });
   } catch (error) {
@@ -192,7 +194,7 @@ const cargarUsers = async (usersData) => {
     activoBotones = false;
   } finally {
     setTimeout(() => {
-      container.innerHTML = armoHTML;
+      containerCards().innerHTML = armoHTML;
       activoBotones == true ? activarBotonesDelete() + activarBotonesAdd() + activarBotonesPopUp() + comprobarIconoFavoritos() : (activoBotones = false);
     }, 2500);
   }
@@ -316,4 +318,4 @@ const recuperarUsers = () => {
 };
 
 // Revisar si hay users en localStorage || users json para cargar en las cards
-const usersLoad = () => { localStorage.getItem("users") != undefined ? cargarUsers(recuperarUsers()) && botonOrdenarLoad() : cargarUsers(usersLoadJSON()) && botonOrdenarLoad() };
+const usersLoad = () => { localStorage.getItem("users") != undefined ? cargarUsers(recuperarUsers()) : cargarUsers(usersLoadJSON())};

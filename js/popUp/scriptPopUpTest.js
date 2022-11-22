@@ -6,7 +6,9 @@ const infoFormTest          = () => { return document.querySelector(".infoFormTe
 const containerPregunta     = () => { return document.querySelector(".containerPregunta")}
 const containerRespuesta    = () => { return document.querySelector(".radio-info")}
 const contadorPregunta      = () => { return document.querySelector(".containerContador")};
+const barProgress           = () => { return document.querySelector(".progress")}
 const botonSiguiente        = () => { return document.querySelector(".botonSiguiente")}
+const imagenLogo            = () => { return document.querySelector(".logo") };
 const botonEnviarFormTest   = () => { return document.querySelector(".botonEnviarFormTest")}
 const botonEnviarTest       = () => { return document.querySelector(".button.button-outline.enviar") }
 const notBorder             = () => { return document.querySelector(".notBorder")}
@@ -68,6 +70,7 @@ const asignarLenguagesUserFormTest = (pregunta) => {
         displayRadioValue();
         cambiarEstadoPregunta(pregunta);
         contadorPregunta().innerHTML = retornoContadorPregunta(contador);
+        barProgress().innerHTML = retornoBarProgress(contador);
         contador++;
         botonSiguiente().innerHTML = loadBotonSiguientePregunta();
     }
@@ -143,7 +146,7 @@ const mostrarPregunta = () => {
         //alerta("TEST", `⛔️ Terminaste el test`, "success");
         botonEnviarFormTest().innerHTML = loadBotonEnviarTest();
         botonSiguiente().style.display = "none";
-        infoFormTest().innerHTML = retornoFinalizacionTest();
+        //imagenLogo().style.display = "none";
         botonEnviarFormTest().addEventListener("click", () => {
             calcularResultados();
             infoFormTest().innerHTML = loader();
@@ -161,6 +164,7 @@ const mostrarPregunta = () => {
                         loveLanguages.receivingGifts = radioValueCheck[4];
                         almacenarDatosLocalStorageResultados(loveLanguages);
                         closeModal(modalTest);
+                        loadLenguajesInfo();
                       })
                   }
                   if(descartarResultados() != null){

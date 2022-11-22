@@ -41,39 +41,43 @@ const retornoContainerPregunta = (obj, contador) => {
   return `<label class="pregunta" for="pregunta">Pregunta ${contador}: ${obj.pregunta} </label>`
 }
 
-const retornoContadorPregunta = (id) => {
-  return `<div class="contador"> ${id}/12 </div>`
+const retornoContadorPregunta = (contador) => {
+  return `<div class="contador"> ${contador}/12 </div>`
+}
+
+const retornoBarProgress = (contador) => {
+  return `<div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: ${(contador*100)/12}%;" aria-valuenow="${(contador*100)/12}" aria-valuemin="0" aria-valuemax="100"></div>`
 }
 
 const retornoResultadosTest = () => { 
-  return `<div class="containerValues"> 
+  return `<div class="containerValues scroll-container"> 
             <div class="container"> 
               <div class="titleValueP"> PhysicalTouch </div>
-              <div class="valuesCards physicalTouch">
+              <div class="valuesCards physicalTouch badge rounded-pill d-inline">
                 <div class="values">${valuePhysicalTouch}%</div>
               </div> 
             </div>
             <div class="container"> 
               <div class="titleValueA"> ActosOfService </div>
-              <div class="valuesCards actosOfService">
+              <div class="valuesCards actosOfService badge rounded-pill d-inline">
                 <div class="values">${valueActosOfService}%</div>
               </div> 
             </div>
             <div class="container"> 
               <div class="titleValueQ"> QualityTime </div>
-              <div class="valuesCards qualityTime">
+              <div class="valuesCards qualityTime badge rounded-pill d-inline">
                 <div class="values">${valueQualityTime}%</div>
               </div> 
             </div>
             <div class="container"> 
               <div class="titleValueW"> WordsOfAffirmation </div>
-              <div class="valuesCards wordsOfAffirmation">
+              <div class="valuesCards wordsOfAffirmation badge rounded-pill d-inline">
                 <div class="values">${valueWordsOfAffirmation}%</div>
               </div> 
             </div>
             <div class="container"> 
               <div class="titleValueR"> ReceivingGifts </div>
-              <div class="valuesCards receivingGifts">
+              <div class="valuesCards receivingGifts badge rounded-pill d-inline">
                 <div class="values">${valueReceivingGifts}%</div>
               </div> 
             </div>
@@ -85,11 +89,12 @@ const retornoResultadosTest = () => {
           `
 }
 
+
 // Template HTML Error Messages
 const retornoFinalizacionTest = () => {
-  return `<div class="card-error">
+  return `<div class="card-test">
               <h2>Perfecto, haz completado tu test de los lenguajes del amor ❤️</h2>
-              <h3>❗️Tus resultados los podras ver aqui abajo❕</h3>
+              <h3>❕Tus resultados los podras ver aqui abajo❕</h3>
               <h3>Gracias por usar Family App 📣 </h3>
           </div>`;
 };
@@ -98,6 +103,9 @@ const retornoFormTestUser = () => {
   return `
       <fieldset>
         <div class="containerComenzarTest"> 
+            <div class="logo-container-test">
+              <img class="logo" src="../../images/5-Love-Language_Logo.png" alt="logo" />
+            </div>
             <button  id="close-button" class="button button-outline centrar comenzarTest">Comenzar Test </button>
         </div>
           <span class="pln">
@@ -106,6 +114,7 @@ const retornoFormTestUser = () => {
                     <div class="containerPregunta"> </div>
                     <div class="radio-info"> </div>
                     <div class="containerContador centrar "> </div>
+                    <div class="progress"> </div>
                   </div>
                   <div class="botonSiguiente center separador"> </div>
                   <div class="botonEnviarFormTest center separador"> </div>
@@ -159,17 +168,40 @@ const retornoTableDashboard = ({
           <span class="pln"> </span>
             <tr>
               <td class="border-botton centrar">${id}</td>
-              <td class="border-botton centrar">${imagen}</td>
-              <td class="border-botton centrar">${pariente}</td>
+              <td class="border-botton centrar">
+                  <div class="d-flex align-items-center">
+                    <img
+                      src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                      alt=""
+                      style="width: 45px; height: 45px"
+                      class="rounded-circle"
+                    />
+                  </div>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-warning rounded-pill d-inline">${pariente}</span>
+              </td>
               <td class="border-botton centrar">${nombre}</td>
-              <td class="border-botton centrar">${physicalTouch}</td>
-              <td class="border-botton centrar">${actosOfService}</td>
-              <td class="border-botton centrar">${qualityTime}</td>
-              <td class="border-botton centrar">${wordsOfAffirmation}</td>
-              <td class="border-botton centrar">${receivingGifts}</td>
-              <td class="border-botton centrar">${totalLanguage}</td>
+              <td class="border-botton centrar">
+                <span class="badge badge-success rounded-pill d-inline">${physicalTouch}%</span>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-success rounded-pill d-inline">${actosOfService}%</span>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-success rounded-pill d-inline">${qualityTime}%</span>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-success rounded-pill d-inline">${wordsOfAffirmation}%</span>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-success rounded-pill d-inline">${receivingGifts}%</span>
+              </td>
+              <td class="border-botton centrar">
+                <span class="badge badge-primary rounded-pill d-inline">${totalLanguage}%</span>
+              </td>
               <td class="border-botton centrar">${favoritos}</td>
-              <th><button id="${id}" data-modal-target-edit="#modalEditUser" class="button-update button-small border-botton centrar edit-style">✔️</button></th>
+              <th><button id="${id}" data-modal-target-edit="#modalEditUser" class="button-update button-small border-botton centrar edit-style btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">Editar</button></th>
               <th><button id="${id}" class="button-delete button-small border-botton centrar edit-style">⛔</button></th>
             </tr>
           <span class="pln"> </span>`;
@@ -286,48 +318,71 @@ const retornoUserLanguagesPopUp = ({
                     <h1> ¿Quieres amar hoy a tu ${pariente}?</h1>
                     <p class="descriptionUser">  Estos son los 5 lenguajes del amor de ${nombre}: </p>
                     <div class="container-image">
-                      <button> <img src='../images/physicalTouch.jpg'     id='physicalTouch-imagen'      class="images-languages" alt="physicalTouch" width="60" height="60"> </button> 
-                      <button> <img src='../images/actosOfService.jpg'     id='actosOfService-imagen'      class="images-languages" alt="actosOfService" width="60" height="60"> </button> 
-                      <button> <img src='../images/qualityTime.jpg'       id='qualityTime-imagen'        class="images-languages" alt="qualityTime" width="60" height="60"> </button> 
-                      <button> <img src='../images/wordsOfAffirmation.jpg' id='wordsOfAffirmation-imagen'  class="images-languages" alt="wordsOfAffirmation" width="60" height="60"> </button> 
-                      <button> <img src='../images/receivingGifts.jpg'     id='receivingGifts-imagen'      class="images-languages" alt="receivingGifts" width="60" height="60"> </button> 
+                      <button> <img src='../images/physicalTouch.jpg'     id='physicalTouch-imagen'      class="images-languages" alt="physicalTouch" width="70" height="70"> </button> 
+                      <button> <img src='../images/actosOfService.jpg'     id='actosOfService-imagen'      class="images-languages" alt="actosOfService" width="70" height="70"> </button> 
+                      <button> <img src='../images/qualityTime.jpg'       id='qualityTime-imagen'        class="images-languages" alt="qualityTime" width="70" height="70"> </button> 
+                      <button> <img src='../images/wordsOfAffirmation.jpg' id='wordsOfAffirmation-imagen'  class="images-languages" alt="wordsOfAffirmation" width="70" height="70"> </button> 
+                      <button> <img src='../images/receivingGifts.jpg'     id='receivingGifts-imagen'      class="images-languages" alt="receivingGifts" width="70" height="70"> </button> 
                     </div>
                 </div>
-                <div class="containerTable">
-                    <table>
-                    <thead class="titleUserLanguage">
-                        <tr class="header">
-                          <th class="id-user">ID</th>
-                          <th>Nombre</th>
-                          <th>PhysicalTouch</th>
-                          <th>ActosOfService</th>
-                          <th>QualityTime</th>
-                          <th>WordsOfAffirmation</th>
-                          <th>ReceivingGifts</th>
-                          <th id="tablehead" class="border-right">TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody-user">
-                        <tr>
-                            <td id="id-user">${id}</td>
-                            <td class="border-botton centrar">${nombre}</td>
-                            <td class="border-botton centrar">${physicalTouch}</td>
-                            <td class="border-botton centrar">${actosOfService}</td>
-                            <td class="border-botton centrar">${qualityTime}</td>
-                            <td class="border-botton centrar">${wordsOfAffirmation}</td>
-                            <td class="border-botton centrar">${receivingGifts}</td>
-                            <td class="border-botton centrar"right">${totalLanguage}</td>
-                        </tr>
-                        <tr>
-                            <td class="centrar">Ideas de Amor </td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="physicalTouch">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="actosOfService">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="qualityTime">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="wordsOfAffirmation">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="receivingGifts">💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style">💘</button></td>
-                        </tr>
-                    </tbody>
+                <div class="containerTable scroll-container">
+                    <table class="table align-middle mb-0 bg-white">
+                      <thead class="titleUserLanguage bg-light">
+                          <tr class="header">
+                            <th class="id-user">ID</th>
+                            <th class="fw-bold mb-1">Nombre</th>
+                            <th class="fw-bold mb-1">PhysicalTouch</th>
+                            <th class="fw-bold mb-1">ActosOfService</th>
+                            <th class="fw-bold mb-1">QualityTime</th>
+                            <th class="fw-bold mb-1">WordsOfAffirmation</th>
+                            <th class="fw-bold mb-1">ReceivingGifts</th>
+                            <th id="tablehead" class="fw-bold mb-1 border-right">TOTAL</th>
+                          </tr>
+                      </thead>
+                      <tbody class="tbody-user">
+                           <tr>
+                              <td id="id-user">${id}</td>
+                              <td class="border-botton centrar">
+                                <div class="d-flex align-items-center">
+                                  <img
+                                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                    alt=""
+                                    style="width: 45px; height: 45px"
+                                    class="rounded-circle"
+                                  />
+                                </div>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${physicalTouch}%</span>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${actosOfService}%</span>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${qualityTime}%</span>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${wordsOfAffirmation}%</span>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${receivingGifts}%</span>
+                              </td>
+                              <td class="border-botton centrar">
+                                <span class="badge badge-success rounded-pill d-inline">${totalLanguage}%</span>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td>
+                                <span class="badge badge-primary rounded-pill d-inline align-items-center">Ideas</span>
+                              </td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="physicalTouch">💡</button></td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="actosOfService">💡</button></td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="qualityTime">💡</button></td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="wordsOfAffirmation">💡</button></td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="receivingGifts">💡</button></td>
+                              <td class="centrar"><button class="button-update button-small border-botton centrar edit-style">💘</button></td>
+                          </tr>
+                      </tbody>
                     </table>
                 </div>
                 <footer class="container-footer">
@@ -363,46 +418,69 @@ const retornoUserLanguagesPopUpOrdenados = ({
                     <h1> ¿Quieres amar hoy a tu ${pariente}?</h1>
                     <p class="descriptionUser">  Estos son los 5 lenguajes del amor de ${nombre}: </p>
                     <div class="container-image">
-                      <button> <img src='../images/${elemento1}.jpg' id='${elemento1}-imagen'      class="images-languages" alt="physicalTouch" width="60" height="60"> </button> 
-                      <button> <img src='../images/${elemento2}.jpg'  id='${elemento2}-imagen'      class="images-languages" alt="actosOfService" width="60" height="60"> </button> 
-                      <button> <img src='../images/${elemento3}.jpg' id='${elemento3}-imagen'        class="images-languages" alt="qualityTime" width="60" height="60"> </button> 
-                      <button> <img src='../images/${elemento4}.jpg'  id='${elemento4}-imagen'  class="images-languages" alt="wordsOfAffirmation" width="60" height="60"> </button> 
-                      <button> <img src='../images/${elemento5}.jpg' id='${elemento5}-imagen'      class="images-languages" alt="receivingGifts" width="60" height="60"> </button> 
+                      <button> <img src='../images/${elemento1}.jpg' id='${elemento1}-imagen'      class="images-languages" alt="physicalTouch" width="90" height="90"> </button> 
+                      <button> <img src='../images/${elemento2}.jpg'  id='${elemento2}-imagen'      class="images-languages" alt="actosOfService" width="90" height="90"> </button> 
+                      <button> <img src='../images/${elemento3}.jpg' id='${elemento3}-imagen'        class="images-languages" alt="qualityTime" width="90" height="90"> </button> 
+                      <button> <img src='../images/${elemento4}.jpg'  id='${elemento4}-imagen'  class="images-languages" alt="wordsOfAffirmation" width="90" height="90"> </button> 
+                      <button> <img src='../images/${elemento5}.jpg' id='${elemento5}-imagen'      class="images-languages" alt="receivingGifts" width="90" height="90"> </button> 
                     </div>
                 </div>
-                <div class="containerTable">
-                    <table>
-                    <thead class="titleUserLanguage">
+                <div class="containerTable scroll-container">
+                    <table class="table align-middle mb-0 bg-white">
+                    <thead class="titleUserLanguage bg-light">
                         <tr class="header">
                           <th class="id-user">ID</th>
-                          <th>Nombre</th>
-                          <th>${elemento1}</th> 
-                          <th>${elemento2}</th>
-                          <th>${elemento3}</th>
-                          <th>${elemento4}</th>
-                          <th>${elemento5}</th>
-                          <th id="" class="border-right">TOTAL</th>
+                          <th class="fw-bold mb-1">Nombre</th>
+                          <th class="fw-bold mb-1">${elemento1}</th> 
+                          <th class="fw-bold mb-1">${elemento2}</th>
+                          <th class="fw-bold mb-1">${elemento3}</th>
+                          <th class="fw-bold mb-1">${elemento4}</th>
+                          <th class="fw-bold mb-1">${elemento5}</th>
+                          <th class="fw-bold mb-1">TOTAL</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-user">
-                        <tr>
+                          <tr>
                             <td id="id-user">${id}</td>
-                            <td class="border-botton centrar">${nombre}</td>
-                            <td class="border-botton centrar">${valor1}</td>
-                            <td class="border-botton centrar">${valor2}</td>
-                            <td class="border-botton centrar">${valor3}</td>
-                            <td class="border-botton centrar">${valor4}</td>
-                            <td class="border-botton centrar">${valor5}</td>
-                            <td class="border-botton centrar"right">${totalLanguage}</td>
+                            <td class="border-botton centrar">
+                              <div class="d-flex align-items-center">
+                                <img
+                                  src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                                  alt=""
+                                  style="width: 45px; height: 45px"
+                                  class="rounded-circle"
+                                />
+                              </div>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${valor1}%</span>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${valor2}%</span>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${valor3}%</span>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${valor4}%</span>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${valor5}%</span>
+                            </td>
+                            <td class="border-botton centrar">
+                              <span class="badge badge-success rounded-pill d-inline">${totalLanguage}%</span>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="centrar">Ideas de Amor </td>
+                            <td>
+                              <span class="badge badge-primary rounded-pill d-inline">Ideas</span>
+                            </td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento1}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento2}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento3}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id="${elemento4}">💡</button></td>
                             <td class="centrar"><button class="button-update button-small border-botton centrar edit-style" id=${elemento5}>💡</button></td>
-                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style"></button>💘</td>
+                            <td class="centrar"><button class="button-update button-small border-botton centrar edit-style">💘</button></td>
                         </tr>
                     </tbody>
                     </table>

@@ -38,6 +38,7 @@ const eliminarCacheFavoritos = () => {
     }
     usersUodatedJSON(userExist.id, userExist);
     userFavoriteLoad();
+    loadCardsInfo();
   }
   
   // Activar Bottones de delete Favoritos
@@ -52,11 +53,10 @@ const eliminarCacheFavoritos = () => {
   
   // Read favoritos
   const cargarUsersFavoritos = (array) => {
-    container.innerHTML = loader(); 
+    containerCards().innerHTML = loader(); 
     setTimeout(() => {
-      tbody.innerHTML = "";
-      container.innerHTML = "";
-      array.forEach((user) => container.innerHTML += retornoCardUser(user));
+      containerCards().innerHTML = "";
+      array.forEach((user) => containerCards().innerHTML += retornoCardUser(user));
       activarBotonesDeleteFavoritos();
       comprobarIconoFavoritos();
       activarBotonesPopUp();

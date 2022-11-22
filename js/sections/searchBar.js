@@ -18,10 +18,8 @@ const capitalizeFirstLetter = (string) => {
   
   const cargarUsersSearchBar = (array) => {
     if(array.length > 0) {
-      containerDashboard.style.display = "none";
-      tbody.innerHTML = "";
-      container.innerHTML = "";
-      array.forEach((user) => user != undefined ? container.innerHTML += retornoCardUser(user) : undefined);
+      containerCards().innerHTML = "";
+      array.forEach((user) => user != undefined ? containerCards().innerHTML += retornoCardUser(user) : undefined);
       activarBotonesAdd();
       activarBotonesDelete();
       activarBotonesPopUp(); 
@@ -43,7 +41,7 @@ const capitalizeFirstLetter = (string) => {
   };
   
   const updateValue = (e) => {
-    capitalizeFirstLetter((log.textContent = e.target.value));
+    capitalizeFirstLetter((displayValues.textContent = e.target.value));
   }
   
   // Evento para print user input in the container
@@ -61,7 +59,8 @@ const capitalizeFirstLetter = (string) => {
   
   const findUserSearchBar = () => {
     usersLoad();
-    searchContainer.addEventListener("keydown", (e) => {
+    
+    searchContainer().forEach(element => element.addEventListener("keydown", (e) => {
       let targetValue = e.target.value; // Toma un valor atras
       let key = e.key.toUpperCase();
       if ((e.key != "Backspace" && e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122)
@@ -74,6 +73,6 @@ const capitalizeFirstLetter = (string) => {
         }
       }
       inputListener(e);
-    });
+    }));
   };
 

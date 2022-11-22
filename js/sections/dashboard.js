@@ -16,12 +16,15 @@ const ordenarDashboardButton = (array) => {
 
 // Boton ordenar Dashboard
 const ordenarDashboard = () => {
-  const ordenarButtonDashboard = document.querySelector(".button-outline.ordenar-dashboard");
-  ordenarButtonDashboard.addEventListener("click", () => {
-    let localUsers = recuperarUsers();
-    ordenarDashboardButton(localUsers);
-    alertaOrdenar("success", "Todos los usuarios fueron ordenados");
-  });
+  const ordenarButtonDashboard = () => { return document.querySelector(".button-outline.ordenar-dashboard") };
+  ordenarButtonDashboard().style.display = 'block';
+  if(ordenarButtonDashboard != null){
+    ordenarButtonDashboard().addEventListener("click", () => {
+      let localUsers = recuperarUsers();
+      ordenarDashboardButton(localUsers);
+      alertaOrdenar("success", "Todos los usuarios fueron ordenados");
+    });
+  }
 }
 
 const confirmationPromeseDashboard = async (id, index, list) => {
@@ -73,10 +76,10 @@ const activoBotonesDeleteDashboard = () => {
   
   // HTML para cargar el dashboard
   const topLenaguajes = (topLenguajeDelAmor) => {
-    container.innerHTML = loader(); 
+    containerCards().innerHTML = loader(); 
     setTimeout(() => {
-      containerDashboard.style.display = "block";
-      container.innerHTML = "";
+      containerDashboard().style.display = "block";
+      containerCards().innerHTML = "";
       searchNameDisplay.innerHTML = "";
       tbody.innerHTML = "";
       topLenguajeDelAmor.forEach((user) => {
@@ -85,7 +88,7 @@ const activoBotonesDeleteDashboard = () => {
       activoBotonesDeleteDashboard();
       activoBotonesUpdateDashboard();
       ordenarDashboard();
-    }, 2500);
+    }, 500);
   };
   
   // Function para cargar info Dashboard

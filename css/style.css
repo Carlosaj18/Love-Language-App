@@ -1,20 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic");
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif;
-}
-
-h1, h2, h3, h4 {
-  font-weight: 500;
-}
-
-p, span, strong, em, code {
-  font-size: larger;
-}
-
 /** topnav */
 .topnav {
   overflow: hidden;
@@ -124,7 +107,15 @@ p, span, strong, em, code {
 
 /** Input search bar */
 .search-name-display {
-  font-size: 5em;
+  display: flex; 
+  justify-content:center;
+  align-items:center;
+  font-size: 3em;
+  grid-column: 1/-1;
+}
+
+.search-name-display p {
+  height: fit-content;
   text-align: center;
 }
 
@@ -156,129 +147,6 @@ p, span, strong, em, code {
     display: flex;
     flex-direction: column;
   }
-}
-
-/** Container Cards */
-.containerCards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1em;
-}
-
-.containerCards {
-    gap: 30px;
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 2em;
-}
-
-.card {
-    box-shadow: 5px 20px 20px rgba(71, 66, 66, 0.3);
-    border: 2px solid rgba(211, 211, 211, 0.384);
-    border-radius: 12px;
-    height: 420px;
-    width: 270px;
-    position: relative;
-}
-
-.card:hover {
-    transition: .5s ease-in;
-    box-shadow: 5px 20px 60px rgba(211, 211, 211, 0.519);
-}
-
-.card .card-tag {
-  background-color: yellowgreen;
-  height: 30px;
-  width: 50px;
-  border-radius: 15px;
-  position: absolute;
-  top: 1px;
-  right: 1px;
-  font-size: 16px;
-  margin: 0.3em;
-}
-
-.card .card-tag .text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  margin-right: 1px;
-  padding: 0px !important;
-}
-
-.card .card-image {
-    text-align: center;
-    font-size: 70px;
-    display: block;
-    width: 1fr;
-}
-
-.card .card-name {
-    text-align: center;
-    font-size: 3em;
-    font-weight: 700;
-    display: block;
-    width: 1fr;
-}
-
-.card .card-description {
-    text-align: center;
-    font-size: 20px;
-    font-weight: 500;
-    display: block;
-    width: 1fr;
-    padding: 0.5em;
-}
-
-
-.card .card-button-top {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-.card-button-icons {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row !important;
-
-}
-
-.card-button-icons .button-add {
-  font-size: 3em;
-}
-
-.card-button-icons .button-delete {
-  font-size: 3em;
-}
-
-.button-add-hide {
-    display:none !important;
-}
-
-.card .card-button-top button {
-    margin-top: 10px;
-    font-size: 20px !important;
-}
-
-.card .card-button-top .disabled {
-    background-color: lightgray !important;
-    color: whitesmoke !important;
-}
-
-.card .card-button-top button:active {
-    background: darkmagenta !important;
-    color: white !important;
 }
 
 /*** REVIEW */
@@ -319,6 +187,7 @@ p, span, strong, em, code {
   align-items:center;
   width: 100%;
   padding: 40px;
+  grid-column: 1/-1;
 }
 
 .containerTitle {
@@ -342,13 +211,17 @@ thead tr th {
   font-size: 2em;
 }
 
+.rounded-circle {
+  border: 50%;
+}
+
 tbody span tr td {
-  font-size: 2em;
+  font-size: 1em;
   color: black;
 }
 
 .border-botton {
-  font-size: 1.5em;
+  font-size: 1em;
   border-bottom: 1px solid #9b4dca;
 }
 
@@ -442,16 +315,17 @@ tbody tr:nth-child(even) {
   border-radius: 20px;
   z-index: 10;
   background-color: white;
+  min-width: 600px !important;
   width: auto !important;
   max-width: 90%;
-  height: fit-content !important;
+  height: 700px;
 }
 
 .modalTest.active {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Modal PopUp */
+/* Modal PopUp From */
 .modal {
   position:fixed;
   top:50%; /*Center*/
@@ -478,9 +352,9 @@ tbody tr:nth-child(even) {
   z-index: 10;
   background-color: white;
   width: fit-content;
-  max-width: 80%;
+  max-width: auto;
   min-width: 489px;
-  height: 550px;
+  height: 650px;
 }
 
 .modalEditUser {
@@ -534,10 +408,15 @@ tbody tr:nth-child(even) {
 }
 
 .scroll-container {
-  overflow-y: scroll;
+  overflow-x: scroll;
   scroll-behavior: smooth;
   width: auto;
-  height: 600px;
+  height: auto;
+}
+
+.scroll-containerY {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .modal-body {
@@ -562,13 +441,13 @@ tbody tr:nth-child(even) {
   justify-content: space-around;
   align-items: center;
   margin-top: 2em;
-  margin-bottom: 5em;
+  margin-bottom: 3em;
 }
 
 .container-image button {
   float: right;
   background: transparent !important;
-  font-size: 27px;
+  font-size: 7em;
   border: none;
   cursor: pointer;
 }
@@ -643,6 +522,7 @@ tbody tr:nth-child(even) {
   display: flex;
   justify-content:center;
   align-items:center;
+  margin-top: 2em;
 }
 
 .centrar .lenguages {
@@ -691,7 +571,7 @@ a#randomPopUpLenguajes {
 }
 
 #ordenarCards {
-  margin-left: 15em;
+  margin-left: 0em;
   margin-bottom: 2em;  
   margin-top: 2em;
 }
@@ -736,6 +616,8 @@ div .separador {
 
 .containerActivity {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 3em;
   margin-bottom: 3em;
 }
@@ -746,10 +628,12 @@ div .separador {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   
 }
 
 .infoFormTest {
+
   padding: 1em;
   border: 1px solid #9b4dca;
 }
@@ -772,8 +656,11 @@ div .separador {
   font-size: 2em;
 }
 
-.radio-info {
-  font-size: 3em;
+.info {
+  width: 100%;
+}
+.radio-info label {
+  font-size: 1em;
 }
 
 .botonSiguiente  {
@@ -786,27 +673,45 @@ div .separador {
   display: flex !important;
   justify-content: center !important;
   align-content: center !important;
+  padding: 30px !important;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo-container-test {
+  padding: 1rem;
+  padding-bottom: 1.75rem;
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  align-content: center !important;
+}
+
+.logo-container-test img {
+  width: 100%;
+  border-radius: 50%;
+  margin-left: 1em;
 }
 
 .comenzarTest, .botonEnviarTest {
   font-size: 3em !important;
   margin-top: 2em;
-}
-
-.notBorder {
-  border: none;
+  padding: 10px;
+  border: none !important;
 }
 
 .containerValues {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5em;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.container {
+.containerValues .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   gap: 1em;
 }
 
@@ -870,6 +775,7 @@ div .separador {
   top: 32px;
   right: 28px;
   font-size: 2.5em;
+  color: #000;
 }
 
 .card-button-icons-results {
@@ -891,4 +797,12 @@ div .separador {
 
 .margin {
   margin-top: 5em;
+}
+
+.card-test {
+  box-shadow: 0px 6px 20px rgba(#9b4dca, 0, 0, 0.147);
+  border: 1px solid darkred;
+  border-radius: 6px;
+  padding: 40px;
+  color: #9b4dca;
 }
