@@ -1,5 +1,21 @@
 const URL                         = 'https://63630f9937f2167d6f716022.mockapi.io/api/v1';
 const URLRandomaizer              = 'https://63729a98348e947299f99ae0.mockapi.io/api/v1';
+const input                       = document.querySelector("input.input");
+const displayValues               = document.getElementById("values");
+const searchNameDisplay           = document.querySelector(".search-name-display"); 
+const allUsers                    = document.querySelector("button.allUsers");
+const favoritosUsers              = document.querySelector(".button.button-favoritos");
+const addUser                     = document.getElementById("createUser");
+const findUser                    = document.querySelector(".button.findUser");
+const tbody                       = document.querySelector(".tbody");
+const doTest                      = document.getElementById("createTest");
+const modal                       = document.querySelector(".modal");
+const PopUpBodyEditUser           = document.querySelector(".modal-body.editUser");
+const closeEditButton             = document.getElementById("close-button-edit");
+const displayLanguage             = document.querySelector(".modalLanguage");
+const PopUpEditUser               = document.querySelector(".modalEditUser");
+const modalTest                   = document.querySelector(".modalTest");
+const modalLogin                  = document.querySelector(".modalLogin");
 const bodyContainer               = () => { return document.querySelectorAll("body")}   
 const buttonOverviewPanel         = () => { return document.querySelector("button.section")}
 const headerOverviewPanelLoad     = () => { return document.querySelector(".header.section")}
@@ -14,34 +30,17 @@ const containerCards              = () => { return document.querySelector(".cont
 const buttonOrdenarCards          = () => { return document.querySelector("button.ordenar") };
 const searchContainer             = () => { return document.querySelectorAll(".search-container") };
 const searchButtonNavBar          = () => { return document.querySelectorAll(".searchButton") };
-const input                       = document.querySelector("input.input");
-const displayValues               = document.getElementById("values");
-const searchNameDisplay           = document.querySelector(".search-name-display"); 
 const mainTitle                   = () => { return document.querySelector(".mainTitle") }
-const allUsers                    = document.querySelector("button.allUsers");
-const favoritosUsers              = document.querySelector(".button.button-favoritos");
-const addUser                     = document.getElementById("createUser");
-const findUser                    = document.querySelector(".button.findUser");
 const containerDashboard          = () => { return document.querySelector(".container-dashboard") };
 const buttonDashboard             = () => { return document.querySelector("button.button-dashboard") };
-const tbody                       = document.querySelector(".tbody");
-const doTest                      = document.getElementById("createTest");
-const modal                       = document.querySelector(".modal");
-const PopUpBodyEditUser           = document.querySelector(".modal-body.editUser");
-const closeEditButton             = document.getElementById("close-button-edit");
-const displayLanguage             = document.querySelector(".modalLanguage");
-const PopUpEditUser               = document.querySelector(".modalEditUser");
 const modalForm                   = () => { return document.querySelector(".modal") };
-const modalTest                   = document.querySelector(".modalTest");
-const modalLogin                  = document.querySelector(".modalLogin");
-
 const cardsInfo                   = () => { return document.querySelectorAll(".info-card")}
 const totalFamily                 = () => { return document.querySelector(".totalFamily")}                 
 const targetLove                  = () => { return document.querySelector(".targetLove")}
 const goals                       = () => { return document.querySelector(".goals")}
 const recordatorios               = () => { return document.querySelector(".recordatorios")}      
-    
 const porcentajeLenguaje          = () => { return document.querySelectorAll(".porcentajeLenguaje")}
+
 
                                           /*** SEARCH BAR SECTION */
 // Evento click search bar & keydown
@@ -150,7 +149,6 @@ const recuperarLenguajes = () => {
       return lenguajesRecuperados;
   }
 };
-
 
 const loadLenguajesInfo = () => {
   let lenguajeStorage = recuperarLenguajes();
