@@ -173,6 +173,7 @@ const ideaInArrayUsers = (user) => {
 
 const sendIdea = async (languageSelectionado) => {
   let selectLanguage = await randomaizer(languageSelectionado);
+  console.log(selectLanguage);
   selectLanguage.forEach((lenguaje) => lenguaje.status !== true ? newArrIdeasLenguajes.push(lenguaje) : null );
   return indexAleatorio = getRandomIntInclusive(0, newArrIdeasLenguajes.length - 1);
 };

@@ -1,6 +1,4 @@
 /*** LIBRERIAS WINDOW **/
-
-/** https://sweetalert2.github.io/ */
 const alerta = (titulo, mensaje, icono) => {
   Swal.fire({
     icon: icono || "",

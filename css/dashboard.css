@@ -234,7 +234,6 @@ body main header .user {
   
 }
 
-
 body main header .user .icons {
   border-right: 2px solid #dfe0eb;
   margin-right: 1.75rem;
@@ -907,11 +906,6 @@ body main .announ-and-trending > div h4 {
     display: grid;
     grid-row: -1;
     grid-column: 1/-1;
-  }
-}
-@media (max-width: 740px) {
-  body {
-    grid-template-columns: 1fr;
   }
 }
 
