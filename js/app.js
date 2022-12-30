@@ -222,7 +222,6 @@ const loadLenguajesInfo = () => {
   let lenguajeStorage = recuperarLenguajes();
   let value = Object.values(lenguajeStorage);
   porcentajeLenguaje().forEach((lenguaje, index) => {
-    console.log(lenguaje);
     lenguaje.textContent = `${value[index]}%`;
   });
   const total = document.querySelector(".total");
