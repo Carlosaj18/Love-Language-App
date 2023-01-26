@@ -169,7 +169,7 @@ Project Link: https://github.com/Carlosaj18/Love-Language-App
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/carlos-jaramillo-full-stack-developer/
 [product-screenshot]: https://user-images.githubusercontent.com/62365628/214893065-540e6b32-6113-4197-80e2-676009bbda30.jpg
-[product-screenshot2]: https://user-images.githubusercontent.com/62365628/214893235-da120c76-3315-454c-9916-3b649d940eb2.jpg
+[product-screenshot2]: https://user-images.githubusercontent.com/62365628/214894451-99e22a57-56c7-4f65-9565-4a6ff60ae39a.jpeg
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React-url]: https://reactjs.org/
