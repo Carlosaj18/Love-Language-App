@@ -37,14 +37,14 @@
   <p align="center">
     An awesome App for some ideas to love your love ones!
     <br />
-    <a href="https://github.com/Carlosaj18/Legal-App"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Carlosaj18/Legal-App">View Demo</a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App">View Demo</a>
     ·
-    <a href="https://github.com/Carlosaj18/Legal-App/issues">Report Bug</a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Carlosaj18/Legal-App/issues">Request Feature</a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App/issues">Request Feature</a>
   </p>
 </div>
 
@@ -80,12 +80,12 @@
 
 ![Product Name Screen Shot][product-screenshot]
 
-It is a project that seeks to generate a centralization of legal documents at hand. Where you can download our templates, and use right after. You will have all your documents organized.
+It is a project that seeks to learn to understand how others feel love. It help you with some ideas to learn to love your love ones. 
 
 Here's why:
-* We value your time. Your time should be focused on creating something amazing. We will handle your legal documents needs.
-* You shouldn't be doing the same tasks over and over like creating legal documents from scratch
-* You should implement DRY principles to the rest of your life :smile:
+* Relationships don't have to be complicated.
+* When we feel disconnected from the people we care about, life is a lonely place
+* 5 Love Languages® is a simple and effective way to strengthen your connections, so you can experience greater joy and harmony in all of your relationships :smile:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,12 +94,12 @@ Here's why:
 
 <p align="center">
   <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/figma/figma-original.svg" alt="Figma" height="40" style="vertical-align:top; margin:4px"></a>
-  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/firebase/firebase-plain-wordmark.svg" alt="Firebase" height="40" style="vertical-align:top; margin:4px"></a>
-  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/javascript/javascript-original.svg" alt="Firebase" height="40" style="vertical-align:top; margin:10px"></a>
-  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" alt="React" height="40" style="vertical-align:top; margin:10px"</a>
-   <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/materialui/materialui-original.svg" alt="MaterialUi" height="40" style="vertical-align:top; margin:10px"></a>
-  <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/redux/redux-original.svg" alt="Redux" height="40" style="vertical-align:top; margin:10px"></a>
-   <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/git/git-original-wordmark.svg" alt="MaterialUi" height="40" style="vertical-align:top; margin:10px"></a>
+  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/html5/html5-original-wordmark.svg" alt="HTML" height="40" style="vertical-align:top; margin:4px"></a>
+  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/css3/css3-original-wordmark.svg" alt="CSS" height="40" style="vertical-align:top; margin:4px"></a>
+  <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/javascript/javascript-original.svg" alt="JavaScript" height="40" style="vertical-align:top; margin:4px"></a>
+   <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/git/git-original-wordmark.svg" alt="Git" height="40" style="vertical-align:top; margin:10px"></a>
+   <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/git/git-original-wordmark.svg" alt="Git" height="40" style="vertical-align:top; margin:10px"></a>
+    <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/heroku/heroku-original-wordmark.svg" alt="Heroku" height="40" style="vertical-align:top; margin:10px"></a>
 </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -110,25 +110,10 @@ Here's why:
 
 ### Prerequisites
 
-* npm
-  ```sh
-  npm install npm@latest -g
+* Open with Live Server 
   ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/Carlosaj18/Legal-App-.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Start the Project
-   ```sh
-   npm start
-   ```
+    Live Server
+  ```
    
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -136,13 +121,12 @@ Here's why:
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Search for your document
-- [x] Add it to your templates 
-- [ ] Download the document 
-- [ ] Use the document based on your needs
-- [ ] All your documents will be save in your central repository
+- [x] Find your Love Language
+- [x] Add your Love Ones in your Favorites
+- [ ] Click in their Love Language and get some Ideas
+- [ ] Learn how to connect with them.
 
-See the [open issues](https://github.com/Carlosaj18/Legal-App-/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/Carlosaj18/Love-Language-App-/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,7 +151,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/Carlosaj18/React-project]
+Project Link: https://github.com/Carlosaj18/Love-Language-App
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
