@@ -29,7 +29,8 @@
 <br />
 <div align="center">
   <a>
-    <img src="https://user-images.githubusercontent.com/62365628/214876004-be858914-bb6b-4b6e-8c40-b49112ff0d30.png" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/62365628/214893065-540e6b32-6113-4197-80e2-676009bbda30.jpg" alt="Logo" width="80" height="80">
+    <img src="https://user-images.githubusercontent.com/62365628/214893235-da120c76-3315-454c-9916-3b649d940eb2.jpg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best App for Learn to Love your love ones </h3>
