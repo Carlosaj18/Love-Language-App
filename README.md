@@ -29,8 +29,7 @@
 <br />
 <div align="center">
   <a>
-    <img src="https://user-images.githubusercontent.com/62365628/214893065-540e6b32-6113-4197-80e2-676009bbda30.jpg" alt="Logo" width="80" height="80">
-    <img src="https://user-images.githubusercontent.com/62365628/214893235-da120c76-3315-454c-9916-3b649d940eb2.jpg" alt="Logo" width="80" height="80">
+   <img src="https://user-images.githubusercontent.com/62365628/214876004-be858914-bb6b-4b6e-8c40-b49112ff0d30.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Best App for Learn to Love your love ones </h3>
@@ -80,6 +79,7 @@
 ## About The Project!
 
 ![Product Name Screen Shot][product-screenshot]
+![Product Name Screen Shot][product-screenshot2]
 
 It is a project that seeks to learn to understand how others feel love. It help you with some ideas to learn to love your love ones. 
 
@@ -169,7 +169,7 @@ Project Link: https://github.com/Carlosaj18/Love-Language-App
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/carlos-jaramillo-full-stack-developer/
 [product-screenshot]: https://user-images.githubusercontent.com/62365628/214893065-540e6b32-6113-4197-80e2-676009bbda30.jpg
-[product-screenshot]: https://user-images.githubusercontent.com/62365628/214893065-540e6b32-6113-4197-80e2-676009bbda30.jpg
+[product-screenshot2]: https://user-images.githubusercontent.com/62365628/214893235-da120c76-3315-454c-9916-3b649d940eb2.jpg
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React-url]: https://reactjs.org/
