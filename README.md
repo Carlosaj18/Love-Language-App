@@ -39,7 +39,8 @@
     <a href="https://github.com/Carlosaj18/Love-Language-App"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-   <a href="https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4" target="_blank">View Demo</a>
+   <a href="https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4" onclick="window.open(this.href,'_blank');return false;">View Demo</a>
+
     ·
     <a href="https://github.com/Carlosaj18/Love-Language-App/issues">Report Bug</a>
     ·
