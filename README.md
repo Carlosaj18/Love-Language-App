@@ -105,17 +105,7 @@ Start the server
  
 https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4
 
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Prerequisites
-
-* Open with Live Server 
-  ```
-    Live Server
-  ```
- ## :handshake: Contact
+## :handshake: Contact
 
 Email ID- cjaramilloportilla@gmail.com
 
