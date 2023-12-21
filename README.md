@@ -24,7 +24,6 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -49,54 +48,21 @@
 </div>
 
 <br />
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
-## About The Project!
+## :star2: About the Project
 
+<div align="justify">This project is an exploration of expressing love and fostering heartfelt connections. It generates activities in line with love languages, enriching family and interpersonal relationships. Users can craft personalized activities, nurturing deeper connections and fostering cherished moments of love and appreciation. 
+  <br><br>
+</div>
 
-
-
-https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4
-
-
-It is a project that seeks to learn to understand how others feel love. It help you with some ideas to learn to love your love ones. Built using HTML, CSS, and JavaScript, this app generates random activities based on love languages to strengthen familial and interpersonal bonds. Users can also create personalized activities using JavaScript, fostering deeper connections and moments of shared love and appreciation.
-
-Here's why:
-* Relationships don't have to be complicated.
-* When we feel disconnected from the people we care about, life is a lonely place
-* 5 Love Languages® is a simple and effective way to strengthen your connections, so you can experience greater joy and harmony in all of your relationships :smile:
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Built With
+## Project Technological Stack:
+* HTML5: Used for structuring the content and elements of the web application.
+* CSS3: Employed for styling and designing the visual layout and presentation of the project.
+* JavaScript: Utilized to enhance interactivity, implement functionalities, and manage dynamic content within the project.
 
 <p align="center">
+  <br><br>
   <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/figma/figma-original.svg" alt="Figma" height="40" style="vertical-align:top; margin:4px"></a>
   <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/html5/html5-original-wordmark.svg" alt="HTML" height="40" style="vertical-align:top; margin:4px"></a>
   <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/css3/css3-original-wordmark.svg" alt="CSS" height="40" style="vertical-align:top; margin:4px"></a>
@@ -105,7 +71,39 @@ Here's why:
     <a> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/heroku/heroku-original-wordmark.svg" alt="Heroku" height="40" style="vertical-align:top; margin:10px"></a>
 </p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Features:
+*     Semantic structuring of web content.
+*     Form creation for data input.
+*     Support for multimedia integration.
+*     Styling and formatting of web elements.
+*     Responsive design for various devices.
+*     Animations and transitions for enhanced user experience.
+*     Dynamic content manipulation.
+*     Event handling for user interactions.
+*     Client-side validation and form processing.
+
+
+## Getting Started
+  
+Clone the project
+
+```bash
+  git clone https://github.com/Carlosaj18/Love-Language-App/
+```
+
+Start the server
+
+```bash
+  start live server
+```
+
+<hr />
+
+ ## Demo & Showcasing:
+
+ ### :camera: Screenshots
+ 
+https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4
 
 
 <!-- GETTING STARTED -->
@@ -117,46 +115,11 @@ Here's why:
   ```
     Live Server
   ```
-   
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+ ## :handshake: Contact
 
+Email ID- cjaramilloportilla@gmail.com
 
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Find your Love Language
-- [x] Add your Love Ones in your Favorites
-- [ ] Click in their Love Language and get some Ideas
-- [ ] Learn how to connect with them.
-
-See the [open issues](https://github.com/Carlosaj18/Love-Language-App-/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: https://github.com/Carlosaj18/Love-Language-App
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Project Link : https://github.com/Carlosaj18/Love-Language-App/
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
