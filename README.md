@@ -39,7 +39,7 @@
     <a href="https://github.com/Carlosaj18/Love-Language-App"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Carlosaj18/Love-Language-App/#Demo&Showcasing:">View Demo</a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App/#demo--showcasing">View Demo</a>
     ·
     <a href="https://github.com/Carlosaj18/Love-Language-App/issues">Report Bug</a>
     ·
