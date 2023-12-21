@@ -34,12 +34,12 @@
   <h3 align="center">Best App for Learn to Love your love ones </h3>
 
   <p align="center">
-    An awesome App for some ideas to love your love ones!
+   An incredible application designed to inspire expressions of love for your cherished ones. Crafted using HTML, CSS3, and JavaScript, it offers a treasure trove of heartwarming ideas and activities to deepen your connections and share affection with your loved ones.
     <br />
     <a href="https://github.com/Carlosaj18/Love-Language-App"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Carlosaj18/Love-Language-App">View Demo</a>
+    <a href="https://github.com/Carlosaj18/Love-Language-App/#Demo&Showcasing:">View Demo</a>
     ·
     <a href="https://github.com/Carlosaj18/Love-Language-App/issues">Report Bug</a>
     ·
