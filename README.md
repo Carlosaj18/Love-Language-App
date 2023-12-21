@@ -60,7 +60,9 @@
 * HTML5: Used for structuring the content and elements of the web application.
 * CSS3: Employed for styling and designing the visual layout and presentation of the project.
 * JavaScript: Utilized to enhance interactivity, implement functionalities, and manage dynamic content within the project.
-
+* Git: Version control system used for tracking changes, collaborating on code, and managing project versions.
+* Heroku: Cloud platform for deploying, managing, and scaling web applications effortlessly.
+  
 <p align="center">
   <br><br>
   <a target="_blank" rel="noopener noreferrer"> <img src="https://github.com/devicons/devicon/blob/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/figma/figma-original.svg" alt="Figma" height="40" style="vertical-align:top; margin:4px"></a>
