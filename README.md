@@ -105,7 +105,7 @@ Start the server
 
  ### :camera: Screenshots
  
-https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4
+<!-- https://user-images.githubusercontent.com/62365628/216802065-e2fe6eac-4481-4a80-8eb7-f83df13b335b.mp4 -->
 
 ## :handshake: Contact
 <a href=#lets-connect>![Let's Connect!](https://res.cloudinary.com/dn1e07eul/image/upload/v1659314257/Readme%20Headers/inter-lets-connect_bv3kcd.png)</a>
